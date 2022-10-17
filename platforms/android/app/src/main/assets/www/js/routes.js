@@ -956,7 +956,7 @@ var routes = [
     {  
       name: 'formLIC3L', 
       path: '/formLIC3L/',
-      componentUrl: './pages/formL3L.html',
+      componentUrl: './pages/formLIC3L.html',
     },
     {  
       name: 'cierreLICL', 
