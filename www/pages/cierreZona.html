@@ -1,0 +1,838 @@
+<style>
+    .send {
+    font-size: 20px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color: #124f90;
+    color: white;
+    margin: 20px;
+}
+.sheet-modal.modal-in{
+    height: 100%;
+}
+p {
+    color: rgba(0,0,0,.6);
+    font-family: 'ITC Avant Garde Gothic', sans-serif;
+    font-size: 1em;
+}
+.span{
+    margin-top: 12px;
+    height: auto;
+    line-height: 24px;
+    margin-bottom: 3px;
+}
+</style>
+<template>
+    <div class="view view-main view-init safe-areas">
+        <div class="page">
+            <div class="navbar" style="background-color: #063E7F;height: 52px;height: 52px;">
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <style>            
+                            .nav-text-regresar{
+                                color: #ffffff;
+                                border: 2px solid white;
+                                padding: 0 10px;
+                                border-radius: 7px;
+                                font-size: 14px;
+                            }
+                            .rating:not([disabled]) .star:hover::after, .rating .star.active::after {
+                                height: 1.3em;
+                            }
+                        </style>
+                        <a href="#" onclick="regresar_zona04(1)">
+                            <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                        </a>
+                    </div>
+                    <div class="title" style="color: white;text-align:center;padding-left: 40px;">Cierre con Cliente</div>
+                </div>
+            </div>
+            <div class="toolbar toolbar-bottom tabbar">
+                <style>
+                    .tab-link-active{
+                        color: white;
+                        background-color: #00A7B5;
+                    }
+                </style>
+                <font size="1">
+                    <div class="toolbar-inner">
+                        <a href="#tab-1" class="tab-link tab-link-active" style="font-size: 16px;font-family: 'ITC Avant Garde Gothic', sans-serif;color: 505759;">Cliente</a>
+                        <a href="#tab-3" class="tab-link" style="font-size: 16px;font-family: 'ITC Avant Garde Gothic', sans-serif;color: #505759;">Cierre</a>
+                    </div>
+                </font>
+            </div>
+            <div class="tabs-animated-wrap">
+                <div class="tabs">
+                    <div id="tab-1" class="page-content tab tab-active bg-color-white" style="margin-top: 20px;background-color: rgb(245, 245, 245);">
+                        <div class="block" style="padding-left: 0;padding-top: 0;">
+                            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                                <h2 style="color:#00A7B5;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;">Datos Generales</h2>
+                            </div>
+
+                            <div style="text-align: left; justify-content:left; margin-right:auto; margin-left:auto; width: 95%;background-color: white;padding: 10px;border-radius: 15px;margin-left: 2%;">
+                                <table id="table-general" cellpadding="10" style="width: 100%;margin: 0;padding: 0;">
+                                    <tbody id="table-general-conten">
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Nombre completo del cliente:</th>
+                                            <td><span id="nombre" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Celular </th>
+                                            <td><span id="celular" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Correo electronico </th>
+                                            <td><span id="correo" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Tipo de recursos:</th>
+                                            <td><span id="tipo" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Presupuesto:</th>
+                                            <td><span id="presupuesto" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Por que medio se enterarron de nosotros </th>
+                                            <td><span id="porque" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="hidden" name="geolocation" id="geolocation">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--------------------------------FIN TAB 3-->
+                    <div id="tab-3" class="page-content tab bg-color-white" style="margin-top: 20px;background-color: rgb(245, 245, 245);">
+                        <div class="block">
+                            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+
+                                <p>
+                                    <label style="font-size: 20px;color:#063E7F;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;"><strong>Encuesta</strong></label>
+                                </p>
+
+                                <div class="BotonesCierreContainer text-center" style="display: flex; flex-direction: row;justify-content: center;">
+                                    <a id="btnMuestraEncuesta" class="link sheet-open" href="#" data-sheet=".my-sheet-push"><img src="img/iconsMenu/encuesta3.svg" width="80px" /></a><br /><br />
+                                    <a class="link popup-open" href="#" data-popup=".popup-calificacion" id="btn_encuesta_qr"><img src="img/iconsMenu/qr.svg" width="80px" /></a><br /><br />
+                                </div>
+
+                                <p>
+                                    <label style="font-size: 20px;color:#063E7F;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;"><strong>Carta de intención VENTA</strong></label>
+                                </p>
+
+                                <div class="BotonesCierreContainer text-center" style="display: flex; flex-direction: row;justify-content: center;">
+                                    <a id="btnMuestraEncuesta" class="link sheet-open" href="#" data-sheet=".my-sheet-push1"><img src="img/iconsMenu/encuesta3.svg" width="80px" /></a><br /><br />
+                                    <a class="link popup-open" href="#" data-popup=".popup-calificacion2" id="btn_encuesta_qr1"><img src="img/iconsMenu/qr.svg" width="80px" /></a><br /><br />
+                                </div>
+
+                                <p>
+                                    <label style="font-size: 20px;color:#063E7F;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;"><strong>Carta de intención RENTA</strong></label>
+                                </p>
+
+                                <div class="BotonesCierreContainer text-center" style="display: flex; flex-direction: row;justify-content: center;">
+                                    <a id="btnMuestraEncuesta" class="link sheet-open" href="#" data-sheet=".my-sheet-push2"><img src="img/iconsMenu/encuesta3.svg" width="80px" /></a><br /><br />
+                                    <a class="link popup-open" href="#" data-popup=".popup-calificacion3" id="btn_encuesta_qr2"><img src="img/iconsMenu/qr.svg" width="80px" /></a><br /><br />
+                                </div>
+                                
+
+                                <div class="popup popup-calificacion">
+                                    <div class="headerPopupPhoto" style="width: 90%;display: flex;justify-content: space-between;padding-left: 20px;margin-top: 15px;">
+                                        <a class="link popup-close">Cerrar</a>
+                                    </div>
+                                    <br>
+                                    <div class="popup-container">
+                                    <h2 class="FWN-titulo-2" style="width: 100%;text-align: center;margin-top: 9px;">Encuesta de satisfacción</h2>
+                                        <div style="text-align: center;">
+                                            <form class="list FWM-fixing-form">
+                                                <div class="nbox" style="width: 100%;text-align: center;margin-top: 100px;"></div>
+                                                <div id="qrcode"></div>   
+                                                <input type="hidden" id="encuesta_link1">
+
+                                                <p>
+                                                    <label style="font-size: 20px;color:#00A7B5;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;" onclick="copytoclipboard(1)"><strong>Click aquí para copiar enlace</strong></label>
+                                                </p>              
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="popup popup-calificacion2">
+                                    <div class="headerPopupPhoto" style="width: 90%;display: flex;justify-content: space-between;padding-left: 20px;margin-top: 15px;">
+                                        <a class="link popup-close">Cerrar</a>
+                                    </div>
+                                    <br>
+                                    <div class="popup-container">
+                                    <h2 class="FWN-titulo-2" style="width: 100%;text-align: center;margin-top: 9px;">Carta de intención VENTA</h2>
+                                        <div style="text-align: center;">
+                                            <form class="list FWM-fixing-form">
+                                                <div class="nbox" style="width: 100%;text-align: center;margin-top: 100px;"></div>
+                                                <div id="qrcode2"></div>   
+                                                <input type="hidden" id="encuesta_link2">
+
+                                                <p>
+                                                    <label style="font-size: 20px;color:#00A7B5;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;" onclick="copytoclipboard(2)"><strong>Click aquí para copiar enlace</strong></label>
+                                                </p>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="popup popup-calificacion3">
+                                    <div class="headerPopupPhoto" style="width: 90%;display: flex;justify-content: space-between;padding-left: 20px;margin-top: 15px;">
+                                        <a class="link popup-close">Cerrar</a>
+                                    </div>
+                                    <br>
+                                    <div class="popup-container">
+                                    <h2 class="FWN-titulo-2" style="width: 100%;text-align: center;margin-top: 9px;">Carta de intención RENTA</h2>
+                                        <div style="text-align: center;">
+                                            <form class="list FWM-fixing-form">
+                                                <div class="nbox" style="width: 100%;text-align: center;margin-top: 100px;"></div>
+                                                <div id="qrcode3"></div>   
+                                                <input type="hidden" id="encuesta_link3">
+
+                                                <p>
+                                                    <label style="font-size: 20px;color:#00A7B5;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;" onclick="copytoclipboard(3)"><strong>Click aquí para copiar enlace</strong></label>
+                                                </p>              
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="div_firma">
+                                    <input type="hidden" name="signate" id="signate" placeholder="sfirmc"/>
+                                        <center><img id="ImagenFirmaView" src="" width="70%"><br>
+                                            <span id="VolverFirmar"></span>
+                                            <input type="button" value="Volver a Firmar" style="position:absolute;display:none;margin:0 !important;color:white;background-color: #019cdc;top:40px;margin-left:160px !important" /></center>
+                                        <div style=" justify-content: center;display: flex;margin-top: 30px;">
+                                            <a class="link popup-open" href="#" onclick="createFirma()" data-popup=".popup-services"><img src="img/iconsMenu/firmar.svg" width="80px" /></a><br /><br />
+                                        </div>
+                                        
+
+                                        <div class="popup popup-services">
+                                            <br>
+                                            <div class="popup-container" style="height: 300px;">
+                                                    <div class="headerPopupPhoto" style="width: 90%;display: flex;justify-content: space-between;padding-left: 20px;margin-bottom: 30px;">
+                                                    <a class="link popup-close" onclick="gfirma()" href="#">Guardar Firma</a>
+                                                    <a class="link" onclick="cleanFirma()" href="#">Limpiar</a>
+                                                    <a class="link popup-close" onclick="gClose()" href="#">Cerrar</a>
+                                                </div>
+                                                <div style="display: flex;flex-direction: column;justify-content: center;align-content: center;align-items: center;">
+                                                    <p style="margin: 0;">Área para Firmar</p>
+                                                </div>
+                                                <div style="display: flex;flex-direction: column;justify-content: center;align-content: center;align-items: center;">
+                                                    <canvas id="signature-pad" class="signature-pad" width=400 height=200 style="background-color: #e4fff1"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                
+                                <input type='hidden' name="geolocation" id="geolocation" placeholder='Geolocalización...' disabled="disabled"/>
+
+                                <div class="sheet-modal sheet-modal-push my-sheet-push" id="SheetEncuesta">
+                                    <div class="toolbar">
+                                      <div class="toolbar-inner">
+                                        <div class="left"></div>
+                                        <div class="right">
+                                          <a class="link sheet-close" style="font-size: 16px;">Cerrar</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="sheet-modal-inner">
+                                      <div class="page-content">
+                                        <div class="block">
+                                            <h2 class="title">Encuesta de satisfacción</h2>
+                                            <hr style="box-shadow: none; width: 99%;"></hr>
+                                              <div style="text-align: left;">
+                                                
+                                                <div class="card-exist" id="realizada" style="display: none;">
+                                                    <h2 class="title" style="text-align: center; color:#00A7B5;">Encuesta realizada</h2>
+                                                    <div class="leyenda">
+                                                        <p style="text-align: center; margin-bottom: 10px;">La evaluación de esta visita ya fue <b>realizada</b>.</p>
+                                                        <p style="font-size: 16px;text-align: center;margin-top: 10px;">Gracias por su tiempo.</p>
+                                                    </div>
+                                                </div>
+
+                                                <div id="encuesta">
+                                                  <form class="list FWM-fixing-form" style="width: 100%;margin-left: 0;">
+                                                    <div>
+                                                        <p style="font-size: 1em;">Antes de finalizar el servicio, nos gustaría que nos ayude a responder esta breve encuesta.</p>
+                                                    </div>
+                                                    <div style="margin:auto;" id="datos_form">
+                                                        <h4 style="color: #00A7B5;font-size: 18px;text-align: center;">Datos Generales</h4>
+                                                        <span class="span FWM-span-form">Nombre del cliente:</span>
+                                                            <input type='text' name="Nombre del cliente" id="nombre_cliente_en" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        <span class="span FWM-span-form">Asesor:</span>
+                                                            <input type='text' name="Asesor" id="asesor_en" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        <span class="span FWM-span-form">Inmueble:</span>
+                                                            <input type='text' name="Inmueble" id="inmueble_en" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        <span class="span FWM-span-form">Clave EB:</span>
+                                                            <input type='text' id="clave_EB_en" name="Clave EB" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        
+                                                        <h4 style="color: #00A7B5;font-size: 18px;text-align: center; margin-top: 45px; margin-top: 45px;">Valoración del inmueble</h4>
+                                                            <span class="span FWM-span-form">Ubicación:</span>
+                                                        <select class="FWM-input obligatorio" name="Ubicación" id="ubicacion">
+                                                            <option value="0" selected>Selecciona una opción</option>
+                                                            <option value="1">Necesita mejorar</option>
+                                                            <option value="2">Normal</option>
+                                                            <option value="3">Satisfactoria</option>
+                                                            <option value="4">Buena</option>
+                                                            <option value="5">Excelente</option>
+                                                        </select>
+                                                        <span class="span FWM-span-form">Conservación:</span>
+                                                        <select class="FWM-input obligatorio" name="Conservación" id="conservacion">
+                                                            <option value="0" selected>Selecciona una opción</option>
+                                                            <option value="1">Necesita mejorar</option>
+                                                            <option value="2">Normal</option>
+                                                            <option value="3">Satisfactoria</option>
+                                                            <option value="4">Buena</option>
+                                                            <option value="5">Excelente</option>
+                                                        </select>
+                                                        <span class="span FWM-span-form">Espacios:</span>
+                                                        <select class="FWM-input obligatorio" name="Espacios" id="espacios">
+                                                            <option value="0" selected>Selecciona una opción</option>
+                                                            <option value="1">Necesita mejorar</option>
+                                                            <option value="2">Normal</option>
+                                                            <option value="3">Satisfactoria</option>
+                                                            <option value="4">Buena</option>
+                                                            <option value="5">Excelente</option>
+                                                        </select>
+                                                        <span class="span FWM-span-form">Aspecto:</span>
+                                                        <select class="FWM-input obligatorio" name="Aspecto" id="aspecto">
+                                                            <option value="0" selected>Selecciona una opción</option>
+                                                            <option value="1">Necesita mejorar</option>
+                                                            <option value="2">Normal</option>
+                                                            <option value="3">Satisfactoria</option>
+                                                            <option value="4">Buena</option>
+                                                            <option value="5">Excelente</option>
+                                                        </select>
+                                                        <span class="span FWM-span-form">Distrubución:</span>
+                                                        <select class="FWM-input obligatorio" name="Distrubución" id="distrubucion">
+                                                            <option value="0" selected>Selecciona una opción</option>
+                                                            <option value="1">Necesita mejorar</option>
+                                                            <option value="2">Normal</option>
+                                                            <option value="3">Satisfactoria</option>
+                                                            <option value="4">Buena</option>
+                                                            <option value="5">Excelente</option>
+                                                        </select>
+                                                        <span class="span FWM-span-form">Precio comparado con propiedades semejantes:</span>
+                                                        <select class="FWM-input obligatorio" name="Precio comparado con propiedades semejantes" id="precio_comparado">
+                                                            <option value="0" selected>Selecciona una opción</option>
+                                                            <option value="1">Necesita mejorar</option>
+                                                            <option value="2">Normal</option>
+                                                            <option value="3">Satisfactoria</option>
+                                                            <option value="4">Buena</option>
+                                                            <option value="5">Excelente</option>
+                                                        </select>
+                                                        <span class="span FWM-span-form">Comentarios sobre el inmueble:</span>
+                                                        <textarea class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;height: 105px;padding-top: 6px;" id="comentarios_inmueble" name="Comentarios sobre el inmueble" cols="30" rows="10"></textarea>
+                                                        <span class="span FWM-span-form">Después de visitar esta propiedad, usted...:</span>
+                                                        <select class="FWM-input obligatorio" name="Después de visitar esta propiedad" id="despues_visita">
+                                                            <option value="0" selected>Selecciona una opción</option>
+                                                            <option value="1"d>Interesado en pasar una oferta</option>
+                                                            <option value="2">Le gustaria una segunda visita</option>
+                                                            <option value="3">Descarta la propiedad</option>
+                                                            <option value="4">Quiero seguir viendo opciones</option>
+                                                        </select>
+
+                                                        <h4 style="color: #00A7B5;font-size: 18px;text-align: center;">Valoración del servicio</h4>
+                                                        <span class="span FWM-span-form">¿Cómo considera nuestros servicios?:</span>
+                                                        <select class="FWM-input obligatorio" name="¿Cómo considera nuestros servicios?" id="consideracion_servicios">
+                                                            <option value="0" selected>Selecciona una opción</option>
+                                                            <option value="1">Necesita mejorar</option>
+                                                            <option value="2">Normal</option>
+                                                            <option value="3">Satisfactoria</option>
+                                                            <option value="4">Buena</option>
+                                                            <option value="5">Exelente</option>
+                                                        </select>
+
+                                                        <span class="span FWM-span-form">¿Tienes algún comentario, pregunta o sugerencia?:</span>
+                                                        <textarea class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;height: 105px;padding-top: 6px;" id="comentario_sugerencia" name="¿Tienes algún comentario, pregunta o sugerencia?" cols="30" rows="10"></textarea>
+
+                                                    </div>
+                                                  </form>
+                                                </div>
+
+                                                <div class="block grid-resizable-demo" style="margin-top: 50px; margin-bottom: 100px;">
+                                                    <div class="row align-items-stretch" style="text-align: center;">
+                                                        <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                                            <span class="resize-handler"></span>
+                                                            <button class="send" id="btnEncuesta" onclick="guardaEncuestaZona()">Guardar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                              </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <div class="sheet-modal sheet-modal-push my-sheet-push1" id="SheetEncuesta1">
+                                    <div class="toolbar">
+                                      <div class="toolbar-inner">
+                                        <div class="left"></div>
+                                        <div class="right">
+                                          <a class="link sheet-close" style="font-size: 16px;">Cerrar</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="sheet-modal-inner">
+                                      <div class="page-content">
+                                        <div class="block">
+                                            <h2 class="title">Carta de intención VENTA</h2>
+                                            <hr style="box-shadow: none; width: 99%;"></hr>
+                                              <div style="text-align: left;">
+                                                <div class="card-exist" id="realizada1" style="display: none;">
+                                                    <h2 class="title" style="text-align: center; color:#00A7B5;">Carta realizada</h2>
+                                                    <div class="leyenda">
+                                                        <p style="text-align: center; margin-bottom: 10px;">La carta de esta visita ya fue <b>realizada</b>.</p>
+                                                        <p style="font-size: 16px;text-align: center;margin-top: 10px;">Gracias por su tiempo.</p>
+                                                    </div>
+                                                </div>
+
+                                                <div id="encuesta1">
+                                                  <form class="list FWM-fixing-form" style="width: 100%;margin-left: 0;">
+                                                    <div style="margin:auto;" id="datos_form1">
+                                                        <h4 style="color: #00A7B5;font-size: 18px;text-align: center;">Deseo transmita a su representado propietario (a) del inmueble que usted promueve en VENTA, bajo los siguientes términos:</h4>
+
+                                                        <span class="span FWM-span-form">Calle:</span>
+                                                            <input type='text' name="Calle" id="calle_v" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">Número exterior:</span>
+                                                            <input type='text' name="Número exterior" id="no_exterior_v" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">Número interior:</span>
+                                                            <input type='text' name="Número interior" id="no_interior_v" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">Colonia:</span>
+                                                            <input type='text' name="Colonia" id="colonia_v" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">Alcadía:</span>
+                                                            <input type='text' name="Alcadía" id="alcadia_v" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">Ciudad:</span>
+                                                            <input type='text' name="Ciudad" id="ciudad_v" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">C.P.:</span>
+                                                            <input type='text' name="C.P." id="cp_v" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                            <span class="span FWM-span-form">Precio ofrecido de venta:</span>
+                                                            <input type='number' name="Precio ofrecido de venta" id="precio_venta_v" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        <span class="span FWM-span-form">Precio con letra:</span>
+                                                            <input type='text' name="Precio con letra" id="precio_letra_v" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        <span class="span FWM-span-form">Forma de pago:</span>
+                                                            <input type='text' name="Forma de pago" id="forma_pago_v" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        <span class="span FWM-span-form">Nombre de la persona que compra:</span>
+                                                            <input type='text' name="Nombre de la persona que compra" id="nombre_compra_v" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        <span class="span FWM-span-form">Apartado:</span>
+                                                        <div style="display:flex;">
+                                                            <span class="span FWM-span-form" style="width: 10%;">$</span><input type='number' id="apartado_v" name="Apartado" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        </div>
+                                                        <span class="span FWM-span-form">Anticipo al momento de la firma de contrato:</span>
+                                                        <div style="display:flex;">
+                                                            <span class="span FWM-span-form" style="width: 10%;">$</span><input type='number' id="anticipo_contrato_v" name="Anticipo al momento de la firma de contrato" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        </div>
+                                                        <span class="span FWM-span-form">Monto restante a la firma de escritura:</span>
+                                                        <div style="display:flex;">
+                                                            <span class="span FWM-span-form" style="width: 10%;">$</span><input type='number' id="monto_restante_v" name="Monto restante a la firma de escritura" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        </div>
+                                                        <span class="span FWM-span-form">¿Cuándo podría firmar el contrato?:</span>
+                                                            <input type='date' id="cuando_contrato_v" name="¿Cuándo podría firmar el contrato?" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                        <span class="span FWM-span-form">Observaciones:</span>
+                                                            <textarea class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;height: 105px;padding-top: 6px;" id="observaciones" name="Observaciones" cols="30" rows="10"></textarea>
+                                                        
+                                                    </div>
+                                                  </form>
+                                                </div>
+
+                                                <div class="block grid-resizable-demo" style="margin-top: 50px; margin-bottom: 100px;">
+                                                    <div class="row align-items-stretch" style="text-align: center;">
+                                                        <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                                            <span class="resize-handler"></span>
+                                                            <button class="send" id="btnEncuesta1" onclick="guardaVentaZona()">Guardar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <div class="sheet-modal sheet-modal-push my-sheet-push2" id="SheetEncuesta2">
+                                    <div class="toolbar">
+                                      <div class="toolbar-inner">
+                                        <div class="left"></div>
+                                        <div class="right">
+                                          <a class="link sheet-close" style="font-size: 16px;">Cerrar</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="sheet-modal-inner">
+                                      <div class="page-content">
+                                        <div class="block">
+                                            <h2 class="title">Carta de intención RENTA</h2>
+                                            <hr style="box-shadow: none; width: 99%;"></hr>
+                                              <div style="text-align: left;">
+                                                
+                                                <div class="card-exist" id="realizada2" style="display: none;">
+                                                    <h2 class="title" style="text-align: center; color:#00A7B5;">Carta realizada</h2>
+                                                    <div class="leyenda">
+                                                        <p style="text-align: center; margin-bottom: 10px;">La Carta de esta visita ya fue <b>realizada</b>.</p>
+                                                        <p style="font-size: 16px;text-align: center;margin-top: 10px;">Gracias por su tiempo.</p>
+                                                    </div>
+                                                </div>
+
+                                                <div id="encuesta2">
+                                                  <form class="list FWM-fixing-form" style="width: 100%;margin-left: 0;">
+                                                    <div style="margin:auto;" id="datos_form2">
+                                                        <h4 style="color: #00A7B5;font-size: 18px;text-align: center;">Deseo transmita a su representado propietario (a) del inmueble ubicado en:</h4>
+
+                                                        <span class="span FWM-span-form">Calle:</span>
+                                                            <input type='text' name="Calle" id="calle_r" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">Número exterior:</span>
+                                                            <input type='text' name="Número exterior" id="no_exterior_r" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">Número interior:</span>
+                                                            <input type='text' name="Número interior" id="no_interior_r" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">Colonia:</span>
+                                                            <input type='text' name="Colonia" id="colonia_r" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">Alcadía:</span>
+                                                            <input type='text' name="Alcadía" id="alcadia_r" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">Ciudad:</span>
+                                                            <input type='text' name="Ciudad" id="ciudad_r" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                        <span class="span FWM-span-form">C.P.:</span>
+                                                            <input type='text' name="C.P." id="cp_r" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" />
+                                                       
+                                                        <h4 style="color: #00A7B5;font-size: 18px;text-align: center; margin-top: 45px; margin-top: 45px;">Usted promueve en RENTA mi oferta, bajo los siguientes términos:</h4>
+                                                            <span class="span FWM-span-form">Precio aceptado en renta:</span>
+                                                                <input type='number' name="Precio aceptado en renta" id="precio_venta_r" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Precio con letra:</span>
+                                                                <input type='text' name="Precio con letra" id="precio_letra_r" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Meses de Deposito (s) en garantía:</span>
+                                                                <input type='number' name="Meses de Deposito (s) en garantía" id="meses_deposito_r" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Cuota de mantenimiento aceptado:</span>
+                                                            <div style="display:flex;">
+                                                                <span class="span FWM-span-form" style="width: 10%;">$</span><input type='number' id="cuota_mantenimiento_r" name="Cuota de mantenimiento aceptado" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            </div>
+                                                            <span class="span FWM-span-form">Forma de pago:</span>
+                                                                <input type='text' name="Forma de pago" id="forma_pago_r" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Pago de póliza jurídica aceptado: </span>
+                                                            <div style="display:flex;">
+                                                                <span class="span FWM-span-form" style="width: 10%;">$</span><input type='number' id="pago_poliza_r" name="Pago de póliza" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            </div>
+                                                            <span class="span FWM-span-form">¿Cuenta con fiador con propiedad libre de gravamen?:</span>
+                                                            <select class="FWM-input" id="fiador_gravamen_r" name="¿Cuenta con fiador con propiedad libre de gravamen?">
+                                                                <option value="0" selected>Selecciona una opción</option>
+                                                                <option value="1">Sí</option>
+                                                                <option value="2">No</option>
+                                                            </select>
+                                                            <span class="span FWM-span-form">¿Quién sería su fiador? </span>
+                                                                <input type='text' id="fiador_r" name="¿Quién sería su fiador?" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Ubicación del inmueble: </span>
+                                                                <input type='text' id="ubicacion_inmueble_r" name="Ubicación del inmueble" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Arrendatario física o moral: </span>
+                                                                <input type='text' id="arrendatario_moral_r" name="Arrendatario física o moral" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Nombre: </span>
+                                                                <input type='text' id="nombre_r" name="Nombre" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">¿Nombre quién firmaría contrato/representante legal?: </span>
+                                                                <input type='text' id="nombre_firma_r" name="¿Nombre quién firmaría contrato/representante legal?" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Fecha de inicio de contrato: </span>
+                                                                <input type='date' id="fecha_inicio_contrato_r" name="Fecha de inicio de contrato" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Vigencia: </span>
+                                                                <input type='date' id="vigencia_r" name="Vigencia" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Giro de la empresa (en específico): </span>
+                                                                <input type='text' id="giro_empresa_r" name="Giro de la empresa (en específico)" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Años constituida: </span>
+                                                                <input type='text' id="anios_constituida_r" name="Años constituida" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Página web: </span>
+                                                                <input type='text' id="pagina_web_r" name="Página web" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Ubicación actual: </span>
+                                                                <input type='text' id="ubicacion_actual_r" name="Ubicación actual" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Motivo del cambio de ubicación: </span>
+                                                                <input type='text' id="motivo_cambio_r" name="Motivo del cambio de ubicación" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Número de personas que ocuparan el inmueble: </span>
+                                                                <input type='number' id="personas_ocuparan_r" name="Número de personas que ocuparan el inmueble" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;"/>
+                                                            <span class="span FWM-span-form">Observaciones:</span>
+                                                                <textarea class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;height: 105px;padding-top: 6px;" id="observaciones_r" name="Observaciones" cols="30" rows="10"></textarea>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                                <div class="block grid-resizable-demo" style="margin-top: 50px; margin-bottom: 100px;">
+                                                    <div class="row align-items-stretch" style="text-align: center;">
+                                                        <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                                            <span class="resize-handler"></span>
+                                                            <button class="send" id="btnEncuesta2" onclick="guardaRentaZona()">Guardar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                              </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
+
+                                <style type="text/css">
+                                    .boton-personalizado-4 {
+                                        text-decoration: none;
+                                        font-size: 16px;
+                                        color: #FFFFFF;
+                                        padding-top: 13px;
+                                        padding-bottom: 10px;
+                                        padding-left: 40px;
+                                        padding-right: 40px;
+                                        background-color: #063E7F;
+                                        border-radius: 15px;
+                                    }
+                                </style>
+                                <div class="block grid-resizable-demo" style="margin-top: 50px; margin-bottom: 100px;">
+                                    <div class="row align-items-stretch" style="text-align: center;">
+                                        <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                            <span class="resize-handler"></span>
+                                            <a href="#" onclick="guardarCierreZona042();" class="boton-personalizado-4 link"> Terminar servicio</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var id_cedula = localStorage.getItem("IdCedula");
+
+                document.addEventListener("deviceready", onDeviceReady, false);
+                function onDeviceReady() {
+                    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                }
+                function onSuccess(position) {
+                    var element = document.getElementById('geolocation');
+                    $('#geolocation').val(position.coords.latitude+','+position.coords.longitude);
+                    var geo = $('#geolocation').val();
+                    $("#mapa").append(`<iframe  style="pointer-events:none" width="100%" height="200" frameborder="0" marginheight="0" marginwidth="0" loading="lazy" src="https://maps.google.com/maps?width=100%25&amp;height=300&amp;hl=es&amp;q=${geo}+(Visita%20Field)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>`);
+                    var fecha = new Date();
+                    var fecha_firma = fecha.getFullYear()+"-"+(fecha.getMonth()+1)+"-"+fecha.getDate();
+                    var hora_firma = fecha.getHours()+":"+fecha.getMinutes()+":"+fecha.getSeconds();
+                    var geo = $("#geolocation").val();
+                    var myVar = setInterval(myTimer, 5000);
+                    function myTimer() {
+                        var fecha = new Date();
+                        var fecha_firma = fecha.getFullYear()+"-"+(fecha.getMonth()+1)+"-"+fecha.getDate();
+                        var hora_firma = fecha.getHours()+":"+fecha.getMinutes()+":"+fecha.getSeconds();
+                        var firma = geo + "|" + fecha_firma + "|" +hora_firma
+                        const firmaEn = window.btoa(geo + "|" + fecha_firma + "|" +hora_firma)
+                        $("#firmaElectro").html(`<span style="color: gray;font-style: italic;">|${firma}|f-${firmaEn}-</span>`)
+                    }
+                }
+                function onError(error) {
+                    alert('Error en la Localización');
+                    var myVar = setInterval(myTimer, 5000);
+                    function myTimer() {
+                        var fecha = new Date();
+                        var fecha_firma = fecha.getFullYear()+"-"+(fecha.getMonth()+1)+"-"+fecha.getDate();
+                        var hora_firma = fecha.getHours()+":"+fecha.getMinutes()+":"+fecha.getSeconds();
+                        var firma =  fecha_firma + "|" +hora_firma
+                        $("#firmaElectro").html(`<span style="color: gray;font-style: italic;">|${firma}|f-${MD5(firma)}-</span>`)
+                    }
+                } 
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from datosG_zona WHERE id_cedula = ?",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                if(length == 0){
+                                } else {
+                                    var item = results.rows.item(0);
+                                    $("#nombre").html(item.nombre)
+                                    $("#celular").html(item.celular)
+                                    $("#correo").html(item.correo)
+                                    $("#tipo").html(item.tipo)
+                                    $("#tipo_otro").html(item.tipo_otro)
+                                    $("#presupuesto").html(item.presupuesto)
+                                    $("#porque").html(item.porque) 
+                                    $("#nombre_cliente_en").val(item.nombre);
+                                    $("#asesor_en").val(item.asesor_muestra);
+                                    $("#inmueble_en").val(item.tipo_inmueble);
+                                    $("#clave_EB_en").val(item.clave);
+                                    var alcaldias = item.alcaldia;
+                                    if(alcaldias == 1){
+                                        var alcaldia = 'Álvaro Obregón';
+                                    }else if(alcaldias == 2){
+                                        var alcaldia = 'Azcapotzalco';
+                                    }else if(alcaldias == 3){
+                                        var alcaldia = 'Benito Juárez';
+                                    }else if(alcaldias == 4){
+                                        var alcaldia = 'Coyoacán';
+                                    }else if(alcaldias == 5){
+                                        var alcaldia = 'Cuajimalpa';
+                                    }else if(alcaldias == 6){
+                                        var alcaldia = 'Cuauhtémoc';
+                                    }else if(alcaldias == 7){
+                                        var alcaldia = 'Gustavo A. Madero';
+                                    }else if(alcaldias == 8){
+                                        var alcaldia = 'Iztacalco';
+                                    }else if(alcaldias == 9){
+                                        var alcaldia = 'Iztapalapa';
+                                    }else if(alcaldias == 10){
+                                        var alcaldia = 'Magdalena Contreras';
+                                    }else if(alcaldias == 11){
+                                        var alcaldia = 'Miguel Hidalgo';
+                                    }else if(alcaldias == 12){
+                                        var alcaldia = 'Milpa Alta';
+                                    }else if(alcaldias == 13){
+                                        var alcaldia = 'Tláhuac';
+                                    }else if(alcaldias == 14){
+                                        var alcaldia = 'Tlalpan';
+                                    }else if(alcaldias == 15){
+                                        var alcaldia = 'Venustiano Carranza';
+                                    }else if(alcaldias == 16){
+                                        var alcaldia = 'Xochimilco';
+                                    }
+                                    $("#alcadia_v").val(alcaldia);
+                                    $("#calle_v").val(item.calle);
+                                    $("#no_exterior_v").val(item.no_exterior);
+                                    $("#no_interior_v").val(item.no_interior);
+                                    $("#colonia_v").val(item.colonia);
+                                    $("#ciudad_v").val(item.ciudad);
+                                    $("#cp_v").val(item.cp);
+
+                                    $("#alcadia_r").val(alcaldia);
+                                    $("#calle_r").val(item.calle);
+                                    $("#no_exterior_r").val(item.no_exterior);
+                                    $("#no_interior_r").val(item.no_interior);
+                                    $("#colonia_r").val(item.colonia);
+                                    $("#ciudad_r").val(item.ciudad);
+                                    $("#cp_r").val(item.cp);
+
+                                    const encodes = window.btoa(item.id_visita+ "#-" + item.nombre+ "#-" +item.asesor_muestra+ "#-" +item.tipo_inmueble+ "#-" +item.clave);
+                                    const encode = window.btoa(item.id_visita + "#-" + item.calle + "#-" + item.no_exterior + "#-" + item.no_interior + "#-" + item.colonia+ "#-" +item.ciudad+ "#-" +item.cp+ "#-" +item.alcaldia);
+
+                                    new QRCode(document.getElementById("qrcode"), "https://fwm.com.mx/pages_zona04/encuesta/encuesta.php?id="+encodes);
+                                    $("#encuesta_link1").val("https://fwm.com.mx/pages_zona04/encuesta/encuesta.php?id="+encodes);
+                                    new QRCode(document.getElementById("qrcode2"), "https://fwm.com.mx/pages_zona04/encuesta/venta.php?id="+encode);
+                                    $("#encuesta_link2").val("https://fwm.com.mx/pages_zona04/encuesta/venta.php?id="+encode);
+                                    new QRCode(document.getElementById("qrcode3"), "https://fwm.com.mx/pages_zona04/encuesta/renta.php"+encode);
+                                    $("#encuesta_link3").val("https://fwm.com.mx/pages_zona04/encuesta/renta.php?id="+encode);
+                                }
+                                 
+                            },
+                            function(tx, error){
+                                console.log("Error al guardar cedula: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from venta_zona WHERE id_cedula = ?",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                if (length == 0){  
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select * from renta_zona WHERE id_cedula = ?",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    let length = results.rows.length;
+                                                    if (length == 0){  
+                                                        $("#div_firma").css("display", "none");
+                                                    }else{
+                                                        $("#encuesta2").css("display", "none");
+                                                        $("#realizada2").css("display", "block");
+                                                        $("#btn_encuesta_qr2").css("display", "none");
+                                                        $("#btnEncuesta2").css("display", "none");
+                                                        $("#div_firma").css("display", "block");
+                                                    }
+                                                },
+                                                function(tx, error){
+                                                    console.log("Error al mostar datos: " + error.message);
+                                                    app.preloader.hide();  
+                                                }
+                                            );  
+                                        },
+                                        function(error){},
+                                        function(){}
+                                    );
+                                }else{
+                                    $("#encuesta1").css("display", "none");
+                                    $("#realizada1").css("display", "block");
+                                    $("#btn_encuesta_qr1").css("display", "none");
+                                    $("#btnEncuesta1").css("display", "none");
+                                    $("#div_firma").css("display", "block");
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al mostar datos: " + error.message);
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from encuestas_zona WHERE id_cedula = ?",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                if (length == 0){  
+                                }else{
+                                    $("#encuesta").css("display", "none");
+                                    $("#realizada").css("display", "block");
+                                    $("#btn_encuesta_qr").css("display", "none");
+                                    $("#btnEncuesta").css("display", "none");
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al mostar datos: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+                document.addEventListener("deviceready",function(){
+                    cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+                        console.log("GPS location is " + (enabled ? "enabled" : "disabled"));
+                        if(enabled == true){
+                            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                        }else{
+                            swal("GPS Apagado","Favor de regresar a menu y encender tu ubicacion!","error");
+                        }
+                    }, function(error){
+                    console.error("The following error occurred: "+error);
+                    });
+                }, false);
+
+                function onSuccess(position) {
+                    var element = document.getElementById('geolocation');
+                    $('#geolocation').val(position.coords.latitude+','+position.coords.longitude);
+                }
+                function onError(error) {
+                    swal ("Error en geolicalizacion",error,"error");
+                }
+                //revisar conexion a internet 
+                document.addEventListener("offline", onOffline, false);
+                function onOffline() {
+                    app.dialog.alert('Vaya! No tienes internet. Cuando te conectes se enviaran o descargaran los datos.', 'Aviso');
+                    $('#geolocation').val('');
+                }
+            }
+        }
+    }
+</script>

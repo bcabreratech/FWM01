@@ -1,0 +1,41 @@
+{
+  "name": "cordova-plugin-downloader",
+  "version": "0.0.4",
+  "description": "Cordova Downloader Plugin with no cordova-file-transfer dependency",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-spies": "^1.0.0",
+    "jshint": "^2.9.3",
+    "mocha": "^4.1.0"
+  },
+  "config": {
+    "lintdirs": "www/**.js lib/**.js"
+  },
+  "scripts": {
+    "lint": "rm -f npm-debug.log && jshint $npm_package_config_lintdirs",
+    "test": "mocha lib/**/**.spec.js"
+  },
+  "cordova": {
+    "id": "cordova-plugin-downloader",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benjaminmwilson/cordova-plugin-downloader"
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "file",
+    "download",
+    "downloader",
+    "unzip"
+  ],
+  "author": "Ben Wilson",
+  "license": "Apache 2.0"
+}

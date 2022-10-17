@@ -1,0 +1,153 @@
+<template>
+    <div class="page">
+        <div class="navbar" style="background-color: #063E7F;height: 52px;">
+            <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+            <div class="navbar-inner" style="height: 52px;">
+                <div class="left">
+                    <a href="javascript:location.reload()" class="link back" style="margin-left: 5px;">
+                        <span class="nav-text-regresar-recorrido">Regresar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content" style="background-color: #f6f7f9; ">
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                <input type="hidden" id="resp1" name="resp1" />
+                <div style="text-align: left;">        
+                    <div class="item-inner">
+                        <div class="block-title" style="text-align: center; font-size: 20px;"><h2 style="color:#505759;font-size: 22px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Recorrido Clientes Directos</h2></div>
+                    </div>
+                </div>
+                    <div class="buttons-container" style="display: flex;">
+                        <a href="/formAliatonic1/" class="fwm-button-recorrido">
+                            <img src="" width="90px" height="90px" id="img1"/>
+                            <span class="fwm-text-recorrido">Validación antes del servicio</span>
+                        </a>
+                        <a href="/formAliatonic2/" class="fwm-button-recorrido">
+                            <img src="" width="90px" height="90px" id="img2"/>
+                            <span class="fwm-text-recorrido">Check point</span>
+                        </a>
+                    </div>
+                    <br><br>
+                    <div class="buttons-container" style="display: flex;">
+                        <a href="/formAliatonic4/" class="fwm-button-recorrido">
+                            <img src="" width="90px" height="90px" id="img3"/>
+                            <span class="fwm-text-recorrido">Check Out</span>
+                        </a>
+                        <a href="/formAliatonic3/" class="fwm-button-recorrido">
+                            <img src="" width="90px" height="90px" id="img4"/>
+                            <span class="fwm-text-recorrido">Incidencias</span>
+                        </a>
+                    </div>
+                    <br><br>
+                    <div class="buttons-container" style="display: flex;">
+                        <a href="/cierreAliatonic/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/estrellas.svg" width="90px" height="90px" id="img5"/>
+                            <span class="fwm-text-recorrido">Cierre</span>
+                        </a>
+                    </div>
+                <!-- Inicio FWM Recorrido -->
+                    <div id="FWM-Menu" class="container-items" style="width: 100%;"></div>
+                <!-- Fin FWM Recorrido -->
+                <fwm></fwm>
+            </div> 
+        </div>
+    </div>
+</template>
+           
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                var id_cedula = localStorage.getItem("IdCedula");
+
+                databaseHandler.db.transaction(
+                function(tx){
+                    tx.executeSql("Select * from validaAntesServ where id_cedula = ? AND page=? ORDER BY id_evidencia DESC",
+                    [id_cedula,1],
+                        function(tx, results){
+                            var length = results.rows.length;
+                           
+                            if(length == 0){
+                                $("#img1").attr("src","img/iconsMenu/persona2.svg");
+                            } else {
+                                $("#img1").attr("src","img/iconsMenu/persona.svg");
+                            }   
+                        },
+                        function(tx, error){
+                            console.log("Error al mostrat datos: " + error.message);
+                        }
+                    );
+                },
+                function(error){},
+                function(){}
+            );
+            databaseHandler.db.transaction(
+                function(tx){
+                    tx.executeSql("Select * from checkPointPacas where id_cedula = ?  ORDER BY id_evidencia DESC",
+                    [id_cedula],
+                        function(tx, results){
+                            var length = results.rows.length;
+                           
+                            if(length == 0){
+                                $("#img2").attr("src","img/iconsMenu/cotizacion.svg");
+                            } else {
+                                $("#img2").attr("src","img/iconsMenu/cotizacion2.svg");
+                            }   
+                        },
+                        function(tx, error){
+                            console.log("Error al mostrat datos: " + error.message);
+                        }
+                    );
+                },
+                function(error){},
+                function(){}
+            );
+            
+            databaseHandler.db.transaction(
+                function(tx){
+                    tx.executeSql("Select * from checkoutPacas where id_cedula = ?  ORDER BY id_evidencia DESC",
+                    [id_cedula],
+                        function(tx, results){
+                            var length = results.rows.length;
+                           
+                            if(length == 0){
+                                $("#img3").attr("src","img/iconsMenu/apoyo.svg");
+                            } else {
+                                $("#img3").attr("src","img/iconsMenu/apoyo2.svg");
+                            }   
+                        },
+                        function(tx, error){
+                            console.log("Error al mostrat datos: " + error.message);
+                        }
+                    );
+                },
+                function(error){},
+                function(){}
+            );
+            databaseHandler.db.transaction(
+                function(tx){
+                    tx.executeSql("Select * from incidenciasPacas where id_cedula = ?  ORDER BY id_evidencia DESC",
+                    [id_cedula],
+                        function(tx, results){
+                            var length = results.rows.length;
+                           
+                            if(length == 0){
+                                $("#img4").attr("src","img/iconsMenu/cliente.svg");
+                            } else {
+                                $("#img4").attr("src","img/iconsMenu/cliente2.svg");
+                            }   
+                        },
+                        function(tx, error){
+                            console.log("Error al mostrat datos: " + error.message);
+                        }
+                    );
+                },
+                function(error){},
+                function(){}
+            );
+            }
+        }
+    }
+</script>

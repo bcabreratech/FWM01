@@ -1,0 +1,459 @@
+<!--suppress JSAnnotator -->
+<template>
+    <div class="page">
+       
+        <style>
+            .titulo-yallegue{
+              font-family: 'ITC Avant Garde Gothic', sans-serif;
+              font-size: 24px;
+              margin-top:24px;
+              margin-bottom:28.2px;
+            }
+            .subtitulo-yallegue{
+                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                color: #505759;
+                font-size: 14px;
+                margin-bottom: 2px;
+            }
+            .last-updated{
+                color: #00A7B5;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            .text-yallegue{
+                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                font-size: 16px;
+                font-weight: bold;
+                color: #505759;
+            }
+            .list{
+                margin-top: 28px;
+            }
+            .border-capture{
+                background-color: white;
+                border-radius: 20px;
+                width: 147.76px;
+                height: 147.76px;
+                border: solid 3px #00A7B5;
+            }
+            .nav-text-regresar{
+                color: #ffffff;
+                border: 2px solid white;
+                padding: 5px;
+                border-radius: 7px;
+                font-size: 14px;
+            }
+        </style>
+        <div class="page-content yallegue-help">
+            <div class="navbar" style="background-color: #063E7F;height: 52px;position: absolute;top: 0;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="javascript:location.reload()" style="margin-left: 10px;">
+                            <span class="nav-text-regresar">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 70px;">
+                
+                <form class="list" id="demo-form">
+                    <input type="hidden" id="imagenC" name="imagenC" onchange="obtenerTime();"/>
+                    <span class="text-yallegue" id="listo" style="display: none;">Confirmación de <span style="color: #00A7B5;">Inicio de Servició Cobranza</span></span><br />
+                    <span class="text-yallegue" id="llegada" style="display: none;">Confirmación de <span style="color: #DC7633;">Llegada Oficina Cobranza</span></span>
+                    <span class="text-yallegue" id="arranque" style="display: none;">Confirmación de <span style="color: #27AE60;"> Arranque Ruta Cobranza</span></span>
+                    <span class="text-yallegue" id="cierre" style="display: none;">Confirmación de <span style="color: #566573;">Cierre de Ruta</span></span>
+                    <br>
+                    <center>
+                        <a href="#" onclick="capturePhoto();">
+                            <div class="border-capture">
+                                <img src="img/camera.svg" id="photoIcon" width="45px" style="position: absolute;position: fixed;z-index: 100;margin-top: 50px; position: relative;"/>
+                                <div hidden="true" id="ImaCe" hidden="true"></div>
+                            </div>
+                        </a>
+                    </center>
+                    <input type="image" name="smallImage" style="margin: 0px auto; width: 147.76px; height: 147.76px; border-radius: 17px; display: none; margin-top: -150.65px;" id="smallImage" src="" /><br>
+                    <div id="text" style="border: none;">
+                        <div class="list no-hairlines-md">
+                            <ul id="input_cliente" style="display: none;">
+                                <style>
+                                    .cliente-yallegue{
+                                        font-family: 'ITC Avant Garde Gothic', sans-serif;
+                                        font-size: 13px;
+                                        margin: 0;
+                                        padding: 0;
+                                        text-align: left;
+                                        background-color: white;
+                                        padding-left: 15px;
+                                    }
+                                    .cliente-ayuda{
+                                        background-color: white;
+                                    }
+                                    .input-yallegue{
+                                        border-bottom: 2px solid #00A7B5;
+                                    }
+                                    .md .item-input .item-media {
+                                        padding-right: 15px;
+                                    }
+                                </style>
+                                <li class="cliente-yallegue"><span>Cliente</span></li>
+                                <li class="item-content item-input cliente-ayuda">
+                                    <div class="item-inner">
+                                        <div class="item-input-wrap input-yallegue">
+                                            <input type="text" placeholder="Escribe el nombre del Cliente" name="ncliente" id="cliente-Field" class="autocomplete-dropdown item-title" >
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <input type="hidden" id="geolocation"/>
+                        <input type="hidden" id="id_visita"/>
+                        <input type="hidden" id="id_cliente"/>
+                        <input type="hidden" id="factura"/>
+                        <input type="hidden" id="fecha_factura"/>
+                        <input type="hidden" id="importe"/>
+                        <input type="hidden" id="movimiento"/>
+                        <input type="hidden" id="calle"/>
+                        <input type="hidden" id="bloque"/>
+                        <input type="hidden" id="ciudad"/>
+                        <input type="hidden" id="no_calle"/>
+                        <input type="hidden" id="cp"/>
+                        <input type="hidden" id="pais"/>
+                        <input type="hidden" id="codigo"/>
+                        <input type="hidden" id="revision_lunes"/>
+                        <input type="hidden" id="revision_martes"/>
+                        <input type="hidden" id="revision_miercoles"/>
+                        <input type="hidden" id="revision_jueves"/>
+                        <input type="hidden" id="revision_viernes"/>
+                        <input type="hidden" id="contrarecibo"/>
+                        <input type="hidden" id="entrada_almacen"/>
+                        <input type="hidden" id="folio_mercancia"/>
+                        <input type="hidden" id="id_reglas"/>
+                        <input type="hidden" id="acuse_soporte"/>
+                        <input type="hidden" id="firma_bennetts"/>
+                        <input type="hidden" id="firma_key"/>
+                        <input type="hidden" id="recibido_bennetts"/>
+                        <input type="hidden" id="recibido_key"/>
+                        <input type="hidden" id="orden_compra"/>
+                        <input type="hidden" id="otro"/>
+                        <input type="hidden" id="pago_lunes"/>
+                        <input type="hidden" id="pago_martes"/>
+                        <input type="hidden" id="pago_miercoles"/>
+                        <input type="hidden" id="pago_jueves"/>
+                        <input type="hidden" id="pago_viernes"/>
+                        <input type="hidden" id="proceso_pago"/>
+                        <input type="hidden" id="estado"/>
+
+                        <input type="hidden" id="IdCte"/>
+                        <style type="text/css">
+                            .boton-personalizado-4 {
+                                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                                text-decoration: none;
+                                font-size: 20px;
+                                color: #FFFFFF;
+                                padding-top: 19px;
+                                padding-bottom: 13px;
+                                padding-left: 83px;
+                                padding-right: 81px;
+                                background-color: #00A7B5;
+                                border-width: 3px;
+                                border-style: solid;
+                                border-radius: 8px;
+                                width: 212px;
+                            }
+                        </style>
+                        <div class="block grid-resizable-demo" id="btn_listo" style="display: none;">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="buscarClienteBennetts2();" class="boton-personalizado-4">Iniciar</a>   
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="block grid-resizable-demo" id="btn_llegada" style="display: none;">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="llegadaOfiBennetts2();" class="boton-personalizado-4" style="background-color: #DC7633;">Llegada Oficina</a>   
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="block grid-resizable-demo" id="btn_arranque" style="display: none;">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="ArranqueBennetts2();" class="boton-personalizado-4" style="background-color: #27AE60;">Arranque Ruta</a>   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="block grid-resizable-demo" id="btn_cierre" style="display: none;">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="cierreRutasBennetts2();" class="boton-personalizado-4" style="background-color: #566573;">Cierre Ruta</a>   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="block grid-resizable-demo" id="regreso_ofi" style="display: none; margin-top: 140px;">
+                            <p> 
+                                <a onclick="regreso_A_Ofi()">Regreso a oficina</a>
+                            </p>
+                            <p> 
+                                <a onclick="cierreRutaBennetts2()" style="font-size: 1.3em;">Cierre de ruta</a>
+                            </p>
+                        </div>
+
+                    </div>
+                    <br/><br />
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                // Verificar GPS
+                document.addEventListener("deviceready",function(){
+                    cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+                        console.log("GPS location is " + (enabled ? "enabled" : "disabled"));
+                        if(enabled == true){
+                            // Obtener GPS
+                            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                        }else{
+                            swal("GPS Apagado","Favor de regresar a menu y encender tu ubicacion!","error");
+                        }
+                    }, function(error){
+                    console.error("The following error occurred: "+error);
+                    });
+                }, false);
+                function onSuccess(position) {
+                    var element = document.getElementById('geolocation');
+                    $('#geolocation').val(position.coords.latitude+','+position.coords.longitude);
+                }
+                function onError(error) {
+                    swal ("Error en geolicalizacion",error,"error");
+                }                
+                //revisar conexion a internet 
+                document.addEventListener("offline", onOffline, false);
+                function onOffline() {
+                    app.dialog.alert('Vaya! No tienes internet. Cuando te conectes se enviaran o descargaran los datos.', 'Aviso');
+                    $('#geolocation').val('');
+                }
+
+                var self = this;
+                var app = self.$app; 
+                var NomDescCli = 'Clientes_Bennetts2-1';
+                var NomJson = "clientes_desc_Bennetts2";
+
+                self.autocompleteDropdownAjax = app.autocomplete.create({
+                    inputEl: '#cliente-Field',
+                    openIn: 'dropdown',
+                    preloader: true, //enable preloader
+                    valueProperty: 'id', //object's "value" property name
+                    textProperty:  'name', //object's "text" property name
+                    limit: 10, //limit to 20 results
+                    dropdownPlaceholderText: 'Seleccionar Cliente...',
+                    source: function (query, render) {
+                        var autocomplete = this;
+                        var results = [];
+                        if (query.length === 0) {
+                            render(results);
+                            return;
+                        }
+                        // Show Preloader
+                        autocomplete.preloaderShow();
+                        // Do Ajax request to Autocomplete data
+                        app.request({
+                            url: cordova.file.dataDirectory + "jsons/"+NomJson+".json", // y por cual era? XD perate culo dale shift+f6 si le distre? xd
+                            method: 'GET',
+                            dataType: 'json',
+                            //send "query" to server. Useful in case you generate response dynamically, deja inento en el mio para acordarme xd
+                            data: {
+                                query: query,
+                            },success: function (data) {
+                                for (var i = 0; i < data.length; i++) {
+                                    if (data[i].name.toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(data[i]);
+                                }
+                                autocomplete.preloaderHide();
+                                render(results); 
+                            }
+                        }); 
+                    }
+                });
+
+                $('#cliente-Field').change(function () {
+                    var cliente = $("#cliente-Field").val();
+                    if (cliente){
+                        app.request.get(cordova.file.dataDirectory + "jsons/"+NomDescCli+".json", function (data) {
+                            var content2 = JSON.parse(data);
+                            for(var x = 0; x < content2.length; x++) {
+                                if(content2[x].numero_cliente == cliente){
+                                    $("#cliente-Field").val(content2[x].Nombre);
+                                    $("#id_visita").val(content2[x].IdCliente);
+                                    $("#id_cliente").val(content2[x].numero_cliente);
+                                    $("#factura").val(content2[x].factura);
+                                    $("#fecha_factura").val(content2[x].fecha_factura);
+                                    $("#importe").val(content2[x].importe);
+                                    $("#movimiento").val(content2[x].movimiento);
+                                    $('#calle').val(content2[x].calle);
+                                    $('#bloque').val(content2[x].bloque);
+                                    $('#ciudad').val(content2[x].ciudad);
+                                    $('#no_calle').val(content2[x].no_calle);
+                                    $('#cp').val(content2[x].cp);
+                                    $('#pais').val(content2[x].pais);
+                                    $('#codigo').val(content2[x].codigo);
+                                    $('#revision_lunes').val(content2[x].revision_lunes);
+                                    $('#revision_martes').val(content2[x].revision_martes);
+                                    $('#revision_miercoles').val(content2[x].revision_miercoles);
+                                    $('#revision_jueves').val(content2[x].revision_jueves);
+                                    $('#revision_viernes').val(content2[x].revision_viernes);
+                                    $('#contrarecibo').val(content2[x].contrarecibo);
+                                    $('#entrada_almacen').val(content2[x].entrada_almacen);
+                                    $('#folio_mercancia').val(content2[x].folio_mercancia);
+                                    $('#id_reglas').val(content2[x].id_reglas);
+                                    $('#acuse_soporte').val(content2[x].acuse_soporte);
+                                    $('#firma_bennetts').val(content2[x].firma_bennetts);
+                                    $('#firma_key').val(content2[x].firma_key);
+                                    $('#recibido_bennetts').val(content2[x].recibido_bennetts);
+                                    $('#recibido_key').val(content2[x].recibido_key);
+                                    $('#orden_compra').val(content2[x].orden_compra);
+                                    $('#otro').val(content2[x].otro);
+                                    $('#pago_lunes').val(content2[x].pago_lunes);
+                                    $('#pago_martes').val(content2[x].pago_martes);
+                                    $('#pago_miercoles').val(content2[x].pago_miercoles);
+                                    $('#pago_jueves').val(content2[x].pago_jueves);
+                                    $('#pago_viernes').val(content2[x].pago_viernes);
+                                    $('#proceso_pago').val(content2[x].proceso_pago);
+                                    $('#estado').val(content2[x].estado);
+
+                                    $("#IdCte").val(content2[x].IdCte);
+                                }
+                            }
+                        });
+                    }else{
+                        $("#cliente-Field").val('');
+                        $("#id_visita").val('');
+                        $("#id_cliente").val('');
+                        $("#factura").val('');
+                        $("#fecha_factura").val('');
+                        $("#movimiento").val('');
+                        $("#importe").val('');
+                        $("#direccion").val('');
+                        $("#dias_revision").val('');
+                        $("#horarios").val('');
+                        $("#requisitos").val('');
+                        $("#dias_horarios").val('');
+                    }
+                });
+                var fecha = new Date();
+                var fecha_actual = fecha.getFullYear()+"-"+(fecha.getMonth()+1)+"-"+fecha.getDate();
+                var id_usuario = localStorage.getItem("id_usuario");
+
+                var ubicacion = localStorage.getItem("ubicacion");
+                if(ubicacion){
+                    if(ubicacion == 'ofi'){
+                        $("#llegada").css("display","none");
+                        $("#btn_llegada").css("display","none");
+                        $("#listo").css("display","none");
+                        $("#btn_listo").css("display","none");
+                        $("#input_cliente").css("display","none");
+                        $("#regreso_ofi").css("display","none");
+                        $("#cierre").css("display","none");
+                        $("#btn_cierre").css("display","none");
+                        $("#arranque").css("display","block");
+                        $("#btn_arranque").css("display","block");
+                    }else if(ubicacion == 'fin_ruta'){
+                        $("#cierre").css("display","block");
+                        $("#btn_cierre").css("display","block");
+                        $("#listo").css("display","none");
+                        $("#btn_listo").css("display","none");
+                        $("#input_cliente").css("display","none");
+                        $("#regreso_ofi").css("display","none");
+                        $("#llegada").css("display","none");
+                        $("#btn_llegada").css("display","none");
+                        $("#arranque").css("display","none");
+                        $("#btn_arranque").css("display","none");
+                    }
+                }else{
+                    databaseHandler.db.transaction(
+                        function(tx){
+                            tx.executeSql(
+                                "Select * from control WHERE id_usuario = ? AND fecha = ?",
+                                [id_usuario, fecha_actual],
+                                function(tx, results){
+                                    let length = results.rows.length;
+                                    if (length == 0){
+                                        $("#llegada").css("display","block");
+                                        $("#btn_llegada").css("display","block");
+                                    }else{
+                                        databaseHandler.db.transaction(
+                                            function(tx){
+                                                tx.executeSql(
+                                                    "Select * from control WHERE id_usuario = ? AND fecha = ? AND hora_oficina <> ''",
+                                                    [id_usuario, fecha_actual],
+                                                    function(tx, results){
+                                                        let length = results.rows.length;
+                                                        if (length == 0){
+                                                        }else{
+                                                            $("#arranque").css("display","block");
+                                                            $("#btn_arranque").css("display","block");
+                                                            databaseHandler.db.transaction(
+                                                                function(tx){
+                                                                    tx.executeSql(
+                                                                        "Select * from control WHERE id_usuario = ? AND fecha = ? AND hora_oficina <> '' AND hora_arranque <> ''",
+                                                                        [id_usuario, fecha_actual],
+                                                                        function(tx, results){
+                                                                            let length = results.rows.length;
+                                                                            if (length == 0){
+                                                                            }else{
+                                                                                $("#arranque").css("display","none");
+                                                                                $("#btn_arranque").css("display","none");
+                                                                                $("#listo").css("display","block");
+                                                                                $("#btn_listo").css("display","block");
+                                                                                $("#input_cliente").css("display","block");
+                                                                                $("#regreso_ofi").css("display","block");
+                                                                            }
+                                                                        },
+                                                                        function(tx, error){
+                                                                            console.log("Error al mostar datos: " + error.message);
+                                                                            app.preloader.hide();  
+                                                                        }
+                                                                    );  
+                                                                },
+                                                                function(error){},
+                                                                function(){}
+                                                            );
+                                                        }
+                                                    },
+                                                    function(tx, error){
+                                                        console.log("Error al mostar datos: " + error.message);
+                                                        app.preloader.hide();  
+                                                    }
+                                                );  
+                                            },
+                                            function(error){},
+                                            function(){}
+                                        );   
+                                    }
+                                },
+                                function(tx, error){
+                                    console.log("Error al mostar datos: " + error.message);
+                                    app.preloader.hide();  
+                                }
+                            );  
+                        },
+                        function(error){},
+                        function(){}
+                    );
+                }
+            }
+        }
+    }
+</script>

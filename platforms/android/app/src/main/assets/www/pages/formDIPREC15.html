@@ -1,0 +1,158 @@
+<style>
+    .span{
+        margin-top: 10px;
+        height: auto;
+        line-height: 22px;
+        margin-bottom: 3px;
+    }
+    .boton-personalizado-4 {
+        text-decoration: none;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        color: #FFFFFF;
+        padding-top: 15px;
+        padding-bottom: 13px;
+        padding-left: 30px;
+        padding-right: 30px;
+        background-color: #063E7F;
+        border-radius: 15px;
+    }
+    input[type="checkbox"]{
+        transform: scale(1.3);
+        margin-right: 10px;
+    }
+    input[type="radio"]{
+        transform: scale(1.3);
+    }
+    .radios{
+        color: #717D7E;
+        font-weight: bold;
+        font-size: 16px;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+    }
+</style>
+<template>
+    <div class="view view-main view-init safe-areas">
+        <div class="page" id="FWM-1">
+            <!-- Navbar -->
+            <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="#" onclick="regresarRecorridoDIPREC2();">
+                            <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Contenido Formulario -->                                
+            <div class="page-content">
+                <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                    <h2 class="FWN-titulo-2">Evidencias</h2>
+                    <div style="text-align: left;">     
+                        <div class="list FWM-fixing-form" style="margin-top: 0px"> 
+                            
+                            <span class="span FWM-span-form">Área:</span>
+                                <select name="" id="area" class="FWM-input">
+                                    <option value="0">Selecciona una opción</option>
+                                    <option value="Acceso">Acceso</option>
+                                    <option value="Anden de carga">Anden de carga</option>
+                                    <option value="Recorrido">Recorrido</option>
+                                    <option value="Elevador">Elevador</option>
+                                    <option value="Escaleras">Escaleras</option>
+                                    <option value="Puerta de acceso">Puerta de acceso</option>
+                                </select>
+
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturePhoto();">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage" src=""/>
+                                <input type="hidden" id="imagenC" name="Foto Producto" class="obligatorio"/>
+                            </div>
+
+                            <span class="span FWM-span-form">Comentarios:</span>
+                            <textarea id="comentario" name="comentarios" cols="30" rows="10" class="FWM-input obligatorio" onchange="inputLleno(this.id,this.value)"></textarea>
+
+                            <div class="block grid-resizable-demo" style="margin-bottom: 45px; margin-top: 45px;">
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaDiprec(3)" style="background-color: #00A7B5;" class="boton-equipo">Guardar Evidencia </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="block-title FWM-subtitulo">Evidencias</div>
+                            <div class="card data-table" style="margin-bottom: 60px;">
+                                <div class="infinite-scroll-content">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;" id="thtema">Accion</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;" id="thtema">Área</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;" id="thtema">Foto</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;" id="thtema">Comentarios</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;" id="thtema">Fecha y hora</th>
+                                            </tr>
+                                        </thead>
+                                            <tbody id="tabla_evidencias"></tbody>
+                                    </table>
+                                    <div id="message-nr" style="width: 100%;text-align: center;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 16px;" style="display: none;">
+                                        <p>Sin registros</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                <!-- Fin contenido formulario -->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var id_cedula = localStorage.getItem("IdCedula");                
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from evidencias_diprec where id_cedula = ? ORDER BY id_evidencia ASC",
+                                [id_cedula],
+                                function(tx, results){
+                                    var length = results.rows.length;
+                                    if(length==0){}else{
+                                        $("#message-nr").css("display", "none");
+                                        $('.preloader').remove();
+                                        $('.infinite-scroll-preloader').remove();
+                                        for(i=0; i<length; i++){
+                                            var item = results.rows.item(i);
+                                            $("#tabla_evidencias").append("<tr id='fila"+ item.id_evidencia +"'><td><a href='#' onclick='eliminarFilaDIPREC("+item.id_evidencia +",7);' style='border: none; outline:none;'><img src='img/borrar.png' width='30px' /></a></td><td style='text-align: center;'>" + 
+                                            item.area + "</td><td><img src='"+item.foto+
+                                            "' width='60px' style='margin-top: 4px;'/></td><td style='text-align: center;'>" + item.comentario
+                                            + "</td><td style='text-align: center;'>" + item.fecha + "</td></tr>");
+                                        }
+                                    }
+                                },
+                                function(tx, error){
+                                    console.log("Error: " + error.message);
+                                    app.preloader.hide();
+                                }
+                        );
+                    },
+                    function(error){
+                        console.log("Error: " + error.message);
+                    },
+                    function(){}
+                );
+            }
+        }  
+    }
+</script>

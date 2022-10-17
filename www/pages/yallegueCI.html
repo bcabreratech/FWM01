@@ -1,0 +1,381 @@
+<!--suppress JSAnnotator -->
+<template>
+    <div class="page">
+       
+        <style>
+            .titulo-yallegue{
+              font-family: 'ITC Avant Garde Gothic', sans-serif;
+              font-size: 24px;
+              margin-top:24px;
+              margin-bottom:28.2px;
+            }
+            .subtitulo-yallegue{
+                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                color: #505759;
+                font-size: 14px;
+                margin-bottom: 2px;
+            }
+            .last-updated{
+                color: #00A7B5;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            .text-yallegue{
+                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                font-size: 16px;
+                font-weight: bold;
+                color: #505759;
+            }
+            .list{
+                margin-top: 28px;
+            }
+            .border-capture{
+                background-color: white;
+                border-radius: 20px;
+                width: 147.76px;
+                height: 147.76px;
+                border: solid 3px #00A7B5;
+            }
+            .nav-text-regresar{
+                color: #ffffff;
+                border: 2px solid white;
+                padding: 5px;
+                border-radius: 7px;
+                font-size: 14px;
+            }
+        </style>
+        <div class="page-content yallegue-help">
+            <div class="navbar" style="background-color: #063E7F;height: 52px;position: absolute;top: 0;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="javascript:location.reload()" style="margin-left: 10px;">
+                            <span class="nav-text-regresar">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 70px;">
+                
+                <div class="list" id="demo-form">
+                    <input type="hidden" id="imagenC" name="imagenC" onchange="obtenerTime();"/>
+                    <span class="text-yallegue">Confirmación de Inicio de Servició Carnes Ideal</span><br />
+                    <br>
+                    <span class="span FWM-span-form" style="text-align: center;">Foto inicio de servicio</span><br />
+                    <center>
+                        <a href="#" onclick="capturePhoto();">
+                            <div class="border-capture">
+                                <img src="img/camera.svg" id="photoIcon" width="45px" style="position: absolute;position: fixed;z-index: 90;margin-top: 50px; position: relative;"/>
+                                <div hidden="true" id="ImaCe" hidden="true"></div>
+                            </div>
+                        </a>
+                    </center>
+                    <input type="image" name="smallImage" style="margin: 0px auto; width: 147.76px; height: 147.76px; border-radius: 17px; display: none; margin-top: -150.65px;" id="smallImage" src="" /><br>
+                    <input type="hidden" id="imagenC" name="imagenC"/>
+                    <br>
+                    <div id="div_temp_caja">
+                        <span class="span FWM-span-form" style="text-align: center;">Foto Temperatura Caja:</span>
+                        <br>
+                        <div class="FWM-photo-container">
+                            <div class="border-capture">
+                                <a onclick="capturesPhotos(1);">
+                                    <img class="FWM-photo" src="img/camera.svg" id="photoIcon1" width="45px"/>
+                                </a>
+                            </div>
+                            <img class="FWM-photo-hide" id="smallImage1" src=""/>
+                            <input type="hidden" id="imagenC1" name="Foto Producto" class="obligatorio"/>
+                        </div>   
+                    </div>
+                    
+                    <div id="text">
+                        <div class="list no-hairlines-md">
+                            <ul>
+                                <style>
+                                    .cliente-yallegue{
+                                        font-family: 'ITC Avant Garde Gothic', sans-serif;
+                                        font-size: 13px;
+                                        margin: 0;
+                                        padding: 0;
+                                        text-align: left;
+                                        background-color: white;
+                                        padding-left: 15px;
+                                    }
+                                    .cliente-ayuda{
+                                        background-color: white;
+                                    }
+                                    .input-yallegue{
+                                        border-bottom: 2px solid #00A7B5;
+                                    }
+                                    .md .item-input .item-media {
+                                        padding-right: 15px;
+                                    }
+                                </style>
+                                <li class="cliente-yallegue"><span>Cliente</span></li>
+                                <li class="item-content item-input cliente-ayuda">
+                                    <div class="item-inner">
+                                        <div class="item-input-wrap input-yallegue">
+                                            <input type="text" placeholder="Escribe el cliente o su numero" name="ncliente" id="autocomplete-dropdown-ajax" class="autocomplete-dropdown item-title" >
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <input type="hidden" name="IdCliente" id="id_cliente" />
+                        <input type="hidden" id="nombre" />
+                        <input type="hidden" id="nombre_contacto" />
+                        <input type="hidden" id="correo" />
+                        <input type="hidden" id="telefono" />
+                        <input type="hidden" id="medio_conocido" />
+                        <input type="hidden" id="otro_medio" />
+                        <input type="hidden" id="potencia_kg" />
+                        <input type="hidden" id="negocio" />
+                        <input type="hidden" id="ubicacion" />
+                        <input type="hidden" id="medio_contacto" />
+                        <input type="hidden" id="problematica" />
+                        <input type="hidden" id="proveedor_actual" />
+                        <input type="hidden" id="potencia_correcta" />
+                        <input type="hidden" id="ubicacion_correcta" />
+
+                        <input type="hidden" id="id_visita" />
+                        <input type="hidden" id="documento" />
+                        <input type="hidden" id="comanda" />
+                        <input type="hidden" id="fecha" />
+                        <input type="hidden" id="contacto" />
+                        
+                        <input type="hidden" name="geolocation" id="geolocation" placeholder='Geolocalizacion'/>
+                        <style type="text/css">
+                            .boton-personalizado-4 {
+                                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                                text-decoration: none;
+                                font-size: 20px;
+                                color: #FFFFFF;
+                                padding-top: 19px;
+                                padding-bottom: 13px;
+                                padding-left: 83px;
+                                padding-right: 81px;
+                                background-color: #00A7B5;
+                                border-width: 3px;
+                                border-style: solid;
+                                border-radius: 8px;
+                                width: 212px;
+                            }
+                        </style>
+                        <div class="block grid-resizable-demo">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="buscarClienteCI();" class="boton-personalizado-4">Entrada</a>   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="block grid-resizable-demo" style="margin-top: 70px;" id="btn_ruta">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;margin-bottom: 30px;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="generarRutaCI1();" class="boton-personalizado-4" style="background-color: #063E7F;font-size: 16px;padding-left: 25px;padding-right: 25px;">Preparación de Ruta</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="block grid-resizable-demo" style="margin-top: 90px;" id="btn_nuevo">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;margin-bottom: 30px;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="Prospecto_CI();" class="boton-personalizado-4" style="background-color: #063E7F;">Cliente Nuevo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br/><br />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                var division = localStorage.getItem("division");
+                if(division == 1){
+                    $("#btn_nuevo").css("display", "none");
+                }else{
+                    $("#div_temp_caja").css("display", "none");
+                    $("#btn_ruta").css("display", "none");
+                }
+                // Verificar GPS
+                document.addEventListener("deviceready",function(){
+                    cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+                        console.log("GPS location is " + (enabled ? "enabled" : "disabled"));
+                        if(enabled == true){
+                            // Obtener GPS
+                            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                        }else{
+                            swal("GPS Apagado","Favor de regresar a menu y encender tu ubicacion!","error");
+                        }
+                    }, function(error){
+                    console.error("The following error occurred: "+error);
+                    });
+                }, false);
+                function onSuccess(position) {
+                    var element = document.getElementById('geolocation');
+                    $('#geolocation').val(position.coords.latitude+','+position.coords.longitude);
+                }
+                function onError(error) {
+                    swal ("Error en geolicalizacion",error,"error");
+                }                
+                var self = this;
+                var app = self.$app; 
+                var OPCV = localStorage.getItem("Opcion");       
+                  //revisar conexion a internet 
+                  document.addEventListener("offline", onOffline, false);
+                    function onOffline() {
+                        app.dialog.alert('Vaya! No tienes internet. Cuando te conectes se enviaran o descargaran los datos.', 'Aviso');
+                        $('#geolocation').val('');
+                    }
+
+                if(division == 1){
+                    var NomJson = 'Clientes_carnesideal';
+                    var NomDescCli = "clientes_desc_carnesideal";
+                    var JsonRuta = 'RutasCarne';
+                    app.request.get(cordova.file.dataDirectory + "jsons/"+JsonRuta+".json", function (data) {
+                        if(data){
+                            localStorage.setItem("ruta", data);
+                        }
+                    });
+                    self.autocompleteDropdownAjax = app.autocomplete.create({
+                        inputEl: '#autocomplete-dropdown-ajax',
+                        openIn: 'dropdown',
+                        preloader: true, //enable preloader
+                        valueProperty: 'nombre_comercial', //object's "value" property name
+                        textProperty:  'nombre_comercial', //object's "text" property name
+                        limit: 10, //limit to 20 results
+                        dropdownPlaceholderText: 'Seleccionar Cliente...',
+                        source: function (query, render) {
+                            var autocomplete = this;
+                            var results = [];
+                            if (query.length === 0) {
+                                render(results);
+                                return;
+                            }
+                            // Show Preloader
+                            autocomplete.preloaderShow();
+                            // Do Ajax request to Autocomplete data
+                            app.request({
+                                url: cordova.file.dataDirectory + "jsons/"+NomJson+".json", // y por cual era? XD perate culo dale shift+f6 si le distre? xd
+                                method: 'GET',
+                                dataType: 'json',
+                                //send "query" to server. Useful in case you generate response dynamically, deja inento en el mio para acordarme xd
+                                data: {
+                                    query: query,
+                                },success: function (data) {
+                                    for (var i = 0; i < data.length; i++) {
+                                        if (data[i].busca.toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(data[i]);
+                                    }
+                                    autocomplete.preloaderHide();
+                                    render(results); 
+                                }
+                            }); 
+                        }
+                    });
+
+                    $('#autocomplete-dropdown-ajax').change(function () {
+                        var cliente = $("#autocomplete-dropdown-ajax").val();
+                        $("#id_visita").val('');
+                        app.request.get(cordova.file.dataDirectory + "jsons/"+NomDescCli+".json", function (data) {
+                            var content2 = JSON.parse(data);
+                            for(var x = 0; x < content2.length; x++) {
+                                if(content2[x].nombre_comercial == cliente){
+                                    $("#autocomplete-dropdown-ajax").val(content2[x].nombre_comercial);
+                                    $("#id_visita").val(content2[x].id_visita);
+                                    $("#documento").val(content2[x].documento);
+                                    $("#comanda").val(content2[x].comanda);
+                                    $("#fecha").val(content2[x].fecha);
+                                    $("#contacto").val(content2[x].contacto);
+                                }         
+                            }
+                        });
+                    });
+                }else{
+                    var NomJson = 'get_prospectos_ci';
+                    var NomDescCli = "get_prospectos_ci_desc";
+                    self.autocompleteDropdownAjax = app.autocomplete.create({
+                        inputEl: '#autocomplete-dropdown-ajax',
+                        openIn: 'dropdown',
+                        preloader: true, //enable preloader
+                        valueProperty: 'id', //object's "value" property name
+                        textProperty:  'prospecto', //object's "text" property name
+                        limit: 10, //limit to 20 results
+                        dropdownPlaceholderText: 'Seleccionar Cliente...',
+                        source: function (query, render) {
+                            var autocomplete = this;
+                            var results = [];
+                            if (query.length === 0) {
+                                render(results);
+                                return;
+                            }
+                            // Show Preloader
+                            autocomplete.preloaderShow();
+                            // Do Ajax request to Autocomplete data
+                            app.request({
+                                url: cordova.file.dataDirectory + "jsons/"+NomJson+".json", // y por cual era? XD perate culo dale shift+f6 si le distre? xd
+                                method: 'GET',
+                                dataType: 'json',
+                                //send "query" to server. Useful in case you generate response dynamically, deja inento en el mio para acordarme xd
+                                data: {
+                                    query: query,
+                                },success: function (data) {
+                                    for (var i = 0; i < data.length; i++) {
+                                        if (data[i].busca.toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(data[i]);
+                                    }
+                                    autocomplete.preloaderHide();
+                                    render(results); 
+                                }
+                            }); 
+                        }
+                    });
+
+                    $('#autocomplete-dropdown-ajax').change(function () {
+                        var cliente = $("#autocomplete-dropdown-ajax").val();
+                        $("#id_cliente").val('');
+                        app.request.get(cordova.file.dataDirectory + "jsons/"+NomDescCli+".json", function (data) {
+                            var content = JSON.parse(data);
+                            var content2 = content[0];
+                            var content3 = content[1];
+                            for(var x = 0; x < content2.length; x++) {
+                                if(content2[x].id == cliente){
+                                    $("#autocomplete-dropdown-ajax").val(content2[x].prospecto);
+                                    $("#id_cliente").val(content2[x].id);
+                                    $("#nombre_comercial").val(content2[x].prospecto);
+                                    $("#nombre_contacto").val(content2[x].nombre_contacto);
+                                    $("#correo").val(content2[x].correo);
+                                    $("#telefono").val(content2[x].telefono);
+                                    $("#potencia_kg").val(content2[x].potencial);
+                                    $("#medio_conocido").val(content2[x].medio_conocio);
+                                    $("#otro_medio").val(content2[x].otro_medio);
+                                    
+                                    $("#nombre").val(content2[x].negocio);
+                                    $("#ubicacion").val(content2[x].ubicacion);
+                                    $("#medio_contacto").val(content2[x].medio_contacto);
+                                }         
+                            }
+
+                            var id_cliente = $("#id_cliente").val();
+                            for(var x = 0; x < content3.length; x++) {
+                                if(content3[x].id == id_cliente){
+                                    $("#problematica").val(content3[x].problematica);
+                                    $("#proveedor_actual").val(content3[x].proveedor_actual);
+                                    $("#potencia_correcta").val(content3[x].potencia_correcta);
+                                    $("#ubicacion_correcta").val(content3[x].ubicacion_correcta);
+                                }         
+                            }
+                        });
+                    }); 
+                }
+            }
+        }
+    }
+</script>

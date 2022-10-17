@@ -1,0 +1,122 @@
+<template>
+    <div class="view view-main view-init safe-areas">
+        <div class="page" id="FWM-1">
+            <!-- Navbar -->
+            <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="#" onclick="regresarRecorridoMrFixer1();">
+                            <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Contenido Formulario -->                                
+            <div class="page-content">
+                <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                    <h2 class="FWN-titulo-2">Insumos Iniciales</h2>
+                        
+                        <!-- <form class="list FWM-fixing-form"> 
+                            <span class="span FWM-span-form">Nombre:</span>
+                            <input type="text" class="FWM-input" id="nombre" name="nombre" onchange="inputLleno(this.id,this.value)"/>
+                            
+                            <span class="span FWM-span-form">Cantidad:</span>
+                            <input type="number" class="FWM-input" id="cantidad" name="cantidad" onchange="inputLleno(this.id,this.value)"/>
+
+                            <span class="span FWM-span-form">Unidad de Medida:</span>
+                            <select class="select-moji-fwm" id="unidad" name="unidad" onchange="inputLleno(this.id,this.value)" style="text-align: left; width: 100%; border-radius: 10px;border: 1px solid gray; padding: 0px;padding-left: 10px;">
+                                <option value="0">Selecciona una unidad de medida</option>
+                                <option value="Litros">Litros</option>
+                                <option value="Mililitros" selected>Mililitros</option>
+                            </select>
+                        </form> -->
+
+                        <div class="block-title FWM-subtitulo">Insumos</div>  
+                        <div class="card data-table" style="margin-bottom: 60px;">
+                            <div class="infinite-scroll-content">
+                                <table id="">
+                                    <thead>
+                                        <tr>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Nombre</th>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Inicio</th>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Unidades</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table_insumos">
+
+                                    </tbody>
+                                </table>
+                                <div class="sentencia preloader color-grey infinite-scroll-preloader"></div>
+                                <div id="message-nr" style="width: 100%;text-align: center;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 16px;" style="display: none;">
+                                    <p>Sin registros</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="block grid-resizable-demo" style="margin-bottom: 50px; margin-top: 45px;">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="guardarInsumoMrFixer();" class="boton-equipo">Agregar Insumo</a>
+                                </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+                <!-- Fin contenido formulario -->
+                <fwm></fwm>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql("Select * from insumos where id_cedula = ?",
+                        [id_cedula],
+                            function(tx, results){
+                                var length = results.rows.length;
+                                for(var i = 0; i< length; i++){
+                                    var item = results.rows.item(i);
+                                    var valor='';
+                                    var select = ''; 
+                                    var select1 = '';
+                                        valor=item.cantidad;
+                                    var unidad = item.unidad;
+                                    if(unidad == 'Litros'){
+                                        select ='selected';
+                                        select1='';
+                                        select2='';
+                                    }else{
+                                        select1 ='selected';
+                                        select='';
+                                        select2='';
+                                    }
+                                    $("#table_insumos").append("<tr id='fila"+ item.id_insumo +
+                                        "'><td style='text-align: center;'>" + 
+                                        item.nombre + "</td><td style='text-align: center;width: 33.3%;'><input type='number' style=' width: 100%;height: 35px;' class='FWM-input' id='cantidad"+item.id_insumo+"' name='cantidad' onchange='actualizafinMrFixer(1,"+
+                                        item.id_insumo+",this.value)' value='"+valor+"'/></td><td style='text-align: center;width: 33.3%;'><select class='select-moji-fwm' id='unidad"+
+                                        item.id_insumo+"' name='unidad' onchange='actualizafinMrFixer1(1,"+item.id_insumo+",this.value)' style='text-align: left; width: 100%; border-radius: 10px;border: 1px solid gray; padding: 0px;padding-left: 10px;height: 35px;margin-bottom: 0;'><option value='0' "+select2+">Unidades</option> <option value='Litros' "+select+">Litros</option> <option value='Mililitros' "+select1+">Mililitros</option> </select></td></tr>");
+                                    $("#message-nr").css("display", "none");
+                                }
+                                $('.preloader').remove();
+                                $('.infinite-scroll-preloader').remove();
+                            },
+                            function(tx, error){
+                                console.log("Error al guardar cedula: " + error.message);
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }  
+    }
+</script>

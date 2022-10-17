@@ -1,0 +1,245 @@
+<style>  
+    .md .button {
+        text-decoration: none;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        font-weight: 600;
+        font-size: 25px;
+        color: #FFFFFF;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 100%;
+    }
+    .list .item-floating-label, .list .item-label {
+        width: 100%; 
+    }
+    #minuta{
+        text-align: center;
+    }
+    .sheet-modal.modal-in{
+        height: 80%;
+    }
+    .navbar .title{
+        font-weight: bold;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        color: #fff;
+    }
+    .navbar a.link{
+        color: white;
+    }
+    .list .item-link {
+    color: inherit;
+    margin-top: 5px;
+    }
+    .button {
+    display: initial;
+    }
+    .navbar{
+        background-color: #063E7F;
+        height: 52px;
+    }
+    .navbar-inner{
+        height: 52px;
+    }
+    .list .item-title{
+        font-weight: bold;
+        font-size: 16px;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        color: #717D7E;
+    }
+    .list .item-inner{
+        font-weight: bold;
+        font-size: 16px;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        color: #717D7E;
+    }
+    .list .item-content{
+        padding-left: 0px;
+    }
+    #fecha{
+        font-weight: bold;
+        font-size: 16px;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        color: #717D7E;
+    }
+    #otroA{
+    font-size: 16px;
+    font-family: 'ITC Avant Garde Gothic', sans-serif;
+    }
+    .list ul{
+        top: 10px;
+        padding-left: 16px;
+    }
+    #thaccion{
+    padding-left: 12px;
+    padding-right: 12px;
+    }
+    #thfoto{
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+    #thcomentarios{
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+    #thtipo{
+    width: 190px;
+    }
+    #thfecha{
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 70px;
+    }
+    #tdaccion{
+    padding-left: 14px;
+    padding-right: 12px;
+    }
+    #tdfoto{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    }
+    #tdtipo{
+    padding-left: 5px;
+    padding-right: 5px;
+    }
+    #tdcomentario{
+    width: min-content;
+    }
+    #tdfecha{
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+
+    footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    }
+    .span{
+            margin-top: 10px;
+            height: auto;
+            line-height: 22px;
+            margin-bottom: 3px;
+        }
+</style>
+<template>
+        <div class="page" id="FWM-1">
+            <!-- Navbar -->
+            <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="#" onclick="regresarRecorridoCI2();">
+                            <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Contenido Formulario -->                                
+            <div class="page-content">
+                <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                    <h2 class="FWN-titulo-2">Prospección</h2>
+                    <div style="text-align: left;">     
+                        <form class="list FWM-fixing-form" id="datos_form"> 
+                            <span class="span FWM-span-form">Nombre:</span>
+                                <input type='text' id="nombre" name="Nombre" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Teléfono:</span>
+                                <input type='text' id="telefono" name="Teléfono" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Correo:</span>
+                                <input type='text' id="correo" name="Correo" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Medio por el que nos conoció:</span>
+                                <select class="FWM-input" id="medio_conocido" name="Medio por el que nos conoció" onchange="cierreCI(7);">
+                                    <option value="0" selected>Selecciona una opción</option>
+                                    <option value="1">Google</option>
+                                    <option value="2">Instagram</option>
+                                    <option value="3">Facebook</option>
+                                    <option value="4">Linkedin</option>
+                                    <option value="5">Recomendado</option>
+                                    <option value="6">Otros</option>
+                                </select>
+                            <div id="div_otro_medio" style="display: none;">
+                                <span class="span FWM-span-form">Especificar otro medio:</span>
+                                <input type='text' id="otro_medio" class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                            </div>
+                            <span class="span FWM-span-form">Potencia Kilogramos al mes:</span>
+                                <select class="FWM-input" name="Potencia Kilogramos al mes" id="potencia_kg" >
+                                    <option value="0" selected>Selecciona una opción</option>
+                                    <option value="A">A < 800 kg</option>
+                                    <option value="B">B < 300 - 800kg</option>
+                                    <option value="C">C < 200 kg</option>
+                                </select>
+                            <span class="span FWM-span-form">Nombre del negocio:</span>
+                                <input type='text' id="negocio" name="Nombre del negocio" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Ubicación:</span>
+                                <input type='text' id="ubicacion" name="Ubicación" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Medio por el cual se contactará / contactó</span>
+                                <input type='text' id="medio_contacto" name="Medio por el cual se contactará / contactó" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                        </form>
+
+                        <div class="block grid-resizable-demo" style="margin-bottom: 70px; margin-top: 70px;">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="guardarDatosVentaCI();" style="background-color: #063E7F;" class="boton-equipo">Guardar Datos</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Fin contenido formulario -->
+            </div>
+        </div>
+</template>
+<script>
+return {
+        on: {      
+            pageInit: function () {
+                var id_usuario = localStorage.getItem("id_usuario");
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select id_cedula,nombre,correo,telefono,medio_conocido,otro_medio,potencia_kg,negocio,ubicacion,medio_contacto from datos_ventas WHERE id_cedula = ?",
+                            [id_cedula],
+                            function(tx, results){
+                                //let length = results.rows.length;
+                                //for(var i = 0; i< length; i++){
+                                    var item = results.rows.item(0);
+                                    $("#nombre").val(item.nombre);
+                                    $("#telefono").val(item.telefono);
+                                    $("#medio_conocido").val(item.medio_conocido);
+                                    $("#potencia_kg").val(item.potencia_kg);
+                                    $("#negocio").val(item.negocio);
+                                    $("#ubicacion").val(item.ubicacion);
+                                    $("#medio_contacto").val(item.medio_contacto);
+                                    $("#otro_medio").val(item.otro_medio);
+                                    $("#correo").val(item.correo);
+                                    if(item.medio_conocido){
+                                        $("#medio_conocido").val(item.medio_conocido);
+                                        if(item.medio_conocido == 6){
+                                            $("#div_otro_medio").css("display","block");
+                                        }
+                                    }else{
+                                        $("#medio_conocido").val(0);
+                                    }
+                                    if(item.potencia_kg){}else{$("#potencia_kg").val(0)}
+                                //} 
+                            },
+                            function(tx, error){
+                                console.log("Error al guardar cedula: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }
+    }
+
+</script>

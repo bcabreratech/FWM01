@@ -1,0 +1,211 @@
+<template>
+    <div class="page" style="background-color: rgb(245, 245, 245);">
+        <div class="navbar" style="background-color: #063E7F;height: 52px;">
+            <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+            <div class="navbar-inner sliding" style="height: 52px;">
+                <div class="left">
+                    <a href="#" onclick="regrsarBennettsL1();">
+                        <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                <h2 style="color:#063E7F;font-size: 20px;font-family: 'ITC Avant Garde Gothic', sans-serif;margin-top: 35px;">Dirección de entrega</h2>
+
+                <form class="list" style="margin-top: 0;">                    
+                    <style type="text/css">
+                        input[type=text]{
+                            margin: 8px 0;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                        }
+                        input[type=number]{
+                            margin: 8px 0;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                        }
+                        .span{
+                            display: inline-block;
+                            line-height: 25px;
+                            margin-bottom: 0px;
+                            padding-top: 15px;
+                        }
+                        #text2{
+                            margin-top: -5px;
+                        }
+                        .span2{
+                            font-weight: bold;
+                            width: 90%;
+                            color: #063E7f;
+                            text-align: center;
+                        }
+                        .boton-personalizado-4 {
+                            text-decoration: none;
+                            font-family: 'ITC Avant Garde Gothic', sans-serif;
+                            font-weight: 600;
+                            font-size: 16px;
+                            color: #FFFFFF;
+                            padding-top: 15px;
+                            padding-bottom: 13px;
+                            padding-left: 30px;
+                            padding-right: 30px;
+                            background-color: #063E7F;
+                            border-radius: 15px;
+                        }
+                        input[type="checkbox"] {
+                            transform: scale(1.5);
+                            margin-right: 10px;
+                        }
+                        #pregunta   input[type=checkbox] {
+                            display: none;
+                            opacity: 0;
+                        }
+
+                        #pregunta  input[type=checkbox]+label {
+                            color: #ccc;
+                            font-style: italic;                            
+                        }
+
+                        #pregunta  input[type=checkbox]:checked+label {
+                            font-style: normal;
+                            background: #063E7F;
+                            color: #FAFAFA;
+                        }
+                        #pregunta   input[type=radio] {
+                            display: none;
+                            opacity: 0;
+                        }
+
+                        #pregunta  input[type=radio]+label {
+                            color: #ccc;
+                            font-style: italic;                            
+                        }
+
+                        #pregunta  input[name=P2]:checked+label {
+                            font-style: normal;
+                            background: #00A7B5;
+                            color: #FAFAFA;
+                        }
+                        #pregunta  label {
+                            display: block;
+                            width: 150px;
+                            height: 40px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            transition: 0.5s;
+                            background: #FFF;
+
+                        }
+
+                        #pregunta label:hover {
+                            background: #679ceb;
+                        }
+                        #pregunta {
+                            position: relative;
+                            display: flex;
+                            margin-top: 5px;
+                            border: transparent;
+                            box-sizing: border-box;
+                            background: #FAFAFA;
+                        }
+                    </style>
+                    <div style="width: 90%;border-radius: 15px;margin-left: 5%;border: 0.5px solid #ECECEC;background-color: white;padding-bottom: 15px;margin-bottom: 40px;">
+                        <div id="direccion_entrega">
+                            <span class="span" style="font-weight: bold;width: 90%;">Calle:</span>
+                            <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="calle" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)" alt="Calle"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;">N° exterior:	</span>
+                            <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="no_exterior" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)" alt="N° exterior"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;">N° interior:</span>
+                            <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="no_interior" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="N° interior"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;">Colonia:</span>
+                            <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="colonia" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)" alt="Colonia"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;">Ciudad:</span>
+                            <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="ciudad" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)" alt="Ciudad"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;">C.P:</span>
+                            <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="cp" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)" alt="C.P"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;">Alcaldía / Municipio:</span>
+                            <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="alcadia" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="Alcaldía / Municipio"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;">Estado:</span>
+                            <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="estado" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)" alt="Estado"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;">Acceso de proveedores:</span>
+                            <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="acceso_proveedor" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)" alt="Acceso de proveedores"/>
+                            </span>
+                        </div>
+
+                        <div class="block grid-resizable-demo"  style="margin-top: 45px;">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="guardaBennettsLLogis2();" class="boton-personalizado-4">Guardar Dirección</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from logistica_bennettsL WHERE id_cedula = ?",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                // for(var i = 0; i< length; i++){
+                                //     var item = results.rows.item(i);
+                                //     console.log(item);
+                                // }
+                                var item = results.rows.item(0);
+                                
+                                $("#calle").val(item.calle);
+                                $("#no_exterior").val(item.no_exterior);
+                                $("#no_interior").val(item.no_interior);
+                                $("#colonia").val(item.colonia);
+                                $("#ciudad").val(item.ciudad);
+                                $("#cp").val(item.cp);
+                                $("#alcadia").val(item.alcadia);
+                                $("#estado").val(item.estado);
+                                $("#acceso_proveedor").val(item.acceso_proveedor);
+                            },
+                            function(tx, error){
+                                console.log("Error al mostar datos: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }
+    }
+</script>

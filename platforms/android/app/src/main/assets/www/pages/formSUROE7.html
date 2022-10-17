@@ -1,0 +1,127 @@
+<style>
+    .FWM-textBox{
+        width: 100%; 
+        padding-left: 3px; 
+        font-size: 15px; 
+        height: 37px; 
+        font-family: 'ITC Avant Garde Gothic', sans-serif; 
+        background-color: white; 
+        border-radius: 8px; 
+        border: 1px solid gray;
+    }
+    input[type=text]{
+        background-color: white;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        padding-top: 5px;
+    }
+    .span{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+        #inventario_filter label{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-left: 20px;
+          margin-bottom: 15px;
+        }
+        #inventario_length label{
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-left: 20px;
+        }
+        #inventario_length label select{
+          width: 36px;
+          height: 32px;
+          padding: 0 0 0 4px;
+          margin: 10px;
+          line-height: 15px;
+        }
+        tr ul{
+          width: 100%;
+        }
+    </style>
+    <template>
+        <div class="view view-main view-init safe-areas">
+            <div class="page" id="FWM-1">
+                <!-- Navbar -->
+                <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                    <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                    <div class="navbar-inner sliding" style="height: 52px;">
+                        <div class="left">
+                            <a href="#" onclick="">
+                                <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contenido Formulario -->                                
+                <div class="page-content">
+
+                    <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                        <h2 class="FWN-titulo-2">Entrada de material</h2>
+    
+                    <div style="text-align: left;">     
+                        <div class="list FWM-fixing-form">
+                            <span class="span FWM-span-form">Folio del material:</span>
+                            <input type="text" name="" id="2" class="FWM-input" onchange="inputLleno(this.id,this.value)">
+
+                            <span class="span FWM-span-form">Fecha de recepción:</span>
+                            <input type="text" name="" id="3" class="FWM-input" onchange="inputLleno(this.id,this.value)">
+
+                            <span class="span FWM-span-form">Nombre del Supervisor/ Ejecutivo quien recibe:</span>
+                            <input type="text" name="" id="4" class="FWM-input" onchange="inputLleno(this.id,this.value)">
+
+                            <table id="inventario" class="display responsive nowrap" style="width:100%;margin-bottom: 30px;">
+                                <thead>
+                                    <tr>
+                                        <th style="color: white;background-color: #505759;">Codigo de Material</th>
+                                        <th style="color: white;background-color: #505759;">Nombre</th>
+                                        <th style="color: white;background-color: #505759;">Cantidad:</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script>
+        return {
+            on: {
+                pageInit: function (e, page) {
+                    var id_usuario = localStorage.getItem("id_usuario");
+                    var id_cedula = localStorage.getItem("IdCedula");
+                    var table = $('#inventario').DataTable({
+                        responsive: true,
+                        language: {
+                            "decimal": "",
+                            "emptyTable": "Sin registros",
+                            "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
+                            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                            "infoPostFix": "",
+                            "thousands": ",",
+                            "loadingRecords": "Cargando...",
+                            "processing": "Procesando...",
+                            "zeroRecords": "Sin resultados encontrados",
+                            "paginate": {
+                                "first": "Primero",
+                                "last": "Ultimo",
+                                "next": "Siguiente",
+                                "previous": "Anterior"
+                            }
+                        }
+                    });
+        
+                    table.row.add(["CL-SURO-1234","KEY LIMPIA BAÑOS","<input type='number' value='' style='width:60px;border: 1px solid;'>"]).draw();
+                    
+                }
+            }  
+        }
+    </script>

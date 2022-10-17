@@ -1,0 +1,359 @@
+<!--suppress JSAnnotator -->
+<template>
+    <div class="page">
+        <style>
+            .titulo-yallegue{
+              font-family: 'ITC Avant Garde Gothic', sans-serif;
+              font-size: 24px;
+              margin-top:24px;
+              margin-bottom:28.2px;
+            }
+            .subtitulo-yallegue{
+                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                color: #505759;
+                font-size: 14px;
+                margin-bottom: 2px;
+            }
+            .last-updated{
+                color: #00A7B5;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            .text-yallegue{
+                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                font-size: 16px;
+                font-weight: bold;
+                color: #505759;
+            }
+            .list{
+                margin-top: 28px;
+            }
+            .border-capture{
+                background-color: white;
+                border-radius: 20px;
+                width: 147.76px;
+                height: 147.76px;
+                border: solid 3px #00A7B5;
+            }
+            .nav-text-regresar{
+                color: #ffffff;
+                border: 2px solid white;
+                padding: 5px;
+                border-radius: 7px;
+                font-size: 14px;
+            }
+        </style>
+        <div class="page-content yallegue-help">
+            <div class="navbar" style="background-color: #063E7F;height: 52px;position: absolute;top: 0;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="javascript:location.reload()" style="margin-left: 10px;">
+                            <span class="nav-text-regresar">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 70px;">
+                <center>
+                    <span class="subtitulo-yallegue">Última sincronización de datos: </span><br>
+                    <span class="last-updated" id="FechaACT" name="FechaACT">Sus datos no estan sincronizados</span>
+                </center>
+                <form class="list" id="demo-form">
+                    <input type="hidden" id="imagenC" name="imagenC" onchange="obtenerTime();"/>
+                    <span class="text-yallegue">Confirmación de Inicio de Servicio Bennetts</span><br />
+                    <br>
+                    <center>
+                        <a href="#" onclick="capturePhoto();" id="camera-sales-unico">
+                            <div class="border-capture">
+                                <img src="img/camera.svg" id="photoIcon" width="45px" style="position: absolute;position: fixed;z-index: 100;margin-top: 50px; position: relative;"/>
+                                <div hidden="true" id="ImaCe" hidden="true"></div>
+                            </div>
+                        </a>
+                    </center>
+                    <input type="image" name="smallImage" style="margin: 0px auto; width: 147.76px; height: 147.76px; border-radius: 17px; display: none; margin-top: -150.65px;" id="smallImage" src="" /><br>
+                    <div id="text">
+                        <div class="list no-hairlines-md">
+                            <ul>
+                                <style>
+                                    .cliente-yallegue{
+                                        font-family: 'ITC Avant Garde Gothic', sans-serif;
+                                        font-size: 13px;
+                                        margin: 0;
+                                        padding: 0;
+                                        text-align: left;
+                                        background-color: white;
+                                        padding-left: 15px;
+                                    }
+                                    .cliente-ayuda{
+                                        background-color: white;
+                                    }
+                                    .input-yallegue{
+                                        border-bottom: 2px solid #00A7B5;
+                                    }
+                                    .md .item-input .item-media {
+                                        padding-right: 15px;
+                                    }
+                                </style>
+                                <li class="cliente-yallegue"><span>Cliente</span></li>
+                                <li class="item-content item-input cliente-ayuda">
+                                    <div class="item-inner">
+                                        <div class="item-input-wrap input-yallegue">
+                                            <input type="text" placeholder="Escribe el cliente o su numero" name="ncliente" id="autocomplete-dropdown-ajax" class="autocomplete-dropdown item-title" >
+                                        </div>
+                                    </div>
+                                    <div class="item-media">
+                                        <img src="img/lupa.svg" width="40px" height="40px">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <br>
+                        <input type="hidden" name="id_cliente" id="id_cliente" placeholder="Id Cliente"/>
+                        <input type="hidden" name="nombre_cliente" id="nombre_cliente" placeholder="Nombre cliente"/>
+                        <input type="hidden" name="reglas" id="reglas" placeholder="Nombre cliente"/>
+                        <input type="hidden" name="reglas1" id="reglas1" placeholder="Nombre cliente"/>
+                        <input type="hidden" name="reglas2" id="reglas2" placeholder="Nombre cliente"/>
+                        <input type="hidden" name="NombreComercial" id="NombreComercial" placeholder="Nombre cliente"/>
+                        <input type="hidden" name="NombreContacto" id="NombreContacto" placeholder="Nombre cliente"/>
+                        <input type="hidden" name="horario_programado" id="horario_programado" placeholder='Horario Programado'/>
+                        <input type="hidden" name="direccion" id="direccion" placeholder='Direccion'/>
+                        <input type="hidden" name="telefono" id="Telefono" placeholder='Telefono'/>
+                        <input type="hidden" name="correo" id="Correo" placeholder='Correo'/>
+                        <input type="hidden" name="Estatus" id="Estatus" placeholder='Estatus'/>
+                        <input type="hidden" name="geolocation" id="geolocation" Estatus='Geolocalizacion'/>
+                        <input type="hidden" name="geolocation" id="calle" placeholder="calle"/>
+                        <input type="hidden" name="geolocation" id="colonia" placeholder="colonia"/>
+                        <input type="hidden" name="geolocation" id="no_exterior" placeholder="no_exterior"/>
+                        <input type="hidden" name="geolocation" id="codigo_postal" placeholder="codigo_postal"/>
+                        <input type="hidden" name="geolocation" id="estado" placeholder="estado"/>
+                        <input type="hidden" name="geolocation" id="ciudad" placeholder="ciudad"/>
+                        
+                        <style type="text/css">
+                            .boton-personalizado-4 {
+                                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                                text-decoration: none;
+                                font-size: 20px;
+                                color: #FFFFFF;
+                                padding-top: 19px;
+                                padding-bottom: 13px;
+                                padding-left: 83px;
+                                padding-right: 81px;
+                                background-color: #00A7B5;
+                                border-width: 3px;
+                                border-style: solid;
+                                border-radius: 8px;
+                                width: 212px;
+                            }
+                        </style>
+                        <div class="block grid-resizable-demo">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="buscarClienteBennettsL();" class="boton-personalizado-4">Iniciar</a>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/><br />
+                </form>
+                <fwm></fwm>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                // Verificar actualizaciones
+                databaseHandler.db.transaction(
+                    function(tx5){
+                        tx5.executeSql(
+                            "SELECT * FROM Actualizaciones ORDER BY idActualizacion DESC LIMIT 1",
+                            [],
+                            function(tx5, results){
+                                var length = results.rows.length;
+                                var item1 = results.rows.item(0);
+                                $("#FechaACT").html(item1.Fecha);
+                                $("#FechaACT").css("color","#1e90ff");
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+                // Verificar GPS
+                document.addEventListener("deviceready",function(){
+                    cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+                        console.log("GPS location is " + (enabled ? "enabled" : "disabled"));
+                        if(enabled == true){
+                            // Obtener GPS
+                            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                        }else{
+                            swal("GPS Apagado","Favor de regresar a menu y encender tu ubicacion!","error");
+                        }
+                    }, function(error){
+                    console.error("The following error occurred: "+error);
+                    });
+                }, false);
+
+                function onSuccess(position) {
+                    var element = document.getElementById('geolocation');
+                    $('#geolocation').val(position.coords.latitude+','+position.coords.longitude);
+                }
+                function onError(error) {
+                    swal ("Error en geolicalizacion",error,"error");
+                }
+                
+                // ----------------------
+                var self = this;
+                var app = self.$app; 
+                var OPCV = localStorage.getItem("Opcion");       
+                var division = localStorage.getItem("division");
+
+                var rol = localStorage.getItem("rol");
+                var roles = rol.split("-");
+
+                if (roles[1] == 'EB'){
+                    if(division == 1){
+                        var NomDescCli = 'getReglas[L]_desc_bennetts';
+                    }else if(division == 2){
+                        var NomDescCli = 'getReglas[ST]_desc_bennetts';
+                    }else{
+                        var NomDescCli = 'getReglas[L]_desc_bennetts';
+                        var NomDescCli2 = 'getReglas[ST]_desc_bennetts';
+                    }
+                    var NomJson = "getReglas[L]_bennetts";
+                }else if(roles[1] == 'KEY'){
+                    var NomJson = 'getReglas[L-ST]_des_Key';
+                    var NomDescCli = "getReglas[L-ST]Key";
+                }else if(roles[1] == 'SURO'){
+                    var NomJson = 'getReglas[L-ST]_des_Suro';
+                    var NomDescCli = "getReglas[L-ST]Suro";
+                }
+
+                self.autocompleteDropdownAjax = app.autocomplete.create({
+                    inputEl: '#autocomplete-dropdown-ajax',
+                    openIn: 'dropdown',
+                    preloader: true, //enable preloader
+                    valueProperty: 'CardCode', //object's "value" property name
+                    textProperty:  'Buscador', //object's "text" property name
+                    limit: 10, //limit to 20 results
+                    dropdownPlaceholderText: 'Seleccionar Cliente...',
+                    source: function (query, render) {
+                        var autocomplete = this;
+                        var results = [];
+                        if (query.length === 0) {
+                            render(results);
+                            return;
+                        }
+                        // Show Preloader
+                        autocomplete.preloaderShow();
+                        // Do Ajax request to Autocomplete data
+                        app.request({
+                            url: cordova.file.dataDirectory + "jsons/"+NomJson+".json", // y por cual era? XD perate culo dale shift+f6 si le distre? xd
+                            method: 'GET',
+                            dataType: 'json',
+                            //send "query" to server. Useful in case you generate response dynamically, deja inento en el mio para acordarme xd
+                            data: {
+                                query: query,
+                            },success: function (data) {
+                                data;
+                                for (var i = 0; i < data.length; i++) {
+                                    if (data[i].Buscador.toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(data[i]);
+                                }
+                                render(results); 
+                            }
+                        }); 
+                    }
+                });
+                
+                //revisar conexion a internet 
+                document.addEventListener("offline", onOffline, false);
+                function onOffline() {
+                    app.dialog.alert('Vaya! No tienes internet. Cuando te conectes se enviaran o descargaran los datos.', 'Aviso');
+                    $('#geolocation').val('');
+                }
+
+                $('#autocomplete-dropdown-ajax').change(function () {
+                    var cliente = $("#autocomplete-dropdown-ajax").val();
+                    if (roles[1] == 'EB'){
+                        app.request.get(cordova.file.dataDirectory + "jsons/"+NomDescCli+".json", function (data) {
+                            var content2 = JSON.parse(data);
+                            for(var x = 0; x < content2.length; x++) {
+                                if(content2[x].CardCode == cliente){
+                                    $("#id_cliente").val(content2[x].CardCode);
+                                    $("#nombre_cliente").val(content2[x].CardName);
+                                    $("#reglas").val(content2[x].CardCode+"._."+content2[x].CardName);
+                                    $("#autocomplete-dropdown-ajax").val(content2[x].CardCode+" "+content2[x].CardName)
+                                    if(division == 1){
+                                        $("#reglas1").val(content2[x].CardCode+"._."+content2[x].CardName+"._."+content2[x].FirstName+"._."+content2[x].MiddleName+"._."+content2[x].LastName+"._."+content2[x].Position+"._."+content2[x].E_MailL+"._."+
+                                        content2[x].Tel1+"._."+content2[x].Tel2+"._."+content2[x].Street+"._."+content2[x].StreetNo+"._."+content2[x].Building+"._."+content2[x].Block+"._."+content2[x].City+"._."+content2[x].ZipCode+"._."+content2[x].County+"._."+
+                                        content2[x].State+"._."+content2[x].U_Copias_OC+"._."+content2[x].U_Copias_FB+"._."+content2[x].U_Copias_SUA+"._."+content2[x].U_Copias_TIA+"._."+content2[x].U_Otros+"._."+content2[x].U_RecepL+"._."+
+                                        content2[x].U_RecepM+"._."+content2[x].U_RecepMi+"._."+content2[x].U_RecepJ+"._."+content2[x].U_RecepV+"._."+content2[x].U_RecepS+"._."+content2[x].U_HorariosLV+"._."+content2[x].U_HorarioS+"._."+
+                                        content2[x].U_PEntrega+"._."+content2[x].U_MedioP+"._."+content2[x].U_TEntrega+"._."+content2[x].U_CEntrega+"._."+content2[x].U_MCita+"._."+content2[x].U_EA+"._."+content2[x].U_Folio+"._."+content2[x].U_CR+"._."+
+                                        content2[x].U_Firma+"._."+content2[x].U_Recibido+"._."+content2[x].U_SelloCte+"._."+content2[x].U_OC+"._."+content2[x].U_ID+"._."+content2[x].U_Otro+"._."+content2[x].U_Ninguno+"._."+content2[x].U_Cofia+"._."+
+                                        content2[x].U_Calzado+"._."+content2[x].U_U_Otros+"._."+content2[x].U_U_DesOtros);
+                                    }else if(division == 2){
+                                        $("#reglas1").val(content2[x].CardCode+"._."+content2[x].CardName+"._."+content2[x].FirstNameServTec+"._."+content2[x].MiddleNameServTec+"._."+content2[x].LastNameServTec+"._."+
+                                        content2[x].PositionServTec+"._."+content2[x].Tel1ServTec+"._."+content2[x].Tel2ServTec+"._."+content2[x].E_MailLServTec+"._."+content2[x].StreetServTec+"._."+content2[x].StreetNoServTec+"._."+
+                                        content2[x].StreetNoInterServTec+"._."+content2[x].BlockServTec+"._."+content2[x].CityServTec+"._."+content2[x].ZipCodeServTec+"._."+content2[x].CountyServTec+"._."+content2[x].StateServTec+"._."+
+                                        content2[x].U_Copias_OCServTec+"._."+content2[x].U_Copias_FBServTec+"._."+content2[x].U_Copias_SUAServTec+"._."+content2[x].U_Copias_TIAServTec+"._."+content2[x].U_OtrosServTec+"._."+
+                                        content2[x].U_Dias_1ServTec+"._."+content2[x].U_Dias_2ServTec+"._."+content2[x].U_Dias_3ServTec+"._."+content2[x].U_Dias_4ServTec+"._."+content2[x].U_Dias_5ServTec+"._."+content2[x].U_Dias_6ServTec+"._."+
+                                        content2[x].U_PermisoServTec+"._."+content2[x].U_MedioP_1ServTec+"._."+content2[x].U_MedioP_2ServTec+"._."+content2[x].U_MedioP_3+"._."+content2[x].U_Permiso_TServTec+"._."+content2[x].U_CitaServTec+"._."+
+                                        content2[x].U_EAServTec+"._."+content2[x].U_FolioServTec+"._."+content2[x].U_CRServTec+"._."+content2[x].U_Firma_BServTec+"._."+content2[x].U_SelloServTec+"._."+content2[x].U_OCServTec+"._."+
+                                        content2[x].U_IDServTec+"._."+content2[x].U_OtroServTec+"._."+content2[x].U_NingunoServTec+"._."+content2[x].U_CofiaServTec+"._."+content2[x].U_CalzadoServTec);
+                                    }
+                                }         
+                            }
+                        });
+                    }else if(roles[1] == 'KEY'){
+                         app.request.get(cordova.file.dataDirectory + "jsons/"+NomDescCli+".json", function (data) {
+                            var content2 = JSON.parse(data);
+                            for(var x = 0; x < content2.length; x++) {
+                                if(content2[x].CardCode == cliente){
+                                    $("#autocomplete-dropdown-ajax").val(content2[x].CardName);
+                                    $("#id_cliente").val(content2[x].CardCode);
+                                    $("#nombre_cliente").val(content2[x].CardName);
+                                    $("#calle").val(content2[x].Street);
+                                    $("#colonia").val(content2[x].Block);
+                                    $("#no_exterior").val(content2[x].StreetNo);
+                                    $("#codigo_postal").val(content2[x].ZipCode);
+                                    $("#estado").val(content2[x].State);
+                                    $("#ciudad").val(content2[x].City);
+                                }         
+                            }
+                        });
+                    }else if(roles[1] == 'SURO'){
+                        $("#autocomplete-dropdown-ajax").val(content2[x].CardName);
+                        $("#id_cliente").val(content2[x].CardCode);
+                        $("#nombre_cliente").val(content2[x].CardName);
+                        $("#calle").val('');
+                        $("#colonia").val('');
+                        $("#no_exterior").val('');
+                        $("#codigo_postal").val('');
+                        $("#estado").val('');
+                        $("#ciudad").val('');
+                    }
+                    //             $("#reglas1").val(content2[x].CardCode+"._."+content2[x].CardName+"._."+content2[x].FirstName+"._."+content2[x].MiddleName+"._."+content2[x].LastName+"._."+content2[x].Position+"._."+content2[x].E_MailL+"._."+
+                    //             content2[x].Tel1+"._."+content2[x].Tel2+"._."+content2[x].Street+"._."+content2[x].StreetNo+"._."+content2[x].Building+"._."+content2[x].Block+"._."+content2[x].City+"._."+content2[x].ZipCode+"._."+content2[x].County+"._."+
+                    //             content2[x].State+"._."+content2[x].U_Copias_OC+"._."+content2[x].U_Copias_FB+"._."+content2[x].U_Copias_SUA+"._."+content2[x].U_Copias_TIA+"._."+content2[x].U_Otros+"._."+content2[x].U_RecepL+"._."+
+                    //             content2[x].U_RecepM+"._."+content2[x].U_RecepMi+"._."+content2[x].U_RecepJ+"._."+content2[x].U_RecepV+"._."+content2[x].U_RecepS+"._."+content2[x].U_HorariosLV+"._."+content2[x].U_HorarioS+"._."+
+                    //             content2[x].U_PEntrega+"._."+content2[x].U_MedioP+"._."+content2[x].U_TEntrega+"._."+content2[x].U_CEntrega+"._."+content2[x].U_MCita+"._."+content2[x].U_EA+"._."+content2[x].U_Folio+"._."+content2[x].U_CR+"._."+
+                    //             content2[x].U_Firma+"._."+content2[x].U_Recibido+"._."+content2[x].U_SelloCte+"._."+content2[x].U_OC+"._."+content2[x].U_ID+"._."+content2[x].U_Otro+"._."+content2[x].U_Ninguno+"._."+content2[x].U_Cofia+"._."+
+                    //             content2[x].U_Calzado+"._."+content2[x].U_U_Otros+"._."+content2[x].U_U_DesOtros+"._."+content2[x].FirstNameServTec+"._."+content2[x].MiddleNameServTec+"._."+content2[x].LastNameServTec+"._."+
+                    //             content2[x].PositionServTec+"._."+content2[x].Tel1ServTec+"._."+content2[x].Tel2ServTec+"._."+content2[x].E_MailLServTec+"._."+content2[x].StreetServTec+"._."+content2[x].StreetNoServTec+"._."+
+                    //             content2[x].StreetNoInterServTec+"._."+content2[x].BlockServTec+"._."+content2[x].CityServTec+"._."+content2[x].ZipCodeServTec+"._."+content2[x].CountyServTec+"._."+content2[x].StateServTec+"._."+
+                    //             content2[x].U_Copias_OCServTec+"._."+content2[x].U_Copias_FBServTec+"._."+content2[x].U_Copias_SUAServTec+"._."+content2[x].U_Copias_TIAServTec+"._."+content2[x].U_OtrosServTec+"._."+
+                    //             content2[x].U_Dias_1ServTec+"._."+content2[x].U_Dias_2ServTec+"._."+content2[x].U_Dias_3ServTec+"._."+content2[x].U_Dias_4ServTec+"._."+content2[x].U_Dias_5ServTec+"._."+content2[x].U_Dias_6ServTec+"._."+
+                    //             content2[x].U_PermisoServTec+"._."+content2[x].U_MedioP_1ServTec+"._."+content2[x].U_MedioP_2ServTec+"._."+content2[x].U_MedioP_3+"._."+content2[x].U_Permiso_TServTec+"._."+content2[x].U_CitaServTec+"._."+
+                    //             content2[x].U_EAServTec+"._."+content2[x].U_FolioServTec+"._."+content2[x].U_CRServTec+"._."+content2[x].U_Firma_BServTec+"._."+content2[x].U_SelloServTec+"._."+content2[x].U_OCServTec+"._."+
+                    //             content2[x].U_IDServTec+"._."+content2[x].U_OtroServTec+"._."+content2[x].U_NingunoServTec+"._."+content2[x].U_CofiaServTec+"._."+content2[x].U_CalzadoServTec);
+                });  
+            }
+        }
+    }
+</script>

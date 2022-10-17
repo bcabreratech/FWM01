@@ -1,0 +1,284 @@
+<template>
+    <div class="page" style="background-color: rgb(245, 245, 245);">
+        <div class="navbar" style="background-color: #063E7F;height: 52px;">
+            <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+            <div class="navbar-inner sliding" style="height: 52px;">
+                <div class="left">
+                    <a href="#" onclick="regrsarBennettsL1();">
+                        <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                <h2 style="color:#063E7F;font-size: 20px;font-family: 'ITC Avant Garde Gothic', sans-serif;margin-top: 35px;">Requerimientos de entrega</h2>
+
+                <form class="list" style="margin-top: 0;">                    
+                    <style type="text/css">
+                        input[type=text]{
+                            margin: 8px 0;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                        }
+                        input[type=text]{
+                            margin: 8px 0;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                        }
+                        .span{
+                            display: inline-block;
+                            line-height: 25px;
+                            margin-bottom: 0px;
+                            padding-top: 15px;
+                        }
+                        #text2{
+                            margin-top: -5px;
+                        }
+                        .span2{
+                            font-weight: bold;
+                            width: 90%;
+                            color: #063E7f;
+                            text-align: center;
+                        }
+                        .boton-personalizado-4 {
+                            text-decoration: none;
+                            font-family: 'ITC Avant Garde Gothic', sans-serif;
+                            font-weight: 600;
+                            font-size: 16px;
+                            color: #FFFFFF;
+                            padding-top: 15px;
+                            padding-bottom: 13px;
+                            padding-left: 30px;
+                            padding-right: 30px;
+                            background-color: #063E7F;
+                            border-radius: 15px;
+                        }
+                        input[type="checkbox"] {
+                            transform: scale(1.5);
+                            margin-right: 10px;
+                        }
+                        #pregunta   input[type=checkbox] {
+                            display: none;
+                            opacity: 0;
+                        }
+
+                        #pregunta  input[type=checkbox]+label {
+                            color: #ccc;
+                            font-style: italic;                            
+                        }
+
+                        #pregunta  input[type=checkbox]:checked+label {
+                            font-style: normal;
+                            background: #063E7F;
+                            color: #FAFAFA;
+                        }
+                        #pregunta   input[type=radio] {
+                            display: none;
+                            opacity: 0;
+                        }
+
+                        #pregunta  input[type=radio]+label {
+                            color: #ccc;
+                            font-style: italic;                            
+                        }
+
+                        #pregunta  input[name=P2]:checked+label {
+                            font-style: normal;
+                            background: #00A7B5;
+                            color: #FAFAFA;
+                        }
+                        #pregunta  label {
+                            display: block;
+                            width: 150px;
+                            height: 40px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            transition: 0.5s;
+                            background: #FFF;
+
+                        }
+
+                        #pregunta label:hover {
+                            background: #679ceb;
+                        }
+                        #pregunta {
+                            position: relative;
+                            display: flex;
+                            margin-top: 5px;
+                            border: transparent;
+                            box-sizing: border-box;
+                            background: #FAFAFA;
+                        }
+                    </style>
+                    <div style="width: 90%;border-radius: 15px;margin-left: 5%;border: 0.5px solid #ECECEC;background-color: white;padding-bottom: 15px;margin-bottom: 40px;">
+
+                        <span class="span" style="font-weight: bold;width: 90%;">¿Se requiere gestionar algún permiso para la entrega?</span>
+                        <div style="display: flex;justify-content: space-around;margin-top: 15px;">
+                            <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="permiso-1" onclick="checkBennettsL(this.id,this.value,'1')" value="1" >Si</label>
+                            <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="permiso-2" onclick="checkBennettsL(this.id,this.value,'1')" value="2" >No</label>
+                        </div>
+                        <div id="horarios" style="display: none;">
+                            <span class="span" style="font-weight: bold;width: 90%;">¿Cuál es el medio para solicitarlo?</span>
+                            
+                            <span class="span" style="font-weight: bold;width: 90%;"><input type="checkbox" name=""  id="check2-1"  onchange= "muestracopiad(this.id);">Correo electrónico</span>
+                            <span class="span" id="mediosss-1"style="display:none;font-weight: bold;width: 90%;">Indicar correo</span>
+                            <span id="text2" class="medioss-1" style="display:none;width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="medios-1" style="display: none;" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="Correo electrónico"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;"><input type="checkbox" name=""  id="check2-2"  onchange= "muestracopiad(this.id);">Medio electrónico</span>
+                            <span class="span" id="mediosss-2" style="display:none;font-weight: bold;width: 90%;">Colocar link</span>
+                            <span id="text2" class="medioss-2" style="display:none;width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="medios-2" style="display: none;" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="Medio Electrónico"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;"><input type="checkbox" name=""  id="check2-3"  onchange= "muestracopiad(this.id);">Otro</span>
+                            <span class="span" id="mediosss-3" style="display:none;font-weight: bold;width: 90%;">Favor de detallarlo</span>
+                            <span id="text2" class="medioss-3" style="display:none;width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="medios-3" style="display: none;" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="Otro"/>
+                            </span>
+
+                            <span class="span" style="font-weight: bold;width: 90%;">¿Cuántos días de anticipación se debe solicitar?</span>
+                            <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="dias_solicitud" class="FWM-textBox" onchange="inputLleno(this.id,this.value)"/>
+                            </span>
+                        </div>
+
+                        <span class="span" style="font-weight: bold;width: 90%;">¿Se requiere gestionar cita para la entrega?</span>
+                        <div style="display: flex;justify-content: space-around;margin-top: 15px;">
+                            <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="cita-1" onclick="checkBennettsL(this.id,this.value,'2')" value="1" >Si</label>
+                            <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="cita-2" onclick="checkBennettsL(this.id,this.value,'2')" value="2" >No</label>
+                        </div>
+                        <div id="gestion" style="display: none;">
+                            <span class="span" style="font-weight: bold;width: 90%;">Nos puede indicar el medio para solicitarlo</span>
+                        
+                            <span class="span" style="font-weight: bold;width: 90%;"><input type="checkbox" name=""  id="check1-1"  onchange= "muestracopiac(this.id);">Correo electrónico</span>
+                            <span class="span" id="indicasss-1"style="display:none;font-weight: bold;width: 90%;">Indicar correo</span>
+                            <span id="text2" class="indicass-1" style="display:none;width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="indicas-1" style="display: none;" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="Correo electrónico"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;"><input type="checkbox" name=""  id="check1-2"  onchange= "muestracopiac(this.id);">Medio electrónico</span>
+                            <span class="span" id="indicasss-2" style="display:none;font-weight: bold;width: 90%;">Colocar link</span>
+                            <span id="text2" class="indicass-2" style="display:none;width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="indicas-2" style="display: none;" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="Medio Electrónico"/>
+                            </span>
+                            <span class="span" style="font-weight: bold;width: 90%;"><input type="checkbox" name=""  id="check1-3"  onchange= "muestracopiac(this.id);">Otro</span>
+                            <span class="span" id="indicasss-3" style="display:none;font-weight: bold;width: 90%;">Favor de detallarlo</span>
+                            <span id="text2" class="indicass-3" style="display:none;width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="indicas-3" style="display: none;" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="Otro"/>
+                            </span>
+
+                            <span class="span" style="font-weight: bold;width: 90%;">¿Cuántos días de anticipación se debe solicitar?</span>
+                            <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                                <input type='text' id="dias_anticipacion" class="FWM-textBox" onchange="inputLleno(this.id,this.value)"/>
+                            </span>
+
+                        </div>
+
+                        <div class="block grid-resizable-demo" style="margin-top: 45px;">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="guardaBennettslhorarios();" class="boton-personalizado-4">Guardar Datos</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from logistica_bennettsL WHERE id_cedula = ?",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                // for(var i = 0; i< length; i++){
+                                //     var item = results.rows.item(i);
+                                //     console.log(item);
+                                // }
+                                var item = results.rows.item(0);
+                                
+                                if(item.permiso==1){
+                                    $("#permiso-1").prop("checked",true);
+                                    $("#horarios").css('display','inline-block');
+                                }else if(item.permiso==0){
+                                    $("#permiso-2").prop("checked",true);
+                                    $("#horarios").css('display','none');
+                                }
+                                if(item.correo1==1){
+                                    $("#check2-1").prop("checked",true);
+                                    $("#medios-1").css('display','inline-block');
+                                    $(".medioss-1").css('display','inline-block');
+                                    $("#mediosss-1").css('display','inline-block');
+                                    $("#medios-1").val(item.correo1_campo);
+                                }
+                                if(item.medio1==1){
+                                    $("#check2-2").prop("checked",true);
+                                    $("#medios-2").css('display','inline-block');
+                                    $(".medioss-2").css('display','inline-block');
+                                    $("#mediosss-2").css('display','inline-block');
+                                    $("#medios-2").val(item.medio1_campo);
+                                }
+                                if(item.otro_med1==1){
+                                    $("#check2-3").prop("checked",true);
+                                    $("#medios-3").css('display','inline-block');
+                                    $(".medioss-3").css('display','inline-block');
+                                    $("#mediosss-3").css('display','inline-block');
+                                    $("#medios-3").val(item.otro_med1_campo);
+                                }
+
+                                if(item.cita==1){
+                                    $("#cita-1").prop("checked",true);
+                                    $("#gestion").css('display','inline-block');
+                                }else if(item.cita==0){
+                                    $("#cita-2").prop("checked",true);
+                                    $("#gestion").css('display','none');
+                                }
+                                if(item.correo2==1){
+                                    $("#check1-1").prop("checked",true);
+                                    $("#indicasss-1").css('display','inline-block');
+                                    $(".indicass-1").css('display','inline-block');
+                                    $("#indicas-1").css('display','inline-block');
+                                    $("#indicas-1").val(item.correo2_campo);
+                                }
+                                if(item.medio2==1){
+                                    $("#check1-2").prop("checked",true);
+                                    $("#indicasss-2").css('display','inline-block');
+                                    $(".indicass-2").css('display','inline-block');
+                                    $("#indicas-2").css('display','inline-block');
+                                    $("#indicas-2").val(item.medio2_campo);
+                                }
+                                if(item.otro_med2==1){
+                                    $("#check1-3").prop("checked",true);
+                                    $("#indicasss-3").css('display','inline-block');
+                                    $(".indicass-3").css('display','inline-block');
+                                    $("#indicas-3").css('display','inline-block');
+                                    $("#indicas-3").val(item.otro_med2_campo);
+                                }
+                                $("#dias_solicitud").val(item.dias_solicitud);
+                                $("#dias_anticipacion").val(item.dias_anticipacion);
+                            },
+                            function(tx, error){
+                                console.log("Error al mostar datos: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }
+    }
+</script>

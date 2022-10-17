@@ -1,0 +1,210 @@
+<style>  
+    .list .item-floating-label, .list .item-label {
+         width: 100%; 
+    }
+    #minuta{
+        text-align: center;
+    }
+    
+        .navbar .title{
+            font-weight: bold;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #fff;
+        }
+        .navbar a.link{
+            color: white;
+        }
+        .list .item-link {
+        color: inherit;
+        margin-top: 5px;
+        }
+        .navbar{
+            background-color: #063E7F;
+            height: 52px;
+        }
+        .navbar-inner{
+            height: 52px;
+        }
+        .list .item-title{
+            font-weight: bold;
+            font-size: 16px;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #717D7E;
+        }
+        .list .item-inner{
+            font-weight: bold;
+            font-size: 16px;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #717D7E;
+        }
+        .list .item-content{
+            padding-left: 0px;
+        }
+        #fecha{
+            font-weight: bold;
+            font-size: 16px;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #717D7E;
+        }
+        #otroA{
+        font-size: 16px;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        }
+        .list ul{
+            top: 10px;
+            padding-left: 16px;
+        }
+        #thaccion{
+        padding-left: 12px;
+        padding-right: 12px;
+        }
+        #thfoto{
+        padding-left: 10px;
+        padding-right: 10px;
+        }
+        #thcomentarios{
+        padding-left: 10px;
+        padding-right: 10px;
+        }
+        #thtipo{
+        width: 190px;
+        }
+        #thfecha{
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 70px;
+        }
+        #tdaccion{
+        padding-left: 14px;
+        padding-right: 12px;
+        }
+        #tdfoto{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        }
+        #tdtipo{
+        padding-left: 5px;
+        padding-right: 5px;
+        }
+        #tdcomentario{
+        width: min-content;
+        }
+        #tdfecha{
+        padding-left: 10px;
+        padding-right: 10px;
+        }
+        .span{
+            margin-top: 10px;
+            height: auto;
+            line-height: 22px;
+            margin-bottom: 5px;
+        }
+    </style>
+    <template>
+            <div class="page" id="FWM-1">
+                <!-- Navbar -->
+                <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                    <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                    <div class="navbar-inner sliding" style="height: 52px;">
+                        <div class="left">
+                            <a href="#" onclick="regresarRecorridoCI4();">
+                                <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contenido Formulario -->                                
+                <div class="page-content">
+                    <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                        <h2 class="FWN-titulo-2">Evidencia de Carga</h2>
+                        <div style="text-align: left;">
+                            <form class="list FWM-fixing-form" id="datos_form"> 
+                                <span class="span FWM-span-form" name="">Temperatura de la caja</span>
+                                    <input class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" type="number" id="temperatura_caja" name="Temperatura de la caja" onchange="inputLleno(this.id,this.value)"/>
+                                <!-- <span class="span FWM-span-form" name="">Verificar temperatura del Pedido</span>
+                                    <input class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" type="text" id="tema" name=""/> -->
+                               
+                                <span class="span FWM-span-form">Foto de la temperatura caja:</span>
+                                <div class="FWM-photo-container">
+                                    <div class="border-capture">
+                                        <a onclick="capturesPhotos(1);">
+                                            <img class="FWM-photo" src="img/camera.svg" id="photoIcon1" width="45px" style="margin-left: 50px;"/>
+                                        </a>
+                                    </div>
+                                    <img class="FWM-photo-hide" id="smallImage1" src=""/>
+                                    <input type="hidden" id="imagenC1" name="Foto de la temperatura caja" class="obligatorio"/>
+                                </div>
+
+                                <span class="span FWM-span-form">Foto de caja cargada:</span>
+                                <div class="FWM-photo-container">
+                                    <div class="border-capture">
+                                        <a onclick="capturesPhotos(2);">
+                                            <img class="FWM-photo" src="img/camera.svg" id="photoIcon2" width="45px" style="margin-left: 50px;"/>
+                                        </a>
+                                    </div>
+                                    <img class="FWM-photo-hide" id="smallImage2" src=""/>
+                                    <input type="hidden" id="imagenC2" name="Foto de caja cargada" class="obligatorio"/>
+                                </div>
+
+                                <div class="block grid-resizable-demo" style="margin-bottom: 45px; margin-top: 65px;">
+                                    <div class="row align-items-stretch" style="text-align: center;">
+                                        <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                            <span class="resize-handler"></span>
+                                            <a href="#" onclick="guardarEvidenciaCargaCI();" style="background-color: #063E7F;" class="boton-equipo">Guardar Datos</a>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </form>
+                            
+                        </div>
+                    </div>
+                    <!-- Fin contenido formulario -->
+                    <fwm></fwm>
+                </div>
+            </div>
+    </template>
+    <script>
+    return {
+            on: {      
+                pageInit: function () {
+                var id_usuario = localStorage.getItem("id_usuario");
+                var id_cedula = localStorage.getItem("IdCedula");
+                    databaseHandler.db.transaction(
+                        function(tx1){
+                            tx1.executeSql(
+                                "Select temperatura_caja,foto_temp_caja,foto_caja_cargada from datos_ci where id_cedula= ?",
+                                [id_cedula],
+                                function(tx, results){
+                                    var length = results.rows.length;
+                                    if(length == 0){} else {
+                                        var item = results.rows.item(0);
+                                        $("#temperatura_caja").val(item.temperatura_caja);
+                                        if(item.foto_temp_caja){
+                                            $("#smallImage1").attr("src",item.foto_temp_caja);
+                                            $("#smallImage1").css("display","flex");
+                                            $("#photoIcon1").attr("src","img/reload.svg");
+                                            $("#imagenC1").val(item.foto_temp_caja);
+                                        }
+                                        if(item.foto_caja_cargada){
+                                            $("#smallImage2").attr("src",item.foto_caja_cargada);
+                                            $("#smallImage2").css("display","flex");
+                                            $("#imagenC2").val(item.foto_caja_cargada);
+                                            $("#photoIcon2").attr("src","img/reload.svg");
+                                        }
+                                    }
+                                },
+                                function(tx, error){
+                                    console.log("Error al consultar: " + error.message);
+                                }
+                            );
+                        },
+                        function(error){},
+                        function(){}
+                    );
+                }
+            }
+        }
+    
+    </script>

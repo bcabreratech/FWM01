@@ -1,0 +1,271 @@
+<style>  
+    .list .item-floating-label, .list .item-label {
+         width: 100%; 
+    }
+    #minuta{
+        text-align: center;
+    }
+    
+        .navbar .title{
+            font-weight: bold;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #fff;
+        }
+        .navbar a.link{
+            color: white;
+        }
+        .list .item-link {
+        color: inherit;
+        margin-top: 5px;
+        }
+        .navbar{
+            background-color: #063E7F;
+            height: 52px;
+        }
+        .navbar-inner{
+            height: 52px;
+        }
+        .list .item-title{
+            font-weight: bold;
+            font-size: 16px;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #717D7E;
+        }
+        .list .item-inner{
+            font-weight: bold;
+            font-size: 16px;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #717D7E;
+        }
+        .list .item-content{
+            padding-left: 0px;
+        }
+        #fecha{
+            font-weight: bold;
+            font-size: 16px;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #717D7E;
+        }
+        #otroA{
+        font-size: 16px;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        }
+        .list ul{
+            top: 10px;
+            padding-left: 16px;
+        }
+        #thaccion{
+        padding-left: 12px;
+        padding-right: 12px;
+        }
+        #thfoto{
+        padding-left: 10px;
+        padding-right: 10px;
+        }
+        #thcomentarios{
+        padding-left: 10px;
+        padding-right: 10px;
+        }
+        #thtipo{
+        width: 190px;
+        }
+        #thfecha{
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 70px;
+        }
+        #tdaccion{
+        padding-left: 14px;
+        padding-right: 12px;
+        }
+        #tdfoto{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        }
+        #tdtipo{
+        padding-left: 5px;
+        padding-right: 5px;
+        }
+        #tdcomentario{
+        width: min-content;
+        }
+        #tdfecha{
+        padding-left: 10px;
+        padding-right: 10px;
+        }
+        .span{
+            margin-top: 10px;
+            height: auto;
+            line-height: 22px;
+            margin-bottom: 3px;
+        }
+        input[type="checkbox"] {
+            transform: scale(1.3);
+            margin-right: 8px;
+        }
+    
+    </style>
+    <template>
+            <div class="page" id="FWM-1">
+                <!-- Navbar -->
+                <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                    <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                    <div class="navbar-inner sliding" style="height: 52px;">
+                        <div class="left">
+                            <a href="#" onclick="regresarRecorridoCI2();">
+                                <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contenido Formulario -->                                
+                <div class="page-content">
+                    <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                        <h2 class="FWN-titulo-2">Visita de seguimiento  1, 2 , 3</h2>
+                        <div style="text-align: left;">     
+                            <form class="list FWM-fixing-form" id="datos_form"> 
+
+                                <span class="span FWM-span-form" name="">Objetivo de la visita </span>
+                                    <input class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" type="text" id="objetivo" name="Objetivo visita" onchange="inputLleno(this.id,this.value)"/>
+                                <span class="span FWM-span-form" name="">Muestras </span>
+                                    <div style="display: flex;justify-content: space-around;margin-top: 10px;">
+                                        <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="tipo1-1" onclick="checkStatus2(this.id),cierreCI(6)" value="1" >Si</label>
+                                        <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="tipo0-1" onclick="checkStatus2(this.id),cierreCI(6)" value="0" >No</label>
+                                    </div>
+                                <div id="muestras" style="display: none;">
+                                    <span class="span FWM-span-form">Foto de muestras:</span>                          
+                                    <div class="FWM-photo-container">
+                                        <div class="border-capture">
+                                            <a onclick="capturesPhotos(2);">
+                                                <img class="FWM-photo" src="img/camera.svg" id="photoIcon2" width="45px" style="margin-left: 50px;"/>
+                                            </a>
+                                        </div>
+                                        <img class="FWM-photo-hide" id="smallImage2" src=""/>
+                                        <input type="hidden" id="imagenC2" name="imagenC"/>
+                                    </div>
+
+                                    <!-- <span class="span FWM-span-form">Foto de entrega de muestras:</span>
+                                    <div class="FWM-photo-container">
+                                        <div class="border-capture">
+                                            <a onclick="capturesPhotos(3);">
+                                                <img class="FWM-photo" src="img/camera.svg" id="photoIcon3" width="45px" style="margin-left: 50px;"/>
+                                            </a>
+                                        </div>
+                                        <img class="FWM-photo-hide" id="smallImage3" src=""/>
+                                        <input type="hidden" id="imagenC3" name="imagenC"/>
+                                    </div> -->
+
+                                    <span class="span FWM-span-form" name="">Observación de muestra</span>
+                                        <input class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" type="text" id="observaciones_muestras" name="" onchange="inputLleno(this.id,this.value)"/>
+                                </div>
+                                
+                                <span class="span FWM-span-form" name="">Crédito </span>
+                                <div style="display: flex;justify-content: space-around;">
+                                    <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="tipo1-2" onclick="checkStatus2(this.id)" value="1" >Si</label>
+                                    <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="tipo0-2" onclick="checkStatus2(this.id)" value="0" >No</label>
+                                </div>
+
+                                <span class="span FWM-span-form" name="">Resultado de la visita</span>
+                                    <input class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" type="text" id="resultado_visita" name="Resultado visita" onchange="inputLleno(this.id,this.value)"/>
+
+                            </form>
+
+                            <div class="block grid-resizable-demo" style="margin-bottom: 70px;">
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="GuardarvisitaCI();" style="background-color: #063E7F;" class="boton-equipo">Guardar Datos</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="block-title FWM-subtitulo">Evidencias</div>
+                            <div class="card data-table" style="margin-bottom: 60px;">
+                                <div class="infinite-scroll-content">
+                                    <table id="tabla_VentasBennetts">
+                                        <thead>
+                                            <tr>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;" id="thtema">Accion</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;" id="thtema">Foto</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;" id="thtema">Observaciones</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;" id="thtema">Fecha y hora</th>
+                                            </tr>
+                                        </thead>
+                                            <tbody id="muestras_table"></tbody>
+                                    </table>
+                                    <div id="message-nr" style="width: 100%;text-align: center;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 16px;" style="display: none;">
+                                        <p>Sin registros</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- Fin contenido formulario -->
+                    <fwm></fwm>
+                </div>
+            </div>
+    </template>
+    <script>
+    return {
+            on: {      
+                pageInit: function () {
+                    var id_usuario = localStorage.getItem("id_usuario");
+                    var id_cedula = localStorage.getItem("IdCedula");
+                    databaseHandler.db.transaction(
+                        function(tx1){
+                            tx1.executeSql(
+                                "Select * from fotos_ci where id_cedula= ? AND fase = 3 AND apartado = 1",
+                                [id_cedula],
+                                function(tx, results){
+                                    var length = results.rows.length;
+                                    if(length == 0){
+                                        $("#message-nr").css("display", "block");
+                                    } else {
+                                        $("#message-nr").css("display", "none");
+                                        for(var i = 0; i< length; i++){
+                                        var item = results.rows.item(i);
+                                            $("#muestras_table").append("<tr id='fila"+ item.id_evidencia +"'><td><a href='#' onclick='eliminarFilaProteus("+item.id_evidencia +",1);' style='border: none; outline:none;'><img src='img/borrar.png' width='30px' /></a></td><td><img src='"+item.foto+"' width='60px' style='margin-top: 4px;'/></td><td style='text-align: center;'>" + item.comentarios + "</td><td style='text-align: center;'>" + item.fecha_evidencia + "</td></tr>");
+                                        }
+                                    }
+                                }
+                            );
+                        },
+                        function(error){},
+                        function(){}
+                    );
+                    databaseHandler.db.transaction(
+                        function(tx2){
+                            tx2.executeSql(
+                                "Select * from visita_seguimiento where id_cedula= ?",
+                                [id_cedula],
+                                function(tx2, results){
+                                    var length = results.rows.length;
+                                    var item = results.rows.item(0);
+                                    $("#objetivo").val(item.objetivo);
+                                    $("#cotizacion").val(item.cotizacion);
+                                    $("#resultado_visita").val(item.resultado_visita);
+                                    if(item.muestras_check == 1){
+                                        $("#tipo1-1").prop("checked",true)
+                                        $("#muestras").css("display","block");
+                                    }else if(item.muestras_check == 0){
+                                        $("#tipo0-1").prop("checked",true)
+                                    }
+                                    if(item.credito_check == 1){
+                                        $("#tipo1-2").prop("checked",true)
+                                    }else if(item.credito_check == 0){
+                                        $("#tipo0-2").prop("checked",true)
+                                    }
+                                }
+                            );
+                        },
+                        function(error){},
+                        function(){}
+                    );
+                }
+            }
+        }
+    
+    </script>

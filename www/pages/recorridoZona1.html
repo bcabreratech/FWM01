@@ -1,0 +1,145 @@
+<template>
+    <div class="page">
+        <div class="navbar" style="background-color: #063E7F;height: 52px;">
+            <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+            <div class="navbar-inner" style="height: 52px;">
+                <div class="left">
+                    <a href="javascript:location.reload()" class="link back" style="margin-left: 5px;">
+                        <span class="nav-text-regresar-recorrido">Regresar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content" style="background-color: #f6f7f9; ">
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                <input type="hidden" id="resp1" name="resp1" />
+                <div style="text-align: left;">        
+                    <div class="item-inner">
+                        <div class="block-title" style="text-align: center; font-size: 20px;"><h2 style="color:#505759;font-size: 22px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Recorrido Clientes Directos</h2></div>
+                    </div>
+                </div>
+                    <div class="buttons-container" style="display: flex;">
+                        <a href="/datosgeneralesZona/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/persona2.svg" width="90px" height="90px" id="img1"/>
+                            <span class="fwm-text-recorrido">Cliente</span>
+                        </a>
+                        <a href="/formZona1/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/cotizacion.svg" width="90px" height="90px" id="img2"/>
+                            <span class="fwm-text-recorrido">Perfil de adquisición</span>
+                        </a>
+                    </div>
+                    <br><br>
+                    <div class="buttons-container" style="display: flex;">
+                        <a href="/formZona2/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/apoyo.svg" width="90px" height="90px" id="img3"/>
+                            <span class="fwm-text-recorrido">Cita</span>
+                        <!-- </a>
+                        <a href="/formZona3/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/cliente.svg" width="90px" height="90px" id="img4"/>
+                            <span class="fwm-text-recorrido">Asesores</span>
+                        </a> -->
+                        <a href="/cierreZona/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/estrellas.svg" width="90px" height="90px" id="img5"/>
+                            <span class="fwm-text-recorrido">Cierre</span>
+                        </a>
+                    </div>
+                <!-- Inicio FWM Recorrido -->
+                    <div id="FWM-Menu" class="container-items" style="width: 100%;"></div>
+                <!-- Fin FWM Recorrido -->
+                <fwm></fwm>
+            </div> 
+        </div>
+    </div>
+</template>
+           
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select id_cedula from datosG_zona WHERE id_cedula = ? AND (nombre IS NOT NULL AND celular IS NOT NULL AND correo IS NOT NULL AND tipo_otro IS NOT NULL AND presupuesto IS NOT NULL AND porqueotro IS NOT NULL AND tipo IS NOT NULL AND porque IS NOT NULL)",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                if(length > 0){
+                                    document.getElementById("img1").src="img/iconsMenu/persona.svg";
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al guardar cedula: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select id_cedula from datosG_zona WHERE id_cedula = ? AND (tipo_inmueble IS NOT NULL AND tipo_operacion IS NOT NULL AND alcaldia IS NOT NULL AND caracteristicas_inmueble IS NOT NULL)",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                if(length > 0){
+                                    document.getElementById("img2").src="img/iconsMenu/cotizacion2.svg";
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al guardar cedula: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select id_cedula from datosG_zona WHERE id_cedula = ? AND (propiedad IS NOT NULL AND clave IS NOT NULL AND dia IS NOT NULL AND hora IS NOT NULL)",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                if(length > 0){
+                                    document.getElementById("img3").src="img/iconsMenu/apoyo2.svg";
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al guardar cedula: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select id_cedula from datosG_zona WHERE id_cedula = ? AND (asesor_asigando IS NOT NULL AND asesor_muestra IS NOT NULL)",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                if(length > 0){
+                                    document.getElementById("img4").src="img/iconsMenu/cliente2.svg";
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al guardar cedula: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }
+    }
+</script>

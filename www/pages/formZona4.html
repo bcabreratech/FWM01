@@ -1,0 +1,147 @@
+<style>
+    .span{
+            margin-top: 10px;
+            height: auto;
+            line-height: 22px;
+            margin-bottom: 3px;
+        }
+</style>
+<template>
+ <div class="view view-main view-init safe-areas">
+     <div class="page" id="FWM-1">
+         <!-- Navbar -->
+         <div class="navbar" style="background-color: #063E7F;height: 52px;">
+             <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+             <div class="navbar-inner sliding" style="height: 52px;">
+                 <div class="left">
+                    <a href="#" onclick="regresar_zona04(2)">
+                        <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                    </a>
+                 </div>
+             </div>
+         </div>
+         <!-- Contenido Formulario -->                                
+         <div class="page-content">
+             <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                 <h2 class="FWN-titulo-2">Visita de Prospección</h2>
+
+             <div style="text-align: left;">     
+                 <div class="list FWM-fixing-form" id="datos_form">
+                    <span class="span FWM-span-form">Nombre del cliente:</span>
+                        <input type='text' id="nombre_cliente" class="FWM-input obligatorio" name="Nombre del cliente" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                    <span class="span FWM-span-form">Correo:</span>
+                        <input type='text' id="correo" class="FWM-input obligatorio" name="Correo" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                    <span class="span FWM-span-form">Teléfono:</span>
+                        <input type='text' id="telefono" class="FWM-input obligatorio" name="Teléfono" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                    <span class="span FWM-span-form">Dirección:</span>
+                        <input type='text' id="direccion" class="FWM-input obligatorio" name="Dirección" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+
+                    <span class="span FWM-span-form">Tipo de inmueble:</span>
+                    <select class="FWM-input" name="proyectos" id="tipo_inmueble" onchange="select_tipo(this.value,4)">
+                        <option value="0" selected>Selecciona una opción</option>
+                        <option value="Casa">Casa</option>
+                        <option value="Oficina">Oficina</option>
+                        <option value="Local">Local</option>
+                        <option value="Bodega">Bodega</option>
+                        <option value="Terreno">Terreno</option>
+                        <option value="Departamento">Departamento</option>
+                        <option value="Casa con uso de suelo">Casa con uso de suelo</option>
+                        <option value="Privado">Privado</option>
+                        <option value="Edificio">Edificio</option>
+                        <option value="Nave industrial">Nave industrial</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+
+                    <div id="div_otros4" style="display: none;">
+                        <span class="span FWM-span-form">Especificar otro:</span>
+                        <input type='text' id="otro_inmuble" class="FWM-input" name="Especificar otro" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                    </div>
+
+                    <span class="span FWM-span-form">Características generales:</span>
+                        <textarea class ="FWM-input" id="caracteristicas_generales" name="falla"  cols="30" rows="10" onchange="inputLleno(this.id,this.value)"></textarea>
+                    
+                <!-- <div class="block grid-resizable-demo" style="margin-bottom: 80px;margin-top: 60px;">
+                    <div class="row align-items-stretch" style="text-align: center;">
+                        <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                            <span class="resize-handler"></span>
+                            <a href="#" onclick="//guardarTemperaturaCI();" class="boton-equipo">Subir archivo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <span class="span FWM-span-form">Clave de easy broker al firmar y subir el contrato:</span>
+                    <input type='text' id="Patiende" class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                <span class="span FWM-span-form">Titulo (Nombre del inmueble):</span>
+                    <input type='text' id="Patiende" class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                <span class="span FWM-span-form">Folio de contrato:</span>
+                    <input type='text' id="Patiende" class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                <span class="span FWM-span-form">Fecha de firma de contrato:</span>
+                    <input type='date' id="Patiende" class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                <span class="span FWM-span-form">Fecha ingreso a easy broker:</span>
+                    <input type='date' id="Patiende" class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                <span class="span FWM-span-form">Fecha de vigencia:</span>
+                    <input type='date' id="Patiende" class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                <span class="span FWM-span-form">Porcentaje de comision</span>
+                    <input type='text' id="Patiende" class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                <span class="span FWM-span-form">Nombre propietario</span>
+                    <input type='text' id="Patiende" class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                <span class="span FWM-span-form">Enlace a el contrato</span>
+                    <input type='text' id="Patiende" class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                <span class="span FWM-span-form">Enlace a documentacion</span>
+                    <input type='text' id="Patiende" class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                     -->
+                <div class="block grid-resizable-demo" style="margin-bottom: 80px;margin-top: 60px;">
+                    <div class="row align-items-stretch" style="text-align: center;">
+                        <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                            <span class="resize-handler"></span>
+                            <a href="#" onclick="guardarProspeccionZona();" class="boton-equipo">Guardar datos</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+             <!-- Fin contenido formulario -->
+         </div>
+     </div>
+ </div>
+</template>
+<script>
+ return {
+     on: {
+         pageInit: function (e, page) {
+            var id_cedula = localStorage.getItem("IdCedula");
+            databaseHandler.db.transaction(
+                function(tx){
+                    tx.executeSql(
+                        "Select * from prospeccion_zona WHERE id_cedula = ?",
+                        [id_cedula],
+                        function(tx, results){
+                            let length = results.rows.length;
+                            for(var i = 0; i< length; i++){
+                                var item = results.rows.item(i);
+                                $("#nombre_cliente").val(item.nombre_cliente);
+                                $("#correo").val(item.correo);
+                                $("#telefono").val(item.telefono);
+                                $("#direccion").val(item.direccion);
+                                $("#tipo_inmueble").val(item.tipo_inmueble);
+                                $("#otro_inmuble").val(item.otro_inmuble);
+                                if(item.tipo_inmueble == 'Otro'){
+                                    $('#div_otros4').css("display", "block");
+                                }
+                                $("#caracteristicas_generales").val(item.caracteristicas_generales);
+                            } 
+                        },
+                        function(tx, error){
+                            console.log("Error al guardar cedula: " + error.message);
+                            app.preloader.hide();  
+                        }
+                    );  
+                },
+                function(error){},
+                function(){}
+            );
+         }
+     }  
+ }
+</script>

@@ -1,0 +1,1178 @@
+<style>
+     input[type=checkbox]{
+        transform: scale(1.5);
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+    .span1{
+        color:#000;
+        margin-top: 25px;
+    }
+    .span2{
+        color:#484848;
+        display: inline-block;
+        line-height: 35px;
+    }
+</style>
+<template>
+    <div class="view view-main view-init safe-areas">
+        <div class="page" id="FWM-1">
+            <!-- Navbar -->
+            <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="#" onclick="regresarRecorridoRocadi();">
+                            <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Contenido Formulario -->                                
+            <div class="page-content">
+                <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                    <h2 class="FWN-titulo-2">CheckList</h2>
+
+                    <div style="text-align: left;">     
+                        <form class="list FWM-fixing-form"> 
+                            <span class="span FWM-span-form span1">Medidor de agua</span>
+                            <span class="span FWM-span-form">Metros <sup>2 </sup> :</span>
+                            <input type="text" class="FWM-input" id="observaciones1" name="observaciones" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(1);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon1" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage1" src=""/>
+                                <input type="hidden" id="imagenC1" name="imagenC1"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(1);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Iluminacion Trota pista y Jardin</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-1" name="ok1-2" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-1" name="ok0-2" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones2" name="Iluminacion_Trota_pista_y_Jardin" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(2);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon2" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage2" src=""/>
+                                <input type="hidden" id="imagenC2" name="imagenC2"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(2);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Asadores</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-2" name="ok1-3" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-2" name="ok0-3" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones3" name="Asadores" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(3);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon3" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage3" src=""/>
+                                <input type="hidden" id="imagenC3" name="imagenC3"/>
+                            </div>
+                            
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(3);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Cuarto Caldera</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-3" name="ok1-4" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-3" name="ok0-4" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones4" name="Cuarto_Caldera" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(4);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon4" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage4" src=""/>
+                                <input type="hidden" id="imagenC4" name="imagenC4"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(4);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Bomba Operando</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-4" name="ok1-5" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-4" name="ok0-5" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones5" name="Bomba_Operando" alt="Cuarto_Caldera" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(5);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon5" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage5" src=""/>
+                                <input type="hidden" id="imagenC5" name="imagenC5"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(5);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Suavizador</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-5" name="ok1-6" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">ON</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-5" name="ok0-6" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">OFF</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones6" name="Suavizador" alt="Cuarto_caldera" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(6);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon6" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage6" src=""/>
+                                <input type="hidden" id="imagenC6" name="imagenC6"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(6);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Filtro</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-6" name="ok1-7" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-6" name="ok0-7" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones7" name="Filtro" alt="Cuarto_caldera" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(7);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon7" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage7" src=""/>
+                                <input type="hidden" id="imagenC7" name="imagenC7"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(7);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Caldera</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-7" name="ok1-8" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-7" name="ok0-8" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones8" name="Caldera" alt="Cuarto_caldera" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(8);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon8" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage8" src=""/>
+                                <input type="hidden" id="imagenC8" name="imagenC8"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(8);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Jacuzzi</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-8" name="ok1-9" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-8" name="ok0-9" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones9" name="Jacuzzi" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(9);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon9" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage9" src=""/>
+                                <input type="hidden" id="imagenC9" name="imagenC9"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(9);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Estatus</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-9" name="ok1-10" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-9" name="ok0-10" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones10" name="Estatus" alt="Jacuzzi" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(10);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon10" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage10" src=""/>
+                                <input type="hidden" id="imagenC10" name="imagenC10"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(10);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <span class="span FWM-span-form span2">• Temperatura</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-10" name="ok1-11" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-10" name="ok0-11" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Temperatura en grados centígrados:</span>
+                            <input type="text" class="FWM-input" id="observaciones11" name="Temperatura" alt="Jacuzzi" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(11);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon11" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage11" src=""/>
+                                <input type="hidden" id="imagenC11" name="imagenC11"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(11);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Calentador</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-11" name="ok1-12" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">ON</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-11" name="ok0-12" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">OFF</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones12" name="Calentador" alt="Jacuzzi" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(12);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon12" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage12" src=""/>
+                                <input type="hidden" id="imagenC12" name="imagenC12"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(12);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Alberca</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-12" name="ok1-13" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-12" name="ok0-13" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones13" name="Alberca" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(13);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon13" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage13" src=""/>
+                                <input type="hidden" id="imagenC13" name="imagenC13"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(13);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Estatus</span>
+                            <div style="margin-left: 15px;margin-right: 15px;">
+                                <span class="span FWM-span-form">PH:</span>
+                                <input type="text" class="FWM-input" id="observaciones14" name="observaciones" onchange="inputLleno(this.id,this.value),guardarEvidenciaRocadi2(14)"/>
+
+                                <span class="span FWM-span-form">Cloro:</span>
+                                <input type="text" class="FWM-input" id="observaciones15" name="observaciones" onchange="inputLleno(this.id,this.value),guardarEvidenciaRocadi2(15)"/>
+
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Temperatura</span>
+                            <div style="margin-left: 15px;margin-right: 15px;">
+                                <span class="span FWM-span-form">Temperatura en grados centígrados:</span>
+                                <input type="text" class="FWM-input" id="observaciones16" name="observaciones" onchange="inputLleno(this.id,this.value)"/>
+                                <span class="span FWM-span-form">Foto:</span>
+                                <div class="FWM-photo-container">
+                                    <div class="border-capture">
+                                        <a onclick="capturesPhotos(16);">
+                                            <img class="FWM-photo" src="img/camera.svg" id="photoIcon16" width="45px" style="margin-left: 50px;"/>
+                                        </a>
+                                    </div>
+                                    <img class="FWM-photo-hide" id="smallImage16" src=""/>
+                                    <input type="hidden" id="imagenC16" name="imagenC16"/>
+                                </div>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(16);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Gimnasio</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-13" name="ok1-17" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-13" name="ok0-17" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones17" name="Gimnasio" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(17);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon17" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage17" src=""/>
+                                <input type="hidden" id="imagenC17" name="imagenC17"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(17);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Spa Hombres/Mujeres</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-14" name="ok1-18" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-14" name="ok0-18" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones18" name="Spa_Hombres-Mujeres" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(18);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon18" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage18" src=""/>
+                                <input type="hidden" id="imagenC18" name="imagenC18"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(18);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Mezzanine</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-15" name="ok1-19" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-15" name="ok0-19" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones19" name="Mezzanine" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(19);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon19" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage19" src=""/>
+                                <input type="hidden" id="imagenC19" name="imagenC19"/>
+                            </div>
+                            
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(19);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Salón de Usos Múltiples</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-16" name="ok1-20" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-16" name="ok0-20" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones20" name="Salon_de_usos_multiples" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(20);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon20" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage20" src=""/>
+                                <input type="hidden" id="imagenC20" name="imagenC20"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(20);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Cárcamo</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-17" name="ok1-21" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-17" name="ok0-21" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Porcentaje de nivel:</span>
+                            <input type="text" class="FWM-input" id="observaciones21" name="Carcamo" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(21);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon21" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage21" src=""/>
+                                <input type="hidden" id="imagenC21" name="imagenC21"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(21);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Nivel</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-18" name="ok1-22" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-18" name="ok0-22" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones22" name="Nivel" alt="Carcamo" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(22);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon22" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage22" src=""/>
+                                <input type="hidden" id="imagenC22" name="imagenC22"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(22);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Se prende bomba</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-19" name="ok1-23" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-19" name="ok0-23" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones23" name="Se_prende_bomba" alt="Carcamo" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(23);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon23" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage23" src=""/>
+                                <input type="hidden" id="imagenC23" name="imagenC23"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(23);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Cisterna</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-20" name="ok1-24" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-20" name="ok0-24" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Porcentaje de nivel:</span>
+                            <input type="text" class="FWM-input" id="observaciones24" name="Cisterna" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(24);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon24" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage24" src=""/>
+                                <input type="hidden" id="imagenC24" name="imagenC24"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(24);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Nivel</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-21" name="ok1-25" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-21" name="ok0-25" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones25" name="Nivel" alt="Cisterna" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(25);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon25" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage25" src=""/>
+                                <input type="hidden" id="imagenC25" name="imagenC25"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(25);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Flotador</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-22" name="ok1-26" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-22" name="ok0-26" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones26" name="Flotador" alt="Cisterna" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(26);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon26" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage26" src=""/>
+                                <input type="hidden" id="imagenC26" name="imagenC26"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(26);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Válvula de Control</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-23" name="ok1-27" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-23" name="ok0-27" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones27" name="Valvula_de_control" alt="Cisterna" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(27);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon27" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage27" src=""/>
+                                <input type="hidden" id="imagenC27" name="imagenC27"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(27);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Interruptor válvula</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-24" name="ok1-28" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">ON</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-24" name="ok0-28" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">OFF</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones28" name="Interruptor_valvula" alt="Cisterna" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(28);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon28" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage28" src=""/>
+                                <input type="hidden" id="imagenC28" name="imagenC28"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(28);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Cuarto de bombas</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-25" name="ok1-29" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-25" name="ok0-29" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones29" name="Cuarto_de_bombas" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(29);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon29" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage29" src=""/>
+                                <input type="hidden" id="imagenC29" name="imagenC29"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(29);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Sistema de Baja Presión Automático</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-26" name="ok1-30" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-26" name="ok0-30" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones30" name="Sistema_de_baja_presion_automatico" alt="Cuarto_de_bombas" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(30);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon30" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage30" src=""/>
+                                <input type="hidden" id="imagenC30" name="imagenC30"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(30);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Sistema de Media Presión Automático</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-27" name="ok1-31" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-27" name="ok0-31" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones31" name="Sistema_de_media_presion_automatico" alt="Cuarto_de_bombas" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(31);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon31" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage31" src=""/>
+                                <input type="hidden" id="imagenC31" name="imagenC31"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(31);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Sistema de Alta Presión Automático</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-28" name="ok1-32" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-28" name="ok0-32" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones32" name="Sistema_de_alta_presion_automatico" alt="Cuarto_de_bombas" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(32);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon32" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage32" src=""/>
+                                <input type="hidden" id="imagenC32" name="imagenC32"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(32);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Hidroneumáticos</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-29" name="ok1-33" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-29" name="ok0-33" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones33" name="Hidroneumaticos" alt="Cuarto_de_bombas" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(33);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon33" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage33" src=""/>
+                                <input type="hidden" id="imagenC33" name="imagenC33"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(33);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• PCI: bomba jochey, eléctrica y combustión interna</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-30" name="ok1-34" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-30" name="ok0-34" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones34" name="PCI:_bomba_jochey,_electrica_y_combustion_interna" alt="Cuarto_de_bombas" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(34);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon34" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage34" src=""/>
+                                <input type="hidden" id="imagenC34" name="imagenC34"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(34);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Tanque de diesel</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-31" name="ok1-35" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-31" name="ok0-35" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones35" name="Tanque_de_diesel" alt="Cuarto_de_bombas" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(35);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon35" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage35" src=""/>
+                                <input type="hidden" id="imagenC35" name="imagenC35"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo" >
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(35);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Cárcamo</span>
+                            <div style="margin-left: 15px;margin-right: 15px;">
+                                <span class="span FWM-span-form">Porcentaje de nivel:</span>
+                                <input type="text" class="FWM-input" id="observaciones36" name="observaciones" onchange="inputLleno(this.id,this.value)"/>
+                                <span class="span FWM-span-form">Foto:</span>
+                                <div class="FWM-photo-container">
+                                    <div class="border-capture">
+                                        <a onclick="capturesPhotos(36);">
+                                            <img class="FWM-photo" src="img/camera.svg" id="photoIcon36" width="45px" style="margin-left: 50px;"/>
+                                        </a>
+                                    </div>
+                                    <img class="FWM-photo-hide" id="smallImage36" src=""/>
+                                    <input type="hidden" id="imagenC36" name="imagenC36"/>
+                                </div>
+                            </div>
+
+                            <div class="block grid-resizable-demo">
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(36);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span1">Planta de Emergencia</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-32" name="ok1-37" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-32" name="ok0-37" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones37" name="Planta_de_emergencia" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(37);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon37" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage37" src=""/>
+                                <input type="hidden" id="imagenC37" name="imagenC37"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo">
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(37);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Estatus</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-33" name="ok1-38" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-33" name="ok0-38" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones38" name="Estatus" alt="Planta_de_emergencia" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(38);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon38" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage38" src=""/>
+                                <input type="hidden" id="imagenC38" name="imagenC38"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo">
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(38);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <span class="span FWM-span-form span2">• Nivel de diesel</span>
+                            <div style="margin-left: 15px; margin-right: 15px;">
+                                <span class="span FWM-span-form">%:</span>
+                                <input type="text" class="FWM-input" id="observaciones39" name="observaciones" onchange="inputLleno(this.id,this.value)"/>
+                                <span class="span FWM-span-form">Foto:</span>
+                                <div class="FWM-photo-container">
+                                    <div class="border-capture">
+                                        <a onclick="capturesPhotos(39);">
+                                            <img class="FWM-photo" src="img/camera.svg" id="photoIcon39" width="45px" style="margin-left: 50px;"/>
+                                        </a>
+                                    </div>
+                                    <img class="FWM-photo-hide" id="smallImage39" src=""/>
+                                    <input type="hidden" id="imagenC39" name="imagenC39"/>
+                                </div>
+                            </div>
+
+                            <div class="block grid-resizable-demo">
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(39);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <span class="span FWM-span-form span1">Lobby</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok1-34" name="ok1-40" value="1" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">Si</label>
+                                <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="ok0-34" name="ok0-40" value="0" onchange="checkStatus2(this.id),guardacheckRocadi(this.id,this.value)">No</label>
+                            </div>
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type="text" class="FWM-input" id="observaciones40" name="Lobby" alt="" onchange="inputLleno(this.id,this.value)"/>
+                            <span class="span FWM-span-form">Foto:</span>
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                    <a onclick="capturesPhotos(40);">
+                                        <img class="FWM-photo" src="img/camera.svg" id="photoIcon40" width="45px" style="margin-left: 50px;"/>
+                                    </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage40" src=""/>
+                                <input type="hidden" id="imagenC40" name="imagenC40"/>
+                            </div>
+
+                            <div class="block grid-resizable-demo">
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarEvidenciaRocadi(40);" class="boton-equipo">Guardar</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <div class="block-title FWM-subtitulo">Evidencias</div>
+                        <div class="card data-table" style="margin-bottom: 50px;">
+                            <div class="infinite-scroll-content">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Accion</th>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Foto</th>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Comentario</th>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Fecha</th>
+                                        </tr>
+                                    </thead>
+                                        <tbody id="tabla_evidencias"></tbody>
+                                </table>
+                                <div class="sentencia preloader color-grey infinite-scroll-preloader"></div>
+                                <div id="message-nr" style="width: 100%;text-align: center;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 16px;" style="display: none;">
+                                    <p>Sin registros</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <!-- Fin contenido formulario -->
+                <fwm></fwm>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                $('.preloader').remove();
+                $('.infinite-scroll-preloader').remove();
+                var id_cedula = localStorage.getItem("IdCedula");
+
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql("Select * from checks_rocadi where id_cedula = ? ",
+                        [id_cedula],
+                            function(tx, results){
+                                var length = results.rows.length;
+                                if(length == 0){
+
+                                } else {
+                                    for(var i = 0; i< length; i++){
+                                        var item = results.rows.item(i);
+                                        apartado = item.apartado;
+                                        value = item.value;
+                                        if(value == 1){
+                                            $("#ok1"+"-"+apartado).prop("checked", true);
+                                            $("#ok0"+"-"+apartado).prop("checked", false);
+                                        }else{
+                                            $("#ok0"+"-"+apartado).prop("checked", true);
+                                            $("#ok1"+"-"+apartado).prop("checked", false);
+                                        }
+                                        
+                                    }
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al guardar cedula: " + error.message);
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql("Select * from fotos_rocadi where id_cedula = ? ORDER BY id_foto ASC",
+                        [id_cedula],
+                            function(tx, results){
+                                var length = results.rows.length;
+                                if(length == 0){
+                                    $("#message-nr").css("display", "block");
+                                } else {
+                                    $("#message-nr").css("display", "none");
+                                    for(var i = 0; i< length; i++){
+                                        var item = results.rows.item(i);
+                                        if(item.foto){
+                                            var foto = "<img src='"+item.foto+"' width='60px' style='margin-top: 4px;'/>";
+                                        }else{
+                                            var foto = 'N/A';
+                                        }
+                                        if(item.apartado == 14){
+                                            $("#observaciones14").val(item.observaciones);
+                                        }else if(item.apartado == 15){
+                                            $("#observaciones15").val(item.observaciones);
+                                        }else{
+                                            $("#tabla_evidencias").append("<tr id='fila"+ item.id_foto +"'><td><a href='#' onclick='eliminarFilaRocadi("+
+                                            item.id_foto +",1);' style='border: none; outline:none;'><img src='img/borrar.png' width='30px' /></a></td><td>"+
+                                                foto+"</td><td style='text-align: center;'>" +
+                                            item.observaciones + "</td><td style='text-align: center;'>" + item.fecha_registro + "</td></tr>");
+                                        }
+                                    }
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al guardar cedula: " + error.message);
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }  
+    }
+</script>

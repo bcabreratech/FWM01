@@ -1,0 +1,467 @@
+<template>
+    <div class="view view-main view-init safe-areas">
+        <div class="page">
+            <div class="navbar" style="background-color: #063E7F;height: 52px;height: 52px;">
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <style>            
+                            .nav-text-regresar{
+                                color: #ffffff;
+                                border: 2px solid white;
+                                padding: 0 10px;
+                                border-radius: 7px;
+                                font-size: 14px;
+                            }
+                            .rating:not([disabled]) .star:hover::after, .rating .star.active::after {
+                                height: 1.3em;
+                            }
+                            input[type="checkbox"]{
+                                transform: scale(1.5);
+                                margin-right: 10px;
+                            }
+                          </style>
+                        <a href="#" class="link back" style="margin-left: 5px;">
+                            <span class="nav-text-regresar">Regresar</span>
+                        </a>
+                    </div>
+                    <div class="title" style="color: white;text-align:center;padding-left: 40px;">Cierre con Cliente</div>
+                </div>
+            </div>
+            <div class="toolbar toolbar-bottom tabbar">
+                <style>
+                    .tab-link-active{
+                        color: white;
+                        background-color: #00A7B5;
+                    }
+                </style>
+                <font size="1">
+                    <div class="toolbar-inner">
+                        <a href="#tab-1" class="tab-link tab-link-active" style="font-size: 16px;font-family: 'ITC Avant Garde Gothic', sans-serif;color: 505759;">Cliente</a>
+                        <a href="#tab-2" class="tab-link" style="font-size: 16px;font-family: 'ITC Avant Garde Gothic', sans-serif;color: #505759;">Recorrido</a>
+                        <a href="#tab-3" class="tab-link" style="font-size: 16px;font-family: 'ITC Avant Garde Gothic', sans-serif;color: #505759;">Cierre</a>
+                    </div>
+                </font>
+            </div>
+            <div class="tabs-animated-wrap">
+                <div class="tabs">
+                    <div id="tab-1" class="page-content tab tab-active bg-color-white" style="margin-top: 20px;background-color: rgb(245, 245, 245);">
+                        <div class="block" style="padding-left: 0;padding-top: 0;">
+                            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                                <h2 style="color:#00A7B5;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;">Datos Generales</h2>
+                            </div>
+
+                            <div style="text-align: left; justify-content:left; margin-right:auto; margin-left:auto; width: 95%;background-color: white;padding: 10px;border-radius: 15px;margin-left: 2%;">
+                                <table id="table-general" cellpadding="10" style="width: 100%;margin: 0;padding: 0;">
+                                    <tbody id="table-general-conten">
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Número de Cliente:</th>
+                                            <td><span id="numero_cliente" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Cliente:</th>
+                                            <td><span id="cliente" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Calle:</th>
+                                            <td><span id="calle" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Bloque:</th>
+                                            <td><span id="bloque" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Ciudad:</th>
+                                            <td><span id="ciudad" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">No exterior:</th>
+                                            <td><span id="no_calle" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Código Postal:</th>
+                                            <td><span id="cp" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">País:</th>
+                                            <td><span id="pais" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Código:</th>
+                                            <td><span id="codigo" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Estado:</th>
+                                            <td><span id="estado" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Revisión Lunes:</th>
+                                            <td><span id="revision_lunes" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Revisión Martes:</th>
+                                            <td><span id="revision_martes" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Revisión Miercoles:</th>
+                                            <td><span id="revision_miercoles" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Revisión Jueves:</th>
+                                            <td><span id="revision_jueves" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Revisión Viernes:</th>
+                                            <td><span id="revision_viernes" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Contrarecibo (CR):</th>
+                                            <td><span id="contrarecibo" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Entrada almacén:</th>
+                                            <td><span id="entrada_almacen" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Folio de recpción de mercancía:</th>
+                                            <td><span id="folio_mercancia" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">ID:</th>
+                                            <td><span id="id_reglas" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Acuse soporte de Servicio:</th>
+                                            <td><span id="acuse_soporte" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Firma y sello en factura Bennetts:</th>
+                                            <td><span id="firma_bennetts" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Firma y sello en factura Key:</th>
+                                            <td><span id="firma_key" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Nombre y firma de Recibido en factura Bennetts:</th>
+                                            <td><span id="recibido_bennetts" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Nombre y firma de Recibido en factura Key:</th>
+                                            <td><span id="recibido_key" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Orden de compra:</th>
+                                            <td><span id="orden_compra" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Otro:</th>
+                                            <td><span id="otro" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Día de Pago Lunes:</th>
+                                            <td><span id="pago_lunes" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Día de Pago Martes:</th>
+                                            <td><span id="pago_martes" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Día de Pago Miércoles:</th>
+                                            <td><span id="pago_miercoles" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Día de Pago Jueves:</th>
+                                            <td><span id="pago_jueves" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Día de Pago Viernes:</th>
+                                            <td><span id="pago_viernes" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="color: #505759;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Proceso para el pago de la factura con el cliente:</th>
+                                            <td><span id="proceso_pago" style="color: #063E7F;font-size: 11px;font-size: 14px;font-family: 'ITC Avant Garde Gothic', sans-serif;"></span></td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+
+                                <p style="text-align: center;">
+                                    <a onclick="vueltaenfalsobennetts2();">Vuelta en Falso</a>
+                                    <input type="hidden" id="nombre_cliente">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="tab-2" class="page-content tab bg-color-white" style="background-color: rgb(245, 245, 245);">
+                        <div class="infinite-scroll-content" >
+                            <div id="antes">
+                                <div class="block-title" style="padding-top:5px;text-align: left; color:#505759; font-weight: bold;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 16px;">Evidencias</div>
+                            </div>
+                            <div class='sentencia2 preloader color-red infinite-scroll-preloader'></div>
+                            <div id="message-nr1" style="width: 100%;display: flex;justify-content: center;color: gray;font-size: 22px;">Sin evidencias</div>
+                        </div>
+                        <br /><br/>
+                    </div>
+
+
+                    <!--------------------------------FIN TAB 3-->
+                    <div id="tab-3" class="page-content tab bg-color-white" style="margin-top: 20px;background-color: rgb(245, 245, 245);">
+                        <div class="block">
+                            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+   
+                                <p>
+                                    <label for=""><input type="checkbox" name="" id="na_firma">N/A</label>
+                                </p>
+
+                                <p>
+                                    <label style="font-size: 20px;color:#063E7F;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;"><strong>Nombre y firma</strong></label>
+                                </p>
+
+                                <center><input style="display: block;margin: 0 auto;width: 100%;border: 0;border-bottom: 1px solid rgba(0,0,0,.2);height: 35px;line-height: 45px;  margin-bottom: 10px;font-size: 1em;" class="spanBlanco" type="text" name="NombreFirma" id="NombreFirma" placeholder="Nombre de quién recibió el servicio:"></center><br/>
+                                <!-- Contenedor de botones -->
+                                <div class="BotonesCierreContainer text-center" style="display: flex; flex-direction: row;justify-content: center;">
+
+                                    <a class="link popup-open" href="#" onclick="vertical();" data-popup=".popup-photo"><img src="img/iconsMenu/firmardigital.svg" width="80px" /></a>
+                                    
+                                    <input type="hidden" name="signate" id="signate" placeholder="sfirmc"/>
+                                    <center><img id="ImagenFirmaView" src="" width="70%"><br>
+                                        <span id="VolverFirmar"></span>
+                                        <input type="button" value="Volver a Firmar" style="position:absolute;display:none;margin:0 !important;color:white;background-color: #019cdc;top:40px;margin-left:160px !important" /></center>
+                                        
+                                    <a class="link popup-open" href="#" onclick="createFirma()" data-popup=".popup-services"><img src="img/iconsMenu/firmar.svg" width="80px" /></a><br /><br />
+                                </div>
+                                <div class="popup popup-photo" style="text-align: center;">
+                                    <br/>
+                                    <div class="headerPopupPhoto" style="width: 90%;display: flex;justify-content: space-between;padding-left: 20px;margin-bottom: 50px;">
+                                        <a class="link popup-close" onclick="gFotoFirma();" href="#">Guardar Fotografia</a>
+                                        <a class="link popup-close" href="#">Cerrar</a>
+                                    </div>
+                                    <style>
+                                        .border-capture{
+                                            background-color: white;
+                                            border-radius: 20px;
+                                            width: 147.76px;
+                                            height: 147.76px;
+                                            border: solid 3px #00A7B5;
+                                        }
+                                    </style>
+                                    <div class="photoContainer" style="display: block;">
+                                        <center>
+                                            <div class="border-capture">
+                                                <a href="#" onclick="capturaFirma();"><img src="img/camera.svg" id="photoIcon" width="45px" style="position: absolute;position: fixed;z-index: 100;margin-top: 50px; position: relative;"/></a>
+                                                <div hidden="true" id="ImaCe" hidden="true"></div>
+                                            </div>
+                                        </center>
+                                        <input type="image" name="smallImage" style="margin: 0px auto; width: 147.76px; height: 147.76px; border-radius: 17px; display: none; margin-top: -150.65px;" id="smallImage" src="" /><br>
+                                        <input type="hidden" name="imgSigPhoto" id="imgSigPhoto">
+                                    </div>    
+                                </div>
+                                <div class="popup popup-services">
+                                    <br>
+                                    <div class="popup-container" style="height: 300px;">
+                                         <div class="headerPopupPhoto" style="width: 90%;display: flex;justify-content: space-between;padding-left: 20px;margin-bottom: 30px;">
+                                            <a class="link popup-close" onclick="gfirma()" href="#">Guardar Firma</a>
+                                            <a class="link" onclick="cleanFirma()" href="#">Limpiar</a>
+                                            <a class="link popup-close" onclick="gClose()" href="#">Cerrar</a>
+                                        </div>
+                                        <div style="display: flex;flex-direction: column;justify-content: center;align-content: center;align-items: center;">
+                                            <p style="margin: 0;">Área para Firmar</p>
+                                        </div>
+                                        <div style="display: flex;flex-direction: column;justify-content: center;align-content: center;align-items: center;">
+                                            <canvas id="signature-pad" class="signature-pad" width=400 height=200 style="background-color: #e4fff1"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="text-align: center;margin-top: 20px;">
+                                    <label style="font-size: 20px;"><strong>Evalúe nuestro servicio</strong></label><br />
+                                    <span class="rating big-blue"></span>
+                                    <input type="hidden" name="eval" id="eval" />
+
+                                    <br />
+                                    <input id="comentario_cliente" name="comentario_cliente" style="display: block;margin: 0 auto;width: 100%;border: 0;border-bottom: 1px solid rgba(0,0,0,.2);height: 35px;line-height: 45px;  margin-bottom: 10px;font-size: 1em;" placeholder="¿Porqué coloco esa calificacion?" />
+                                </div>
+                                <input type='hidden' name="geolocation" id="geolocation" placeholder='Geolocalización...' disabled="disabled"/>
+                    
+
+                                <style type="text/css">
+                                    .boton-personalizado-4 {
+                                        text-decoration: none;
+                                        font-size: 16px;
+                                        color: #FFFFFF;
+                                        padding-top: 13px;
+                                        padding-bottom: 10px;
+                                        padding-left: 40px;
+                                        padding-right: 40px;
+                                        background-color: #063E7F;
+                                        border-radius: 15px;
+                                    }
+                                </style>
+                                <div class="block grid-resizable-demo">
+                                    <div class="row align-items-stretch" style="text-align: center;">
+                                        <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                            <span class="resize-handler"></span>
+                                            <a href="#" onclick="guardarCierreBennetts2();" class="boton-personalizado-4 link"> Terminar servicio</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from cobranza WHERE id_cedula = ?",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                for(var i = 0; i< length; i++){
+                                    var item = results.rows.item(i);
+                                    $("#numero_cliente").html(item.id_cliente);
+                                    $("#cliente").html(item.cliente);
+                                    $("#nombre_cliente").html(item.cliente);
+                                    $("#calle").html(item.calle);
+                                    $("#bloque").html(item.bloque);
+                                    $("#ciudad").html(item.ciudad);
+                                    $("#no_calle").html(item.no_calle);
+                                    $("#cp").html(item.cp);
+                                    $("#pais").html(item.pais);
+                                    $("#codigo").html(item.codigo);
+                                    $("#revision_lunes").html(item.revision_lunes);
+                                    $("#revision_martes").html(item.revision_martes);
+                                    $("#revision_miercoles").html(item.revision_miercoles);
+                                    $("#revision_jueves").html(item.revision_jueves);
+                                    $("#revision_viernes").html(item.revision_viernes);
+                                    $("#contrarecibo").html(item.contrarecibo);
+                                    $("#entrada_almacen").html(item.entrada_almacen);
+                                    $("#folio_mercancia").html(item.folio_mercancia);
+                                    $("#id_reglas").html(item.id_reglas);
+                                    $("#acuse_soporte").html(item.acuse_soporte);
+                                    $("#firma_bennetts").html(item.firma_bennetts);
+                                    $("#firma_key").html(item.firma_key);
+                                    $("#recibido_bennetts").html(item.recibido_bennetts);
+                                    $("#recibido_key").html(item.recibido_key);
+                                    $("#orden_compra").html(item.orden_compra);
+                                    $("#otro").html(item.otro);
+                                    $("#pago_lunes").html(item.pago_lunes);
+                                    $("#pago_martes").html(item.pago_martes);
+                                    $("#pago_miercoles").html(item.pago_miercoles);
+                                    $("#pago_jueves").html(item.pago_jueves);
+                                    $("#pago_viernes").html(item.pago_viernes);
+                                    $("#proceso_pago").html(item.proceso_pago);
+                                    $("#estado").html(item.estado);
+                                } 
+                            },
+                            function(tx, error){
+                                console.log("Error al mostar datos: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+
+                databaseHandler.db.transaction(
+                    function(tx5){
+                        tx5.executeSql(
+                            "SELECT calificacion,nombre_evalua,comentario_cliente FROM cedulas_general WHERE id_cedula = ?",
+                            [id_cedula],
+                            function(tx5, results){
+                                var length = results.rows.length;
+                                for(var i = 0; i< length; i++){
+                                    var item2 = results.rows.item(i);
+                                    $("#eval").val(item2.calificacion);
+                                    if(item2.nombre_evalua == null){
+                                    } else {
+                                        $("#NombreFirma").val(item2.nombre_evalua);
+                                    }
+                                    if(item2.comentario_cliente == null){
+                                    } else {
+                                        $("#comentario_cliente").val(item2.comentario_cliente);
+                                    }
+                                }
+                                $('.preloader').remove();
+                                $('.infinite-scroll-preloader').remove();
+                            },
+                            function(tx5, error){
+                                console.log("Error al guardar registro: " + error.message);
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+
+                databaseHandler.db.transaction(
+                    function(tx1){
+                        tx1.executeSql(
+                            "Select * from evidenciaCobranza where id_cedula= ?",
+                            [id_cedula],
+                            function(tx, results){
+                                var length = results.rows.length;
+                                if(length == 0){
+                                    $('.preloader').remove();
+                                    $('.infinite-scroll-preloader').remove();
+                                } else {
+                                    $("#message-nr1").css("display", "none");
+                                    for(var i = 0; i< length; i++){
+                                        var item = results.rows.item(i);
+                                        var foto='Sin Foto';
+                                            if (item.foto == undefined || item.foto == '' || item.foto == null){
+                                            }else{
+                                                foto="<img src='"+item.foto +"' width= '85%'/>";
+                                            }
+                                        $("#antes").append("<div class='card demo-facebook-card'><div class='card-header'><div class='demo-facebook-name' style='text-align: center; font-weight: bold;font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;'>"
+                                             + unescape(item.observacion) +"</div><div class='demo-facebook-date'></div>  </div> <div class='card-content card-content-padding' style='text-align: center;'><div class='card-content card-content-padding' align='center'>"+foto+" </div></div><div class='card-footer'><a href='#' style='font-size: 13px;font-family: 'ITC Avant Garde Gothic', sans-serif;'>Fecha: "+
+                                                    item.fecha_registro+"</a></div></div>");
+                                        $('.preloader').remove();
+                                        $('.infinite-scroll-preloader').remove();
+                                    }
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al consultar: " + error.message);
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+                
+                var ratings = document.getElementsByClassName('rating');
+                for (var i = 0; i < ratings.length; i++) {
+                    var r = new SimpleStarRating(ratings[i]);
+                    ratings[i].addEventListener('rate', function(e) {
+                        $("#eval").val(e.detail);
+                    });
+                }
+    
+                document.addEventListener("deviceready", onDeviceReady, false);
+                function onDeviceReady() {
+                    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                }
+                function onSuccess(position) {
+                    var element = document.getElementById('geolocation');
+                    $('#geolocation').val(position.coords.latitude+','+position.coords.longitude);
+                }
+                function onError(error) {
+                    alert('Error en la Localización');
+                }
+            }
+        }
+    }
+</script>

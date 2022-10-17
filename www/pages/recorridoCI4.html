@@ -1,0 +1,133 @@
+<template>
+    <div class="page">
+        <div class="navbar" style="background-color: #063E7F;height: 52px;">
+            <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+            <div class="navbar-inner" style="height: 52px;">
+                <div class="left">
+                    <a href="javascript:location.reload()" class="link back" style="margin-left: 5px;">
+                        <span class="nav-text-regresar-recorrido">Regresar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content" style="background-color: #f6f7f9; ">
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                <input type="hidden" id="resp1" name="resp1" />
+                <div style="text-align: left;">        
+                    <div class="item-inner">
+                        <div class="block-title" style="text-align: center; font-size: 20px;">
+                            <h2 style="color:#505759;font-size: 22px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Recorrido de Ruta Entrega</h2></div>
+                    </div>
+                </div>
+                    <div class="buttons-container" style="display: flex;">
+                        <a href="/formCI3/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/despues.svg" width="90px" height="90px" id="img1"/>
+                            <span class="fwm-text-recorrido">Preparación del producto</span>
+                        </a>
+                        <a href="/formCI6/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/cajas.svg" width="90px" height="90px" id="img2"/>
+                            <span class="fwm-text-recorrido">Carga de la Unidad</span>
+                        </a>
+                    </div>
+                    <div class="buttons-container" style="display: flex;margin-top: 5%;">
+                        <a href="/formCI7/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/box.svg" width="90px" height="90px" id="img3"/>
+                            <span class="fwm-text-recorrido">Evidencia de Carga</span>
+                        </a>
+                        <a href="/formCI8/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/entrega.svg" width="90px" height="90px" id="img4"/>
+                            <span class="fwm-text-recorrido">Arranque de ruta</span>
+                        </a>
+                    </div>
+                <!-- Inicio FWM Recorrido -->
+                    <div id="FWM-Menu" class="container-items" style="width: 100%;"></div>
+                <!-- Fin FWM Recorrido -->
+                <fwm></fwm>
+            </div> 
+        </div>
+    </div>
+</template>
+           
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                //Para cambiar los iconos de color
+                var id_cedula = localStorage.getItem("IdCedula");
+                var pasa2 = true;
+                databaseHandler.db.transaction(
+                    function(tx1){
+                        tx1.executeSql(
+                            "Select id_cedula,temperatura_caja,foto_temp_caja,foto_caja_cargada from datos_ci where id_cedula= ? AND (temperatura_caja IS NOT NULL AND foto_temp_caja IS NOT NULL AND foto_caja_cargada IS NOT NULL)",
+                            [id_cedula],
+                            function(tx, results){
+                                var item = results.rows.item(0);
+                                if(item.id_cedula > 0){
+                                    document.getElementById("img3").src="img/iconsMenu/box2.svg";
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al consultar: " + error.message);
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+
+                databaseHandler.db.transaction(
+                    function(tx1){
+                        tx1.executeSql(
+                            "Select * from evidencias_carga where id_cedula= ?",
+                            [id_cedula],
+                            function(tx, results){
+                                var length = results.rows.length;
+                                if(length == 0){
+                                } else {
+                                    for(var i = 0; i< length; i++){
+                                        var item = results.rows.item(i);
+                                        if(item.foto){}else{
+                                            pasa2 = false;
+                                        }
+                                        if(item.peso_actual){}else{
+                                            pasa2 = false;
+                                        }                
+                                    }
+                                    if(pasa2){
+                                        document.getElementById("img2").src="img/iconsMenu/cajas2.svg";
+                                    }
+                                        $("#message-nr").css("display", "none");
+                                }
+                                    $('.preloader').remove();
+                                    $('.infinite-scroll-preloader').remove();
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+                
+                databaseHandler.db.transaction(
+                    function(tx1){
+                        tx1.executeSql(
+                            "Select id_cedula,pesocon_taras,pesosin_taras,total_coincide from datos_ci where id_cedula= ? AND (pesocon_taras IS NOT NULL AND pesosin_taras IS NOT NULL AND total_coincide IS NOT NULL)",
+                            [id_cedula],
+                            function(tx, results){
+                                var item = results.rows.item(0);
+                                if(item.id_cedula > 0){
+                                    document.getElementById("img1").src="img/iconsMenu/despues2.svg";
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al consultar: " + error.message);
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }
+    }
+</script>

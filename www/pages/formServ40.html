@@ -1,0 +1,248 @@
+<style>
+    input[type=text]{
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+    }
+    
+</style>
+<template>
+    <div class="view view-main view-init safe-areas">
+        <div class="page" id="FWM-1">
+            <!-- Navbar -->
+            <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="#" onclick="regresarRecorridoServInd2();">
+                            <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Contenido Formulario -->                                
+            <div class="page-content">
+                <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                    <h2 class="FWN-titulo-2">Horas</h2>
+
+                <div style="text-align: left;">     
+                    <div class="list FWM-fixing-form">    
+                        <span class="span FWM-span-form" >Comentarios Generales</span>
+                            <textarea class ="FWM-input" name="" id="comentarios" cols="30" rows="10" onchange="inputLleno(this.id,this.value)"></textarea>
+                        <!-- /////////aquiempiezan las horas -->
+                        <span class="span FWM-span-form">Horas de viaje:</span>
+                        <div style="display: flex;justify-content: space-around;">
+                            <div style="width: 45%;text-align: center;padding: 10px;">
+                                <div>
+                                    <label style="font-size: 16px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;">HH</label>
+                                </div>
+                                <div>
+                                    <select name="" id="selec_h_viaje" class="FWM-input" style="text-align: center;font-family: 'ITC Avant Garde Gothic', sans-serif;padding-left: 0 !important;" onchange="llenaInputHoras(1,this.value)">
+                                        <option value="00">00</option>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                        <option value="07">07</option>
+                                        <option value="08">08</option>
+                                        <option value="09">09</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="width: 10%;text-align: center;padding: 10px;">
+                                <div>
+                                    <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><span>&#183;</span></label>
+                                </div>
+                                <div>
+                                    <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><span>&#183;</span></label>
+                                </div>
+                            </div>
+                            <div style="width: 45%;text-align: center;padding: 10px;">
+                                <div>
+                                    <label style="font-size: 16px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;">MM</label>
+                                </div>
+                                <div>
+                                    <select name="" id="selec_m_viaje" class="FWM-input" style="text-align: center;font-family: 'ITC Avant Garde Gothic', sans-serif;padding-left: 0 !important;" onchange="llenaInputHoras(1,this.value)">
+                                        <option value="00">00</option>
+                                        <option value="05">05</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                        <option value="30">30</option>
+                                        <option value="35">35</option>
+                                        <option value="40">40</option>
+                                        <option value="45">45</option>
+                                        <option value="50">50</option>
+                                        <option value="55">55</option>
+                                        <option value="59">59</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div> 
+                            <input type="time" class="FWM-input" id="cantidadViaje" value="00:00" onchange="inputLleno(this.id,this.value), Sumahoras();" style="display:none;"/>
+                        <span class="span FWM-span-form">Horas de espera:</span>
+                            <div style="display: flex;justify-content: space-around;">
+                                <div style="width: 45%;text-align: center;padding: 10px;">
+                                    <div>
+                                        <label style="font-size: 16px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;">HH</label>
+                                    </div>
+                                    <div>
+                                        <select name="" id="selec_h_espera" class="FWM-input" style="text-align: center;font-family: 'ITC Avant Garde Gothic', sans-serif;padding-left: 0 !important;" onchange="llenaInputHoras(2,this.value)">
+                                            <option value="00">00</option>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option value="03">03</option>
+                                            <option value="04">04</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                            <option value="07">07</option>
+                                            <option value="08">08</option>
+                                            <option value="09">09</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="width: 10%;text-align: center;padding: 10px;">
+                                    <div>
+                                        <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><span>&#183;</span></label>
+                                    </div>
+                                    <div>
+                                        <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><span>&#183;</span></label>
+                                    </div>
+                                </div>
+                                <div style="width: 45%;text-align: center;padding: 10px;">
+                                    <div>
+                                        <label style="font-size: 16px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;">MM</label>
+                                    </div>
+                                    <div>
+                                        <select name="" id="selec_m_espera" class="FWM-input" style="text-align: center;font-family: 'ITC Avant Garde Gothic', sans-serif;padding-left: 0 !important;" onchange="llenaInputHoras(2,this.value)">
+                                            <option value="00">00</option>
+                                            <option value="05">05</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                            <option value="25">25</option>
+                                            <option value="30">30</option>
+                                            <option value="35">35</option>
+                                            <option value="40">40</option>
+                                            <option value="45">45</option>
+                                            <option value="50">50</option>
+                                            <option value="55">55</option>
+                                            <option value="59">59</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="time" class="FWM-input" id="cantidadEspera" value="00:00" onchange="inputLleno(this.id,this.value), Sumahoras();" style="display:none;"/>
+                            <input type="time" class="FWM-input" id="cantidadTrabajo" value="00:00" onchange="inputLleno(this.id,this.value), Sumahoras();" style="display:none;"/>
+                           
+                        <span class="span FWM-span-form">Horas Totales:</span>
+                            <input type="text" class="FWM-input" id="cantidadTotal" value="00:00" onchange="inputLleno(this.id,this.value)" disabled/>
+                            <input type="text" class="FWM-input" id="cantidadTotalTemp" value="00:00" onchange="inputLleno(this.id,this.value)" style="display:none;" disabled/>
+                    </div>
+
+                    <div style="display: flex;flex-direction: row;justify-content: space-between; margin-bottom: 20px; margin-top: 80px;">
+                        <button class="btn-next" onclick="app.views.main.router.back('/datosgeneralesServ2/', {force: true, ignoreCache: true, reload: true});">Anterior</button>
+                        <a href="#" class="buble-float link popover-open" data-popover=".popover-links" style="background:cadetblue; width: 20%;">
+                            <i class="material-icons md-light" style="color: #ffffff;font-size: 35px;">book</i>
+                        </a>
+                        <button class="btn-next" onclick="guardarHorasServ();">Siguiente</button>
+                        <!--<button class="btn-next" onclick="app.views.main.router.back('/cierreServInd2/', {force: true, ignoreCache: true, reload: true});">Siguiente</button>-->
+                    </div>
+                    <!-- Fin contenido formulario -->
+                    <div class="popover popover-links">
+                        <div class="popover-inner">
+                            <div class="list">
+                            <ul>
+                                <li><a class="list-button item-link popover-close" onclick="showTPM()">TPM</a></li>
+                                <li><a class="list-button item-link popover-close" onclick="showManual()">Manual</a></li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                $('.preloader').remove();
+                $('.infinite-scroll-preloader').remove();
+
+                var id_cedula = localStorage.getItem("IdCedula");
+
+                databaseHandler.db.transaction(
+                        function(tx){
+                            tx.executeSql(
+                                "Select * from visita_servInd WHERE id_cedula = ?",
+                                [id_cedula],
+                                function(tx, results){
+                                    let length = results.rows.length;
+                                    var item = results.rows.item(0);
+                                        $('#comentarios').val(item.comentarios_entrega);
+                                        if(item.H_viaje){
+                                            var Hviaje = item.H_viaje;
+                                            var Hviajes = Hviaje.split(":");
+                                            $('#cantidadViaje').val(item.H_viaje);
+                                            $("#selec_h_viaje").val(Hviajes[0])
+                                            $("#selec_m_viaje").val(Hviajes[1])
+                                        }else{
+                                            $('#cantidadViaje').val('00:00');
+                                            $("#selec_h_viaje").val('00')
+                                            $("#selec_m_viaje").val('00')
+                                        }
+                                        if(item.H_espera){
+                                            var Hespera = item.H_espera;
+                                            var Hesperas = Hespera.split(":");
+                                            $("#selec_h_espera").val(Hesperas[0])
+                                            $("#selec_m_espera").val(Hesperas[1])
+                                            $('#cantidadEspera').val(item.H_espera);
+                                        }else{
+                                            $('#cantidadEspera').val('00:00');
+                                            $("#selec_h_espera").val('00')
+                                            $("#selec_m_espera").val('00')
+                                        }
+                                        if(item.H_trabajo){
+                                            var Htrabajo= item.H_trabajo;
+                                            var Htrabajos = Htrabajo.split(":");
+                                            $("#selec_h_trabajo").val(Htrabajos[0])
+                                            $("#selec_m_trabajo").val(Htrabajos[1])
+                                            $('#cantidadTrabajo').val(item.H_trabajo);
+                                        }else{
+                                            $('#cantidadTrabajo').val('00:00');
+                                            $("#selec_h_trabajo").val('00')
+                                            $("#selec_m_trabajo").val('00')
+                                        }
+                                        if(item.H_totales){
+                                            $('#cantidadTotal').val(item.H_totales);
+                                        }else{
+                                            $('#cantidadTotal').val('00:00');
+                                        }
+                                    },
+                                function(tx, error){
+                                    console.log("Error: " + error.message);
+                                    app.preloader.hide();  
+                                }
+                            );  
+                        },
+                        function(error){
+                            console.log("Error: " + error.message);
+                        },
+                        function(){}
+                    );
+
+            }
+        }  
+    }
+</script>

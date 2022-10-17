@@ -1,0 +1,427 @@
+<template>
+    
+    <div class="page">
+        <div class="navbar" style="background-color: #063E7F;height: 52px;">
+            <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+            <div class="navbar-inner" style="height: 52px;">
+                <div class="left">
+                    <a href="javascript:location.reload()" class="link back" style="margin-left: 5px;">
+                        <span class="nav-text-regresar-recorrido">Regresar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+  
+        <div class="page-content" style="background-color: #f6f7f9; ">
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                <input type="hidden" id="resp1" name="resp1" />
+                <div style="text-align: left;">        
+                    <div class="item-inner">
+                        <div class="block-title" style="text-align: center; font-size: 20px;"><h2 style="color:#505759;font-size: 22px;font-family: 'ITC Avant Garde Gothic', sans-serif;">Caliente</h2></div>
+                    </div>
+                </div>
+                <div id="Menu_normal" style="display: none;">
+                    <div class="buttons-container" style="display: flex;">
+                        <a href="/datosgeneralesServ2/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/persona2.svg" width="90px" height="90px" id="img1"/>
+                            <span class="fwm-text-recorrido">Datos Generales</span>
+                        </a>
+                        <a href="/formServ1/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/diagnostico.svg" width="90px" height="90px" id="img2"/>
+                            <span class="fwm-text-recorrido">Diagnostico</span>
+                        </a>
+                    </div>
+                    <div class="buttons-container" style="display: flex;margin-top: 5%;">
+                        <a href="/formServ2/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/equifina.svg" width="90px" height="90px" id="img3"/>
+                            <span class="fwm-text-recorrido">Revisión de suministros mecánicos</span>
+                        </a>
+                        <a href="/formServ3/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/cotizacion.svg" width="90px" height="90px" id="img4"/>
+                            <span class="fwm-text-recorrido">Revisión de sistema de calentamiento</span>
+                        </a>
+                    </div>
+                    <div class="buttons-container" style="display: flex;margin-top: 5%;">
+                        <a href="/formServ4/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/acta-baja.svg" width="90px" height="90px" id="img5"/>
+                            <span class="fwm-text-recorrido">Sistemas de control eléctrico y/o Electrónicos</span>
+                        </a>
+                        <a href="/formServ5/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/antes.svg" width="90px" height="90px" id="img6"/>
+                            <span class="fwm-text-recorrido">Revisión de sensores de proceso</span>
+                        </a>
+                    </div>
+                    <div class="buttons-container" style="display: flex;margin-top: 5%;">
+                        <a href="/formServ6/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/calentador.svg" width="90px" height="90px" id="img7"/>
+                            <span class="fwm-text-recorrido">Revisión de sistemas de microondas</span>
+                        </a>
+                        <a href="/formServ7/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/checklist.svg" width="90px" height="90px" id="img8"/>
+                            <span class="fwm-text-recorrido">Revisión de gabinete en general</span>
+                        </a>
+                    </div>
+                    <div class="buttons-container" style="display: flex;margin-top: 5%;">
+                        <a href="/formServ8/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/despues.svg" width="90px" height="90px" id="img9"/>
+                            <span class="fwm-text-recorrido">Entrega de servicio</span>
+                        </a>
+                        <a href="/formServ9/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/documento.svg" width="90px" height="90px" id="img10"/>
+                            <span class="fwm-text-recorrido">Papeleta</span>
+                        </a>
+                    </div>
+                    <div class="buttons-container" style="display: flex;margin-top: 5%;margin-bottom: 40px;">
+                        <a href="/formServ45/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/fomites.svg" width="90px" height="90px" id="img14"/>
+                            <span class="fwm-text-recorrido">Evidencias Posteriores al Servicio</span>
+                        </a>
+                        <a href="/cierreServInd2/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/estrellas.svg" width="90px" height="90px" id="img11"/>
+                            <span class="fwm-text-recorrido">Evaluación y cierre</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="Menu_programado" style="display: none;">
+                    <div class="buttons-container" style="display: flex;">
+                        <a href="/datosgeneralesServ2/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/persona2.svg" width="90px" height="90px" id="img13"/>
+                            <span class="fwm-text-recorrido">Datos Generales</span>
+                        </a>
+                        <a href="/formServ40/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/despues.svg" width="90px" height="90px" id="img12"/>
+                            <span class="fwm-text-recorrido">Entrega de servicio</span>
+                        </a>
+                    </div>
+                    <div class="buttons-container" style="display: flex;margin-top: 5%;margin-bottom: 40px;">
+                        <a href="/yamevoyserv2/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/estrellas.svg" width="90px" height="90px" id="img11"/>
+                            <span class="fwm-text-recorrido">Terminar Servicio</span>
+                        </a>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+  </template>
+           
+  <script>
+    return {
+        on: {      
+              pageInit: function () {
+                  var id_cedula = localStorage.getItem("IdCedula");
+                  app.preloader.show('blue');
+                  databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from visita_servInd WHERE id_cedula = ?",//
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                var item = results.rows.item(0);
+                                var estatus_ced=item.estatus_ced;
+                                if (estatus_ced == 4){
+                                    $("#Menu_normal").css("display", "none");
+                                    $("#Menu_programado").css("display", "block");
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select id_cedula from visita_servInd WHERE id_cedula = ? AND (no_orden IS NOT NULL AND fecha IS NOT NULL AND cliente IS NOT NULL AND sucursal_cliente IS NOT NULL AND direccion IS NOT NULL AND ciudad IS NOT NULL AND telefono IS NOT NULL AND correo IS NOT NULL AND equipo IS NOT NULL AND marca IS NOT NULL AND modelo IS NOT NULL AND serie IS NOT NULL AND tipo_servicio IS NOT NULL)",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    var item = results.rows.item(0);
+                                                    if(item.id_cedula > 0){
+                                                        document.getElementById("img13").src="img/iconsMenu/persona.svg";
+                                                    }
+                                                },
+                                                function(tx, error){console.log("Error: " + error.message);}
+                                            );  
+                                        },
+                                        function(error){console.log("Error: " + error.message);},
+                                        function(){}
+                                    );
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select * from visita_servInd WHERE id_cedula = ? AND (comentarios_entrega IS NOT NULL)",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    var item = results.rows.item(0);
+                                                    if(item.id_cedula > 0){
+                                                        document.getElementById("img12").src="img/iconsMenu/despues2.svg";
+                                                    }
+                                                    },
+                                                function(tx, error){
+                                                    console.log("Error: " + error.message);
+                                                    app.preloader.hide();  
+                                                }
+                                            );  
+                                        },
+                                        function(error){
+                                            console.log("Error: " + error.message);
+                                        },
+                                        function(){}
+                                    );
+                                }else{
+                                    $("#Menu_normal").css("display", "block");
+                                    $("#Menu_programado").css("display", "none");
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql("Select * from fotos_posteriores where id_cedula = ? ",
+                                            [id_cedula],
+                                                function(tx, results){
+                                                    let length = results.rows.length;
+                                                    $('.preloader').remove();
+                                                    $('.infinite-scroll-preloader').remove();
+                                                    if (length ==0){
+                                                    }else{
+                                                        document.getElementById("img14").src="img/iconsMenu/fomites2.svg";
+                                                    }
+                                                },
+                                                function(tx, error){
+                                                    console.log("Error al mostrar datos: " + error.message);
+                                                }
+                                            );
+                                        },
+                                        function(error){
+                                            console.log("Error: " + error.message);
+                                        },
+                                        function(){}
+                                    );
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select id_cedula from visita_servInd WHERE id_cedula = ? AND (refacciones IS NOT NULL)",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    var item = results.rows.item(0);
+                                                    if(item.id_cedula > 0){
+                                                        document.getElementById("img10").src="img/iconsMenu/documento2.svg";
+                                                    }
+                                                },
+                                                function(tx, error){console.log("Error: " + error.message);}
+                                            );  
+                                        },
+                                        function(error){},
+                                        function(){}
+                                    );
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select id_cedula from visita_servInd WHERE id_cedula = ? AND (comentarios_entrega IS NOT NULL AND trabajo_realizado IS NOT NULL AND como_entrego IS NOT NULL)",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    var item = results.rows.item(0);
+                                                    if(item.id_cedula > 0){
+                                                        document.getElementById("img9").src="img/iconsMenu/despues2.svg";
+                                                    }
+                                                },
+                                                function(tx, error){console.log("Error: " + error.message);}
+                                            );  
+                                        },
+                                        function(error){},
+                                        function(){}
+                                    );
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select id_cedula from visita_servInd WHERE id_cedula = ? AND (no_orden IS NOT NULL AND fecha IS NOT NULL AND cliente IS NOT NULL AND sucursal_cliente IS NOT NULL AND direccion IS NOT NULL AND ciudad IS NOT NULL AND telefono IS NOT NULL AND correo IS NOT NULL AND equipo IS NOT NULL AND marca IS NOT NULL AND modelo IS NOT NULL AND serie IS NOT NULL AND tipo_servicio IS NOT NULL)",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    var item = results.rows.item(0);
+                                                    if(item.id_cedula > 0){
+                                                        document.getElementById("img1").src="img/iconsMenu/persona.svg";
+                                                    }
+                                                },
+                                                function(tx, error){console.log("Error: " + error.message);}
+                                            );  
+                                        },
+                                        function(error){console.log("Error: " + error.message);},
+                                        function(){}
+                                    );
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select pregunta,valor,tipo from checklist_servind WHERE id_cedula = ? AND fase = '1'",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    let length = results.rows.length;
+                                                    if (length ==0){
+                                                    }else{
+                                                        document.getElementById("img3").src="img/iconsMenu/equifina2.svg";
+                                                    }
+                                                },
+                                                function(tx, error){
+                                                    console.log("Error al guardar cedula: " + error.message);
+                                                    app.preloader.hide();  
+                                                }
+                                            );  
+                                        },
+                                        function(error){},
+                                        function(){}
+                                    );
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select pregunta,valor,tipo from checklist_servind WHERE id_cedula = ? AND fase = '2'",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    let length = results.rows.length;
+                                                    if (length ==0){
+                                                    }else{
+                                                        document.getElementById("img4").src="img/iconsMenu/cotizacion2.svg";
+                                                    }
+                                                },
+                                                function(tx, error){
+                                                    console.log("Error al guardar cedula: " + error.message);
+                                                    app.preloader.hide();  
+                                                }
+                                            );  
+                                        },
+                                        function(error){},
+                                        function(){}
+                                    );
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select pregunta,valor,tipo from checklist_servind WHERE id_cedula = ? AND fase = '3'",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    let length = results.rows.length;
+                                                    if (length ==0){
+                                                    }else{
+                                                        document.getElementById("img5").src="img/iconsMenu/acta-baja2.svg";
+                                                    }
+                                                },
+                                                function(tx, error){
+                                                    console.log("Error al guardar cedula: " + error.message);
+                                                    app.preloader.hide();  
+                                                }
+                                            );  
+                                        },
+                                        function(error){},
+                                        function(){}
+                                    );
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select pregunta,valor,tipo from checklist_servind WHERE id_cedula = ? AND fase = '4'",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    let length = results.rows.length;
+                                                    if (length ==0){
+                                                    }else{
+                                                        document.getElementById("img6").src="img/iconsMenu/antes2.svg";
+                                                    }
+                                                },
+                                                function(tx, error){
+                                                    console.log("Error al guardar cedula: " + error.message);
+                                                    app.preloader.hide();  
+                                                }
+                                            );  
+                                        },
+                                        function(error){},
+                                        function(){}
+                                    );
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select pregunta,valor,tipo from checklist_servind WHERE id_cedula = ? AND fase = '5'",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    let length = results.rows.length;
+                                                    if (length ==0){
+                                                    }else{
+                                                        document.getElementById("img7").src="img/iconsMenu/calentador2.svg";
+                                                    }
+                                                },
+                                                function(tx, error){
+                                                    console.log("Error al guardar cedula: " + error.message);
+                                                    app.preloader.hide();  
+                                                }
+                                            );  
+                                        },
+                                        function(error){},
+                                        function(){}
+                                    );
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select pregunta,valor,tipo from checklist_servind WHERE id_cedula = ? AND fase = '6'",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    let length = results.rows.length;
+                                                    if (length ==0){
+                                                    }else{
+                                                        document.getElementById("img8").src="img/iconsMenu/checklist2.svg";
+                                                    }
+                                                },
+                                                function(tx, error){
+                                                    console.log("Error al guardar cedula: " + error.message);
+                                                    app.preloader.hide();  
+                                                }
+                                            );  
+                                        },
+                                        function(error){},
+                                        function(){}
+                                    );
+                                    databaseHandler.db.transaction(
+                                        function(tx){
+                                            tx.executeSql(
+                                                "Select id_cedula from visita_servInd WHERE id_cedula = ? AND (como_encontro IS NOT NULL AND voltaje IS NOT NULL AND amp IS NOT NULL AND wc IS NOT NULL AND tierra_fisica IS NOT NULL AND falla_reportada IS NOT NULL)",
+                                                [id_cedula],
+                                                function(tx, results){
+                                                    var item = results.rows.item(0);
+                                                    if(item.id_cedula > 0){
+                                                        var tipo = 'Correctivo';
+                                                        databaseHandler.db.transaction(
+                                                            function(tx){
+                                                                tx.executeSql("Select * from fotos_diagnostico where id_cedula = ? AND tipo = ? ORDER BY id_foto DESC",
+                                                                [id_cedula,tipo],
+                                                                    function(tx, results){
+                                                                        let length = results.rows.length;
+                                                                        if (length ==0){
+                                                                        }else{
+                                                                            document.getElementById("img2").src="img/iconsMenu/diagnostico2.svg";
+                                                                        }
+                                                                    },
+                                                                    function(tx, error){
+                                                                        console.log("Error al mostrar datos: " + error.message);
+                                                                        app.preloader.hide();
+                                                                    }
+                                                                );
+                                                            },
+                                                            function(error){
+                                                                console.log("Error: " + error.message);
+                                                            },
+                                                            function(){}
+                                                        );
+                                                        
+                                                    }
+                                                },
+                                                function(tx, error){console.log("Error: " + error.message);}
+                                            );  
+                                        },
+                                        function(error){},
+                                        function(){}
+                                    );
+                                }
+                                app.preloader.hide();
+                            },
+                            function(tx, error){
+                                console.log("Error: " + error.message);
+                                app.preloader.hide();
+                            }
+                        );  
+                    },
+                    function(error){
+                        console.log("Error: " + error.message);
+                        app.preloader.hide();
+                    },
+                    function(){}
+                );
+            }
+        }
+    }
+  </script>

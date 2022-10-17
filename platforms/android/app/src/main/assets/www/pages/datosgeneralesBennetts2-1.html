@@ -1,0 +1,228 @@
+<template>
+    <div class="page" style="background-color: rgb(245, 245, 245);">
+        <div class="navbar" style="background-color: #063E7F;height: 52px;">
+            <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+            <div class="navbar-inner sliding" style="height: 52px;">
+                <div class="left">
+                    <a href="#" onclick="regresarRecorridoBennetts21();">
+                        <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                <h2 style="color:#063E7F;font-size: 20px;font-family: 'ITC Avant Garde Gothic', sans-serif;margin-top: 35px;">Reglas de Negocio</h2>
+
+                <form class="list" style="margin-top: 0;">                    
+                    <style type="text/css">
+                        input[type=text]{
+                            margin: 8px 0;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                        }
+                        .span{
+                            margin-top: 10px;
+                            height: auto;
+                            line-height: 22px;
+                            margin-bottom: 3px;
+                        }
+                    </style>
+                    <div style="width: 90%;border-radius: 15px;margin-left: 5%;border: 0.5px solid #ECECEC;background-color: white;padding-bottom: 35px;">
+                        <span class="span" style="font-weight: bold;width: 90%;">Número de cliente:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="numero_cliente" id="numero_cliente" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Cliente:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="cliente" id="cliente" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Calle:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="calle" id="calle" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Bloque:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="bloque" id="bloque" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Ciudad:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="ciudad" id="ciudad" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">No exterior:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="no_calle" id="no_calle" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Código Postal:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="cp" id="cp" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">País:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="pais" id="pais" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Código:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="codigo" id="codigo" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Estado:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="estado" id="estado" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Revisión Lunes:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="revision_lunes" id="revision_lunes" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Revisión Martes:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="revision_martes" id="revision_martes" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Revisión Miercoles:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="revision_miercoles" id="revision_miercoles" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Revisión Jueves:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="revision_jueves" id="revision_jueves" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Revisión Viernes:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="revision_viernes" id="revision_viernes" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Contrarecibo (CR):</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="contrarecibo" id="contrarecibo" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Entrada almacén:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="entrada_almacen" id="entrada_almacen" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Folio de recpción de mercancía:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="folio_mercancia" id="folio_mercancia" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">ID:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="id_reglas" id="id_reglas" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Acuse soporte de Servicio:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="acuse_soporte" id="acuse_soporte" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Firma y sello en factura Bennetts:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="firma_bennetts" id="firma_bennetts" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Firma y sello en factura Key:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="firma_key" id="firma_key" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Nombre y firma de Recibido en factura Bennetts:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="recibido_bennetts" id="recibido_bennetts" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Nombre y firma de Recibido en factura Key:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="recibido_key" id="recibido_key" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Orden de compra:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="orden_compra" id="orden_compra" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Otro:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="otro" id="otro" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Día de Pago Lunes:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="pago_lunes" id="pago_lunes" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Día de Pago Martes:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="pago_martes" id="pago_martes" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Día de Pago Miércoles:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="pago_miercoles" id="pago_miercoles" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Día de Pago Jueves:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="pago_jueves" id="pago_jueves" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Día de Pago Viernes:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="pago_viernes" id="pago_viernes" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Proceso para el pago de la factura con el cliente:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="proceso_pago" id="proceso_pago" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" readonly/>
+                        </span>
+                    </div>
+                    <!---CAMBIOS--->    
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from cobranza WHERE id_cedula = ?",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                for(var i = 0; i< length; i++){
+                                    var item = results.rows.item(i);
+                                    $("#numero_cliente").val(item.id_cliente);
+                                    $("#cliente").val(item.cliente);
+                                    $("#calle").val(item.calle);
+                                    $("#bloque").val(item.bloque);
+                                    $("#ciudad").val(item.ciudad);
+                                    $("#no_calle").val(item.no_calle);
+                                    $("#cp").val(item.cp);
+                                    $("#pais").val(item.pais);
+                                    $("#codigo").val(item.codigo);
+                                    $("#revision_lunes").val(item.revision_lunes);
+                                    $("#revision_martes").val(item.revision_martes);
+                                    $("#revision_miercoles").val(item.revision_miercoles);
+                                    $("#revision_jueves").val(item.revision_jueves);
+                                    $("#revision_viernes").val(item.revision_viernes);
+                                    $("#contrarecibo").val(item.contrarecibo);
+                                    $("#entrada_almacen").val(item.entrada_almacen);
+                                    $("#folio_mercancia").val(item.folio_mercancia);
+                                    $("#id_reglas").val(item.id_reglas);
+                                    $("#acuse_soporte").val(item.acuse_soporte);
+                                    $("#firma_bennetts").val(item.firma_bennetts);
+                                    $("#firma_key").val(item.firma_key);
+                                    $("#recibido_bennetts").val(item.recibido_bennetts);
+                                    $("#recibido_key").val(item.recibido_key);
+                                    $("#orden_compra").val(item.orden_compra);
+                                    $("#otro").val(item.otro);
+                                    $("#pago_lunes").val(item.pago_lunes);
+                                    $("#pago_martes").val(item.pago_martes);
+                                    $("#pago_miercoles").val(item.pago_miercoles);
+                                    $("#pago_jueves").val(item.pago_jueves);
+                                    $("#pago_viernes").val(item.pago_viernes);
+                                    $("#proceso_pago").val(item.proceso_pago);
+                                    $("#estado").val(item.estado);
+                                } 
+                            },
+                            function(tx, error){
+                                console.log("Error al mostar datos: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }
+    }
+</script>

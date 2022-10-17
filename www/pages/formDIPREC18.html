@@ -1,0 +1,252 @@
+<style>
+    .span{
+        margin-top: 10px;
+        height: auto;
+        line-height: 22px;
+        margin-bottom: 3px;
+    }
+    .boton-personalizado-4 {
+        text-decoration: none;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        color: #FFFFFF;
+        padding-top: 15px;
+        padding-bottom: 13px;
+        padding-left: 30px;
+        padding-right: 30px;
+        background-color: #063E7F;
+        border-radius: 15px;
+    }
+    input[type="checkbox"]{
+        transform: scale(1.3);
+        margin-right: 10px;
+    }
+    input[type="radio"]{
+        transform: scale(1.3);
+    }
+    .radios{
+        color: #717D7E;
+        font-weight: bold;
+        font-size: 16px;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+    }
+</style>
+<template>
+    <div class="view view-main view-init safe-areas">
+        <div class="page" id="FWM-1">
+            <!-- Navbar -->
+            <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="#" onclick="regresarRecorridoDIPREC2();">
+                            <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Contenido Formulario -->                                
+            <div class="page-content">
+                <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                    <h2 class="FWN-titulo-2">8. Extracción</h2>
+                        <h2 style="color:#063E7F;font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;margin-top: 15px;margin-bottom: 0px;">Gas</h2>
+                    <br>
+                    <div style="text-align: left;">     
+                        <div class="list FWM-fixing-form" style="margin-top: 0px"> 
+                            <span class="span FWM-span-form">8.1.- ¿Se tiene terminado el proyecto de guías mecánicas de extracción?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio6-1" name="8-1" onclick="validaradios(this.id);muestra_diprec(6,0);guardaCheckDiprec(this.id,12)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio6-0" name="8-1" onclick="validaradios(this.id);muestra_diprec(6,1);guardaCheckDiprec(this.id,12)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-6">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-8-1" name="comentarios-8_1" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,12)"/>
+                                </div>
+                            <span class="span FWM-span-form">8.2.- ¿Se corroboró cada una de las salidas, alturas, presión y ubicación?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio7-1" name="8-2" onclick="validaradios(this.id);muestra_diprec(7,0);guardaCheckDiprec(this.id,12)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio7-0" name="8-2" onclick="validaradios(this.id);muestra_diprec(7,1);guardaCheckDiprec(this.id,12)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-7">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-8-2" name="comentarios-8_2" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,12)"/>
+                                </div>
+                            <span class="span FWM-span-form">8.3.- ¿Se corroboró las preparaciones y/o especificaciones de las salidas?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio8-1" name="8-3" onclick="validaradios(this.id);muestra_diprec(8,0);guardaCheckDiprec(this.id,12)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio8-0" name="8-3" onclick="validaradios(this.id);muestra_diprec(8,1);guardaCheckDiprec(this.id,12)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-8">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-8-3" name="comentarios-8_3" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,12)"/>
+                                </div>
+                            <span class="span FWM-span-form">8.4.- ¿Están listos los elementos para colgar campanas?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio9-1" name="8-4" onclick="validaradios(this.id);muestra_diprec(9,0);guardaCheckDiprec(this.id,12)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio9-0" name="8-4" onclick="validaradios(this.id);muestra_diprec(9,1);guardaCheckDiprec(this.id,12)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-9">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-8-4" name="comentarios-8_4" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,12)"/>
+                                </div>
+                            <span class="span FWM-span-form">8.5.- ¿Hay alguna instalación previa que detenga la instalación de las campanas?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio10-1" name="8-5" onclick="validaradios(this.id);muestra_diprec(10,1);guardaCheckDiprec(this.id,12)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio10-0" name="8-5" onclick="validaradios(this.id);muestra_diprec(10,0);guardaCheckDiprec(this.id,12)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-10">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-8-5" name="comentarios-8_5" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,12)"/>
+                                </div>
+                            <span class="span FWM-span-form">8.6.- ¿Inyección de aire?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio11-1" name="8-6" onclick="validaradios(this.id);muestra_diprec(11,0);guardaCheckDiprec(this.id,12)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio11-0" name="8-6" onclick="validaradios(this.id);muestra_diprec(11,1);guardaCheckDiprec(this.id,12)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-11">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-8-6" name="comentarios-8_6" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,12)"/>
+                                </div>
+                            <br>
+                                <h2 style="color:#063E7F;font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;margin-top: 15px;margin-bottom: 0px;">ANSUL</h2>
+                            <br>
+
+                            <span class="span FWM-span-form">8.7.- ¿Sistema ANSUL?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio12-1" name="8-7" onclick="validaradios(this.id);muestra_diprec(12,0);guardaCheckDiprec(this.id,12)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio12-0" name="8-7" onclick="validaradios(this.id);muestra_diprec(12,1);guardaCheckDiprec(this.id,12)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-12">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-8-7" name="comentarios-8_7" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,12)"/>
+                                </div>
+                            <span class="span FWM-span-form">8.8.- ¿La ubicación de los gabitentes sistema ANSUL afecta alguna colocación de mueble y/o equipo?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio13-1" name="8-8" onclick="validaradios(this.id);muestra_diprec(13,1);guardaCheckDiprec(this.id,12)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio13-0" name="8-8" onclick="validaradios(this.id);muestra_diprec(13,0);guardaCheckDiprec(this.id,12)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-13">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-8-8" name="comentarios-8_8" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,12)"/>
+                                </div>
+
+                            <div class="block grid-resizable-demo" style="top: 25px;margin-bottom: 80px;">
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarDIPREC();" class="boton-personalizado-4">Guardar datos</a>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- Fin contenido formulario -->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+     return {
+        on: {
+            pageInit: function (e, page) {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from checklist_diprec where id_cedula = ? AND fase = 12",
+                                [id_cedula],
+                                function(tx, results){
+                                    var length = results.rows.length;
+                                    if(length==0){}else{
+                                        for(i=0; i<length; i++){
+                                            var item = results.rows.item(i);
+                                            if(item.tipo == "radio"){
+                                                if(item.pregunta == "8-1"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(6,0);
+                                                    }else{
+                                                        muestra_diprec(6,1);
+                                                    }
+                                                }
+                                                if(item.pregunta == "8-2"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(7,0);
+                                                    }else{
+                                                        muestra_diprec(7,1);
+                                                    }
+                                                }
+                                                if(item.pregunta == "8-3"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(8,0);
+                                                    }else{
+                                                        muestra_diprec(8,1);
+                                                    }
+                                                }
+                                                if(item.pregunta == "8-4"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(9,0);
+                                                    }else{
+                                                        muestra_diprec(9,1);
+                                                    }
+                                                }
+                                                if(item.pregunta == "8-5"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(10,0);
+                                                    }else{
+                                                        muestra_diprec(10,1);
+                                                    }
+                                                }
+                                                if(item.pregunta == "8-6"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(11,0);
+                                                    }else{
+                                                        muestra_diprec(11,1);
+                                                    }
+                                                }
+                                                if(item.pregunta == "8-7"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(12,0);
+                                                    }else{
+                                                        muestra_diprec(12,1);
+                                                    }
+                                                }
+                                                if(item.pregunta == "8-8"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(13,0);
+                                                    }else{
+                                                        muestra_diprec(13,1);
+                                                    }
+                                                }
+                                                $("#"+item.id).prop("checked",true);
+                                            }else if (item.tipo == "checkbox"){
+                                                if(item.valor == "1"){
+                                                    $("#"+item.id).prop("checked",true);
+                                                }
+                                            }else {
+                                                $("#"+item.id).val(item.valor);
+                                            }
+                                        }
+                                    }
+                                },
+                            function(tx, error){console.log("Error: " + error.message);}
+                        );
+                    },
+                    function(error){console.log("Error: " + error.message);},
+                    function(){}
+                );
+            }
+        }  
+    }
+
+    
+</script>

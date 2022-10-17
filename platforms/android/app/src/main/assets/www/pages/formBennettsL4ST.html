@@ -1,0 +1,301 @@
+<template>
+    <div class="page" style="background-color: rgb(245, 245, 245);">
+        <div class="navbar" style="background-color: #063E7F;height: 52px;">
+            <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+            <div class="navbar-inner sliding" style="height: 52px;">
+                <div class="left">
+                    <a href="#" onclick="regrsarBennettsL1();">
+                        <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                <h2 style="color:#063E7F;font-size: 20px;font-family: 'ITC Avant Garde Gothic', sans-serif;margin-top: 35px;">Documentos que se requieren para la entrega</h2>
+
+                <form class="list" style="margin-top: 0;">                    
+                    <style type="text/css">
+                        input[type=text]{
+                            margin: 8px 0;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                        }
+                        input[type=text]{
+                            margin: 8px 0;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                        }
+                        .span{
+                            display: inline-block;
+                            line-height: 25px;
+                            margin-bottom: 0px;
+                            padding-top: 15px;
+                        }
+                        #text2{
+                            margin-top: -5px;
+                        }
+                        .span2{
+                            font-weight: bold;
+                            width: 90%;
+                            color: #063E7f;
+                            text-align: center;
+                        }
+                        .boton-personalizado-4 {
+                            text-decoration: none;
+                            font-family: 'ITC Avant Garde Gothic', sans-serif;
+                            font-weight: 600;
+                            font-size: 16px;
+                            color: #FFFFFF;
+                            padding-top: 15px;
+                            padding-bottom: 13px;
+                            padding-left: 30px;
+                            padding-right: 30px;
+                            background-color: #063E7F;
+                            border-radius: 15px;
+                        }
+                        input[type="checkbox"] {
+                            transform: scale(1.5);
+                            margin-right: 10px;
+                        }
+                        #pregunta   input[type=checkbox] {
+                            display: none;
+                            opacity: 0;
+                        }
+
+                        #pregunta  input[type=checkbox]+label {
+                            color: #ccc;
+                            font-style: italic;                            
+                        }
+
+                        #pregunta  input[type=checkbox]:checked+label {
+                            font-style: normal;
+                            background: #063E7F;
+                            color: #FAFAFA;
+                        }
+                        #pregunta   input[type=radio] {
+                            display: none;
+                            opacity: 0;
+                        }
+
+                        #pregunta  input[type=radio]+label {
+                            color: #ccc;
+                            font-style: italic;                            
+                        }
+
+                        #pregunta  input[name=P2]:checked+label {
+                            font-style: normal;
+                            background: #00A7B5;
+                            color: #FAFAFA;
+                        }
+                        #pregunta  label {
+                            display: block;
+                            width: 150px;
+                            height: 40px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            transition: 0.5s;
+                            background: #FFF;
+
+                        }
+
+                        #pregunta label:hover {
+                            background: #679ceb;
+                        }
+                        #pregunta {
+                            position: relative;
+                            display: flex;
+                            margin-top: 5px;
+                            border: transparent;
+                            box-sizing: border-box;
+                            background: #FAFAFA;
+                        }
+                    </style>
+                    <div style="width: 90%;border-radius: 15px;margin-left: 5%;border: 0.5px solid #ECECEC;background-color: white;padding-bottom: 15px;margin-bottom: 40px;">
+
+                        <span class="span" style="font-weight: bold;width: 90%;"><input type="checkbox" name=""  id="check-1"  onchange= "muestracopiab(this.id);">OC:</span>
+                        <span class="span" id="copiasss-1" style="display:none;font-weight: bold;width: 90%;">No. copias</span>
+                        <span id="text2" class="copiass-1" style="display:none;width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' id="copias-1" style="display:none;" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="OC"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;"><input type="checkbox" name=""  id="check-2" onchange= "muestracopiab(this.id);">Factura:</span>
+                        <span class="span" id="copiasss-2" style="display:none;font-weight: bold;width: 90%;">No. copias</span>
+                        <span id="text2" class="copiass-2" style="display:none;width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' id="copias-2" style="display:none;" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="Factura"/>
+                        </span>
+    
+                        <span class="span" style="font-weight: bold;width: 90%;"><input type="checkbox" name=""  id="check-3" onchange= "muestracopiab(this.id);">SUA del personal a ingresar:</span>
+                        <span class="span" id="copiasss-3" style="display:none;font-weight: bold;width: 90%;">No. copias</span>
+                        <span id="text2" class="copiass-3" style="display:none;width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' id="copias-3" style="display:none;" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="SUA"/>
+                        </span>
+
+                        <span class="span" style="font-weight: bold;width: 90%;"><input type="checkbox" name=""  id="check-4" onchange= "muestracopiab(this.id);">TIA:</span>
+                        <span class="span" id="copiasss-4" style="display:none;font-weight: bold;width: 90%;">No. copias</span>
+                        <span id="text2" class="copiass-4" style="display:none;width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' id="copias-4" style="display:none;" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="TIA"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;"><input type="checkbox" name=""  id="check-5"  onchange= "muestracopiab(this.id);">Otro:</span>
+                        <span class="span" id="copiasss-5" style="display:none;font-weight: bold;width: 90%;">No. copias</span>
+                        <span id="text2" class="copiass-5" style="display:none;width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' id="copias-5" style="display:none;" class="FWM-textBox" onchange="inputLleno(this.id,this.value)" alt="Otro"/>
+                        </span>
+
+                        <span class="span span2">Horarios de recepción de mercancía</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <div id="pregunta" name="P1">
+                                <input type="checkbox" id="L" name="P1" onclick="HorariosLV();">
+                                <label for="L">L</label>
+                                <input type="checkbox" id="Ma" name="P1" onclick="HorariosLV();" >
+                                <label for="Ma">Ma</label>
+                                <input type="checkbox" id="Mi" name="P1" onclick="HorariosLV();">
+                                <label for="Mi">Mi</label>
+                                <input type="checkbox" id="J" name="P1" onclick="HorariosLV();">
+                                <label for="J">J</label>
+                                <input type="checkbox" id="V" name="P1" onclick="HorariosLV();">
+                                <label for="V">V</label>
+                                <input type="checkbox" id="S" name="P2" onclick="HorariosLV();">
+                                <label for="S">S</label>
+                                </div>                                   
+                        </span>
+                        <br><br>
+                        <div id="horasLV" style="display: none;width: 90%;">   
+                            <span class="span FWM-span-form" id="dias"></span>
+                            <br>
+                        <span class="span FWM-span-form">Hora inicio:</span>
+                        <span>
+                              <input class ="FWM-input" id="hora_inicio" type="time" value=""  />
+                        </span>
+                        <span class="span FWM-span-form">Hora Fin:</span>
+                        <span>
+                              <input class ="FWM-input" id="hora_fin" type="time" value=""  />
+                        </span>
+                        </div>
+                        <div id="horasS"  style="display: none;width: 90%">
+                            <span class="span FWM-span-form" >Horarios para Fin de semana</span>
+                            <br>
+                            <span class="span FWM-span-form">Hora inicio:</span>
+                            <span>
+                                  <input class ="FWM-input" id="hora_inicioS" type="time" value=""  />
+                            </span>
+                            <span class="span FWM-span-form">Hora Fin:</span>
+                            <span>
+                                  <input class ="FWM-input" id="hora_finS" type="time" value=""  />
+                            </span>
+                        </div>
+
+                        <div class="block grid-resizable-demo"  style="margin-top: 45px;">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="guardaBennettsLLogis3(5);" class="boton-personalizado-4">Guardar Datos</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="block grid-resizable-demo"  style="margin-top: 45px;">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="GuardarHor();" class="boton-personalizado-4">Guardar Horarios</a>
+                                </div>
+                            </div> 
+                        </div> -->
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from logistica_bennettsL WHERE id_cedula = ?",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                // for(var i = 0; i< length; i++){
+                                //     var item = results.rows.item(i);
+                                //     console.log(item);
+                                // }
+                                var item = results.rows.item(0);
+                                
+                                if(item.OC == 1){
+                                    $("#check-1").prop("checked",true);
+                                    $("#copias-1").val(item.OC_copias);
+                                    $("#copias-1").css('display','inline-block');
+                                    $(".copiass-1").css('display','inline-block');
+                                    $("#copiasss-1").css('display','inline-block');
+                                }
+                                if(item.factura == 1){
+                                    $("#check-2").prop("checked",true);
+                                    $("#copias-2").val(item.factura_copias);
+                                    $("#copias-2").css('display','inline-block');
+                                    $(".copiass-2").css('display','inline-block');
+                                    $("#copiasss-2").css('display','inline-block');
+                                }
+                                if(item.SUA == 1){
+                                    $("#check-3").prop("checked",true);
+                                    $("#copias-3").val(item.SUA_copias);
+                                    $("#copias-3").css('display','inline-block');
+                                    $(".copiass-3").css('display','inline-block');
+                                    $("#copiasss-3").css('display','inline-block');
+                                }
+                                if(item.TIA == 1){
+                                    $("#check-4").prop("checked",true);
+                                    $("#copias-4").val(item.TIA_copias);
+                                    $("#copias-4").css('display','inline-block');
+                                    $(".copiass-4").css('display','inline-block');
+                                    $("#copiasss-4").css('display','inline-block');
+                                }
+                                if(item.otro_doc == 1){
+                                    $("#check-5").prop("checked",true);
+                                    $("#copias-5").val(item.otro_doc_copias);
+                                    $("#copias-5").css('display','inline-block');
+                                    $(".copiass-5").css('display','inline-block');
+                                    $("#copiasss-5").css('display','inline-block');
+                                }
+
+                                const str3 = item.dias;
+                                var pasaDatas1 = str3.split(",");
+                                var horasLV= item.horas_I;
+                                
+                                if(horasLV==undefined){
+                                }else{
+                                    $('#horasLV').css("display","inline-block");
+                                    $('#hora_inicio').val(item.horas_I);
+                                    $('#hora_fin').val(item.horas_F);
+                                    $('#dias').html('Horarios para los dias '+item.dias);
+                                }
+                                var horasS_F = item.horasS_F;
+                                if(horasS_F){
+                                    $("#S").prop("checked",true);
+                                    $('#horasS').css("display","inline-block");
+                                    $('#hora_inicioS').val(item.horasS_I);
+                                    $('#hora_finS').val(item.horasS_F);
+                                }
+                                pasaDatas1.forEach(function(pasaData1) {
+                                    $("#"+pasaData1).prop("checked",true);
+                                });
+                                
+                            },
+                            function(tx, error){
+                                console.log("Error al mostar datos: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );  
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }
+    }
+</script>

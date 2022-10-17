@@ -1,0 +1,195 @@
+<style>  
+    .list .item-floating-label, .list .item-label {
+         width: 100%; 
+    }
+    #minuta{
+        text-align: center;
+    }
+    .sheet-modal.modal-in{
+        height: 80%;
+        z-index: 9999;
+    }
+        .navbar .title{
+            font-weight: bold;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #fff;
+        }
+        .navbar a.link{
+            color: white;
+        }
+        .list .item-link {
+        color: inherit;
+        margin-top: 5px;
+        }
+        .navbar{
+            background-color: #063E7F;
+            height: 52px;
+        }
+        .navbar-inner{
+            height: 52px;
+        }
+        .list .item-title{
+            font-weight: bold;
+            font-size: 16px;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #717D7E;
+        }
+        .list .item-inner{
+            font-weight: bold;
+            font-size: 16px;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #717D7E;
+        }
+        .list .item-content{
+            padding-left: 0px;
+        }
+        #fecha{
+            font-weight: bold;
+            font-size: 16px;
+            font-family: 'ITC Avant Garde Gothic', sans-serif;
+            color: #717D7E;
+        }
+        #otroA{
+        font-size: 16px;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        }
+        .list ul{
+            top: 10px;
+            padding-left: 16px;
+        }
+        #thaccion{
+        padding-left: 12px;
+        padding-right: 12px;
+        }
+        #thfoto{
+        padding-left: 10px;
+        padding-right: 10px;
+        }
+        #thcomentarios{
+        padding-left: 10px;
+        padding-right: 10px;
+        }
+        #thtipo{
+        width: 190px;
+        }
+        #thfecha{
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 70px;
+        }
+        #tdaccion{
+        padding-left: 14px;
+        padding-right: 12px;
+        }
+        #tdfoto{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        }
+        #tdtipo{
+        padding-left: 5px;
+        padding-right: 5px;
+        }
+        #tdcomentario{
+        width: min-content;
+        }
+        #tdfecha{
+        padding-left: 10px;
+        padding-right: 10px;
+        }
+    
+    </style>
+    <template>
+            <div class="page" id="FWM-1">
+                <!-- Navbar -->
+                <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                    <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                    <div class="navbar-inner sliding" style="height: 52px;">
+                        <div class="left">
+                            <a href="#" onclick="regresarRecorridoCI4();">
+                                <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contenido Formulario -->                                
+                <div class="page-content">
+                    <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                        <h2 class="FWN-titulo-2">Evidencia del producto</h2>
+                        <div style="text-align: left;">     
+
+                        <div class="block-title FWM-subtitulo">Evidencias</div>
+                            <div class="card data-table" style="margin-bottom: 50px;">
+                                <div class="infinite-scroll-content">
+                                    <table id="tabla_VentasBennetts">
+                                        <thead>
+                                            <tr>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;min-width: 115px;" id="thtema">Documento</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;min-width: 200px;" id="thtema">Nombre comercial</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;min-width: 135px;" id="thtema">Comanda</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;min-width: 120px;" id="thtema">Peso (Ruta)</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;" id="thtema">Peso (Actual)</th>
+                                                <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;" id="thtema">Foto (báscula o factura)</th>
+                                            </tr>
+                                        </thead>
+                                            <tbody id="VentasBennetts_content"></tbody>
+                                    </table>
+                                    <div id="message-nr" style="width: 100%;text-align: center;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 16px;" style="display: none;">
+                                        <p>Sin registros</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- Fin contenido formulario -->
+                    <fwm></fwm>
+                </div>
+            </div>
+    </template>
+    <script>
+    return {
+            on: {      
+                pageInit: function () {
+                var id_usuario = localStorage.getItem("id_usuario");              
+
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx1){
+                        tx1.executeSql(
+                            "Select * from evidencias_carga where id_cedula= ?",
+                            [id_cedula],
+                            function(tx, results){
+                                var length = results.rows.length;
+                                if(length == 0){
+                                    $("#message-nr").css("display", "block");
+                                } else {
+                                    for(var i = 0; i< length; i++){
+                                        var item = results.rows.item(i);
+                                        if(item.foto){
+                                            foto = "<img src='"+item.foto+"' width='60px' style='margin-top: 4px;'/>";
+                                        }else{
+                                            foto = "<a href='#' onclick='TomaEvidenciaCI("+item.id_entrega+");' style='border: none; outline:none;'><img src='img/camera.svg' width='30px' /></a>";
+                                        }
+                                        if(item.peso_actual){
+                                            $("#VentasBennetts_content").append(`<tr id='fila"+ minuta +"'><td id='tdtema' style='text-align: center;'>` + item.no_pedido +`</td><td id='tdcompromiso' style='text-align: center;'>` + item.cliente + `</td><td id='tdcompromiso' style='text-align: center;'>` + item.descripcion + `</td><td id='tdcompromiso' style='text-align: center;'>` + item.peso_ruta + `</td><td id='tdfecha' style='text-align: center;'><input class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;height: 40px;width: 100%;" type="text" id="peso_actual`+item.id_entrega+`" onchange="inputLleno(this.id,this.value),guardaPesoCI(`+item.id_entrega+`,this.value)" value="`+item.peso_actual+`"/></td> <td id='tdfecha' style='text-align: center;'>`+foto+`</td></tr>`);
+                                        }else{
+                                            $("#VentasBennetts_content").append(`<tr id='fila"+ minuta +"'><td id='tdtema' style='text-align: center;'>` + item.no_pedido +`</td><td id='tdcompromiso' style='text-align: center;'>` + item.cliente + `</td><td id='tdcompromiso' style='text-align: center;'>` + item.descripcion + `</td><td id='tdcompromiso' style='text-align: center;'>` + item.peso_ruta + `</td><td id='tdfecha' style='text-align: center;'><input class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;height: 40px;width: 100%;" type="text" id="peso_actual`+item.id_entrega+`" onchange="inputLleno(this.id,this.value),guardaPesoCI(`+item.id_entrega+`,this.value)"/></td> <td id='tdfecha' style='text-align: center;'>`+foto+`</td></tr>`);
+                                        }                
+                                    }   
+                                        $("#message-nr").css("display", "none");
+                                }
+                                    $('.preloader').remove();
+                                    $('.infinite-scroll-preloader').remove();
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }
+    }
+    
+    </script>

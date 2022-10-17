@@ -1,0 +1,265 @@
+<template>
+    <div class="view view-main view-init safe-areas">
+        <div class="page" id="FWM-1">
+            <!-- Navbar -->
+            <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="#" onclick="regresarRecorridoMrFixer1();">
+                            <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Contenido Formulario -->                                
+            <div class="page-content">
+                <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                    <h2 class="FWN-titulo-2">Bitácora</h2>
+
+                    <div style="text-align: left;">     
+                        <form class="list FWM-fixing-form">
+                            <span class="span FWM-span-form">Buscador: *</span>
+                            <input class="FWM-input" type="text" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" id="nombre_equipo" placeholder="Ecribe el numero economico o la placa"/>
+                            <input class="FWM-input" type="hidden" id="buscabitacora" />
+
+                            <span class="span FWM-span-form">Número económico:</span>
+                            <input type='text' name="eco" id="eco" class="FWM-input" onchange="inputLleno(this.id,this.value)" readonly/>
+
+                            <span class="span FWM-span-form">Placa:</span>
+                            <input type='text' name="placa" id="placa" class="FWM-input" onchange="inputLleno(this.id,this.value)" readonly/>
+
+                            <div id="unidad" style="display: none;">
+                                <span class="span FWM-span-form">Tipo de unidad:</span>
+                                <input type='text' name="unidad" id="unidad" class="FWM-input" onchange="inputLleno(this.id,this.value)" readonly/>
+                            </div>
+
+                            <span class="span FWM-span-form">Modelo:</span>
+                            <input type='text' name="modelo" id="modelo" class="FWM-input" onchange="inputLleno(this.id,this.value)" readonly/>
+
+                            <span class="span FWM-span-form">Observaciones:</span>
+                            <input type='text' name="observaciones" id="observaciones" class="FWM-input" onchange="inputLleno(this.id,this.value)"/>
+
+                            <span class="span FWM-span-form">Evidencia fotográfica:</span>                          
+                            <div class="FWM-photo-container">
+                                <div class="border-capture">
+                                <a onclick="capturePhoto();">
+                                <img class="FWM-photo" src="img/camera.svg" id="photoIcon" width="45px" style="margin-left: 50px;"/>
+                                </a>
+                                </div>
+                                <img class="FWM-photo-hide" id="smallImage" src=""/>
+                                <input type="hidden" id="imagenC" name="imagenC"/>
+                            </div>
+
+                        </form>
+
+                        <div class="block grid-resizable-demo">
+                            <div class="row align-items-stretch" style="text-align: center;">
+                                <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                    <span class="resize-handler"></span>
+                                    <a href="#" onclick="guardarVehiculoMrFixer();" class="boton-equipo">Guardar Vehículo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="block-title FWM-subtitulo">Elementos de Bitácora</div>  
+                        <div class="card data-table" style="margin-bottom: 60px;">
+                            <div class="infinite-scroll-content">
+                                <table id="tabla_mantenimiento">
+                                    <thead>
+                                        <tr>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Acción</th>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Evidencia</th>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Número económico</th>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Placa</th>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Observaciones</th>
+                                            <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Fecha</th>
+                                        </tr>
+                                    </thead>
+                                    <div id="tabla_levantamiento_content">
+                                        <tbody id="table_bitacora"></tbody>
+                                    </div>
+                                </table>
+                                <div class="sentencia preloader color-grey infinite-scroll-preloader"></div>
+                                <div id="message-nr" style="width: 100%;text-align: center;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 16px;" style="display: none;">
+                                    <p>Sin registros</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin contenido formulario -->
+                <fwm></fwm>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                $('.preloader').remove();
+                $('.infinite-scroll-preloader').remove();
+                var id_cedula = localStorage.getItem("IdCedula");
+                var NomJson = 'Datos_Vehiculo_MrFixer';
+                self.autocompleteDropdownAjax = app.autocomplete.create({
+                    inputEl: '#nombre_equipo',
+                    openIn: 'dropdown',
+                    preloader: true, //enable preloader
+                    valueProperty: 'id', 
+                    textProperty:  'buscador', 
+                    limit: 10, //limit to 20 results
+                    dropdownPlaceholderText: 'Selecciona un Vehículo...',
+                    source: function (query, render) {
+                        var autocomplete = this;
+                        var results = [];
+                        if (query.length === 0) {
+                            render(results);
+                            return;
+                        }
+                        // Show Preloader
+                        autocomplete.preloaderShow();
+                        // Do Ajax request to Autocomplete data
+                        app.request({
+                            url: cordova.file.dataDirectory + "jsons/"+NomJson+".json",
+                            method: 'GET',
+                            dataType: 'json',
+                            data: {
+                                query: query,
+                            },success: function (data) {
+                                data;
+                                for (var i = 0; i < data.length; i++) {
+                                    if (data[i].buscador.toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(data[i]); 
+                                }
+                                render(results); 
+                            }
+                        }); 
+                    }
+                });
+                $('#nombre_equipo').change(function () {
+                    var pasa = false;
+                    var id_vehiculo = $("#nombre_equipo").val();
+                    if(id_vehiculo == 'Nuevo'){
+                        $("#buscabitacora").val('Nuevo Vehículo');
+                        $("#eco").prop('readonly', false);
+                        $("#placa").prop('readonly', false);
+                        $("#unidad").prop('readonly', false);
+                        $("#modelo").prop('readonly', false);
+                        $("#eco").val('');
+                        $("#placa").val('');
+                        $("#unidad").val('');
+                        $("#modelo").val('');
+                        $("#observaciones").val('');
+                    }else{
+                        $("#buscabitacora").val(id_vehiculo);
+                        app.request.get(cordova.file.dataDirectory + "jsons/"+NomJson+".json", function (data) {
+                            var content2 = JSON.parse(data);
+                            for(var x = 0; x < content2.length; x++) {
+                                if(content2[x].id == id_vehiculo){
+                                    $("#id_vehiculo").val(content2[x].id);
+                                    $("#nombre_equipo").val(content2[x].buscador);
+                                    $("#eco").val(content2[x].economico);
+                                    $("#placa").val(content2[x].placa);
+                                    $("#unidad").val(content2[x].tipo);
+                                    $("#modelo").val(content2[x].modelo);
+                                    $("#observaciones").val(content2[x].NombreEquipo);
+                                    pasa = true;
+                                }
+                            }
+                            if(pasa){
+                                if ($("#eco").val()!=''){
+                                    $("#eco").prop('readonly', true);
+                                }else{
+                                    $("#eco").prop('readonly', false);
+                                }
+                                if ($("#placa").val()!=''){
+                                    $("#placa").prop('readonly', true);
+                                }else{
+                                    $("#placa").prop('readonly', false);
+                                }
+                                if ($("#unidad").val()!=''){
+                                    $("#unidad").prop('readonly', true);
+                                }else{
+                                    $("#unidad").prop('readonly', false);
+                                }
+                                if ($("#modelo").val()!=''){
+                                    $("#modelo").prop('readonly', true);
+                                }else{
+                                    $("#modelo").prop('readonly', false);
+                                }
+                            }else{
+                                $("#eco").prop('readonly', true);
+                                $("#eco").val('');
+                                $('#eco').css("background-color", "#ffffff");
+                                $("#placa").prop('readonly', true);
+                                $("#placa").val('');
+                                $("#placa").css("background-color", "#ffffff");
+                                $("#unidad").prop('readonly', true);
+                                $("#unidad").val('');
+                                $("#unidad").css("background-color", "#ffffff");
+                                $("#modelo").prop('readonly', true);
+                                $("#modelo").val('');
+                                $("#modelo").css("background-color", "#ffffff");
+                                $("#imagenC").val('');
+                                $("#observaciones").val('');
+                                $("#observaciones").css("background-color", "#ffffff");
+                                $("#smallImage").attr("src","img/blank.png");
+                                $("#photoIcon").attr("src","img/camera.svg");
+                            }
+                        });
+                    }
+                }); 
+
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql("Select * from bitacora where id_cedula = ?",
+                        [id_cedula],
+                            function(tx, results){
+                                var length = results.rows.length;
+                                for(var i = 0; i< length; i++){
+                                    var item = results.rows.item(i);
+                                    var foto='Sin Foto';
+                                    var observaciones = 'Sin Observaciones';
+                                    var placa = 'Sin Placa';
+                                    var eco = 'Sin Número Económico';
+                                        if (item.eco == undefined || item.eco == '' || item.eco == null){
+                                        }else{
+                                            eco=item.eco;
+                                        }
+                                        if (item.placa == undefined || item.placa == '' || item.placa == null){
+                                        }else{
+                                            placa=item.placa;
+                                        }
+                                        if (item.observaciones == undefined || item.observaciones == '' || item.observaciones == null){
+                                        }else{
+                                            observaciones=item.observaciones;
+                                        }
+                                        if (item.foto_evidencia == undefined || item.foto_evidencia == '' || item.foto_evidencia == null){
+                                        }else{
+                                            foto="<img src='"+item.foto_evidencia +"' width='60px' style='margin-top: 4px;'/>";
+                                        }
+                                    $("#table_bitacora").append("<tr id='fila"+ item.id_bitacora +
+                                        "'><td><a onclick='eliminarFilaMrFixer("+ 
+                                        item.id_bitacora +",1);' style='border: none; outline:none;'><img src='img/borrar.png' width='30px' /></a></td><td>"+
+                                        foto+"</td><td style='text-align: center;'>" + 
+                                        eco + "</td><td style='text-align: center;'>" + 
+                                        placa + "</td><td style='text-align: center;'>" + 
+                                        observaciones + "</td><td style='text-align: center;'>" + 
+                                        item.fecha + "</td></tr>");
+                                    $("#message-nr").css("display", "none");
+                                    $('.preloader').remove();
+                                    $('.infinite-scroll-preloader').remove();
+                                }
+                            },
+                            function(tx, error){
+                                console.log("Error al guardar cedula: " + error.message);
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                ); 
+            }
+        }  
+    }
+</script>

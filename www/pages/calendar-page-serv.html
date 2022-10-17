@@ -1,0 +1,226 @@
+<template>
+    <div class="page">
+        <div class="navbar" style="background-color: #063E7F;height: 52px;">
+          <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+            <div class="navbar-inner sliding" style="height: 52px;">
+                <div class="left">
+                  <style>            
+                    .nav-text-regresar{
+                        color: #ffffff;
+                        border: 2px solid white;
+                        padding: 0 10px;
+                        border-radius: 7px;
+                        font-size: 14px;
+                    }
+                    hr{
+                      border: none;
+                      height: 50px;
+                      margin-top: 0;
+                      border-bottom: 1px solid #9d9d9d96;
+                      box-shadow: 0px 16px 20px -20px #5f61627a;
+                      margin: -50px auto 10px;
+                    }
+                  </style>
+                  <a href="#" class="link back" style="margin-left: 5px;">
+                    <span class="nav-text-regresar">Regresar</span>
+                  </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <style>
+              table{
+                width: 100%;
+              }
+              th{
+                color: white;
+              }
+            </style>
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+              <h2 style="color:#00A7B5;font-family: 'ITC Avant Garde Gothic';font-size: 24px;margin-top: 27px;">Detalles de Visitas</h2>
+              <div id="visitsContainer" style="margin-left: 10px;">
+               
+              </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+  return {
+    on: {
+        pageInit: function (e, page) {
+          var orden_servicio = localStorage.getItem("orden_servicio");
+          window.localStorage.removeItem("orden_servicio");
+          app.request.get('http://www.appbennetts.com/FWM2/app/DetallesRutasServ.php', {orden_servicio: orden_servicio}, function (data) {
+            var content = JSON.parse(data);
+            console.log(content);
+            var category = localStorage.getItem("category");
+            for(var e=0; e < content.length; e++){
+              if(category == 'Correctivo'){
+                var onclick=`startFromProgramServ2('${content[e].id_visita}','${content[e].nombre_comercial}','${content[e].orden_servicio}','${content[e].sucursal}','${content[e].direccion}','${content[e].ciudad}','${content[e].telefono}','${content[e].correo}','${category}','${content[e].equip}','${content[e].mark}','${content[e].model}','${content[e].serie}','${content[e].id_cliente}','${content[e].fecha} ${content[e].inico}','${content[e].description}','${content[e].type_equip}')`;
+              }
+              $('#visitsContainer').append(`
+                  <div class="list">
+                    <ul>
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #063E7F;">apps</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Numero de Orden</div>${content[e].orden_servicio}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #505759;">content_paste</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Tipo de Servicio</div>${category}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #00A7B5;">person</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Cliente(Prospecto)</div> ${content[e].nombre_comercial}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                   
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #063E7F;">home</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Sucursal de prospecto</div>${content[e].sucursal}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #505759;">date_range</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Fecha creación OS</div>${content[e].fecha_creacion}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #00A7B5;">event</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Fecha de programación OS</div>${content[e].fecha}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #063E7F;">location_on</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Dirección</div>${content[e].direccion}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #505759;">assistant</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Equipo</div>${content[e].equip}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #00A7B5;">chrome_reader_mode</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Modelo</div>${content[e].model}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #063E7F;">label_outline</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Serie</div>${content[e].serie}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #505759;">grain</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Marca</div>${content[e].mark}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="item-link item-content">
+                        <div class="item-media">
+                          <i class="material-icons md-light" style="color: #00A7B5;">insert_comment</i>
+                        </div>
+                        <div class="item-inner no-chevron">
+                          <div class="item-title">
+                            <div class="item-header">Razón del Servicio</div>${content[e].description}
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    
+                    </ul>
+                    <div class="block grid-resizable-demo">
+                          <div class="row align-items-stretch" style="text-align: center;">
+                              <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                  <span class="resize-handler"></span>
+                                  <a href="#" onclick="${onclick}" class="boton-personalizado-4">Iniciar Cedula</a>   
+                              </div>
+                          </div>
+                    </div>
+                  </div>`);
+            }
+          });
+        }
+    }
+  }
+</script>

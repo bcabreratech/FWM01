@@ -1,0 +1,391 @@
+<template>
+    <div class="page">
+        <div class="navbar" style="background-color: #063E7F;height: 52px;">
+            <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+            <div class="navbar-inner" style="height: 52px;">
+                <div class="left">
+                    <a href="javascript:location.reload()" class="link" style="margin-left: 5px;">
+                        <span class="nav-text-regresar-recorrido">Regresar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content" style="background-color: #f6f7f9; ">
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                <input type="hidden" id="resp1" name="resp1" />
+                <div style="text-align: left;">        
+                    <div class="item-inner">
+                        <div class="block-title" style="text-align: center; font-size: 20px;"><h2 style='color:#505759;font-size: 22px;font-family: "ITC Avant Garde Gothic", sans-serif;'>Logística</h2></div>
+                    </div>
+                </div>
+                    <div class="buttons-container" style="display: flex;">
+                        <a href="/datosgeneralesLBennetts/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/persona2.svg" width="90px" height="90px" id="img1"/>
+                            <span class="fwm-text-recorrido">Datos Generales</span>
+                        </a>
+                        <a href="/formBennettsL3/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/sitio.svg" width="90px" height="90px" id="img2"/>
+                            <span class="fwm-text-recorrido">Dirección de Entrega</span>
+                        </a>
+                    </div>
+                    <div class="buttons-container" style="display: flex;margin-top: 5%;">
+                        <a href="/formBennettsL4/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/checklist.svg" width="90px" height="90px" id="img3"/>
+                            <span class="fwm-text-recorrido">Documentos para entrega</span>
+                        </a>
+                        <a href="/formBennettsL5/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/despues.svg" width="90px" height="90px" id="img4"/>
+                            <span class="fwm-text-recorrido">Requerimientos de entrega</span>
+                        </a>
+                    </div>
+                    <div class="buttons-container" style="display: flex;margin-top: 5%;">
+                        <a href="/formBennettsL6/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/document.svg" width="90px" height="90px" id="img5"/>
+                            <span class="fwm-text-recorrido">Documentos emitidos</span>
+                        </a>
+                        <a href="/formBennettsL7/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/durantesani2.svg" width="90px" height="90px" id="img6"/>
+                            <span class="fwm-text-recorrido">Equipo de protección</span>
+                        </a>
+                    </div>
+                    <div class="buttons-container" style="display: flex;margin-top: 5%;">
+                        <a href="/formBennettsL1/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/logistica.svg" width="90px" height="90px" id="img7"/>
+                            <span class="fwm-text-recorrido">Evidencias de Entrega</span>
+                        </a>
+                        <a href="/cierreBennettsL/" class="fwm-button-recorrido">
+                            <img src="img/iconsMenu/estrellas.svg" width="90px" height="90px" id="img8"/>
+                            <span class="fwm-text-recorrido">Cierre</span>
+                        </a>
+                    </div>
+
+                <!-- Inicio FWM Recorrido -->
+                    <div id="FWM-Menu" class="container-items" style="width: 100%;"></div>
+                <!-- Fin FWM Recorrido -->
+                <fwm></fwm>
+            </div> 
+        </div>
+    </div>
+</template>
+           
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                    tx.executeSql(
+                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (nocliente IS NOT NULL AND razon_social IS NOT NULL AND nombre_recibe IS NOT NULL AND segundo_nombre IS NOT NULL AND apellido IS NOT NULL AND puesto IS NOT NULL AND correo IS NOT NULL AND telefono_1 IS NOT NULL AND telefono_2 IS NOT NULL)",
+                        [id_cedula],
+                        function(tx, results){
+                        let length = results.rows.length;
+                            if(length >0){
+                                databaseHandler.db.transaction(
+                                    function(tx){
+                                    tx.executeSql(
+                                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (nocliente <> '' AND razon_social <> '' AND nombre_recibe <> '' AND segundo_nombre <> '' AND apellido <> '' AND puesto <> '' AND correo <> '' AND telefono_1 <> '' AND telefono_2 <> '')",
+                                        [id_cedula],
+                                        function(tx, results){
+                                        let length = results.rows.length;
+                                            if(length >0){
+                                                document.getElementById("img1").src="img/iconsMenu/persona.svg";
+                                            }
+                                        },
+                                        function(tx, error){
+                                        console.log("Error al guardar registro: " + error.message);
+                                        app.preloader.hide();
+                                        }
+                                    );
+                                    },
+                                    function(error){},
+                                    function(){}
+                                );
+                            }
+                        },
+                        function(tx, error){
+                        console.log("Error al guardar registro: " + error.message);
+                        app.preloader.hide();
+                        }
+                    );
+                    },
+                    function(error){},
+                    function(){}
+                );
+                databaseHandler.db.transaction(
+                    function(tx){
+                    tx.executeSql(
+                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (calle IS NOT NULL AND no_exterior IS NOT NULL AND no_interior IS NOT NULL AND colonia IS NOT NULL AND ciudad IS NOT NULL AND cp IS NOT NULL AND alcadia IS NOT NULL AND estado IS NOT NULL AND acceso_proveedor IS NOT NULL)",
+                        [id_cedula],
+                        function(tx, results){
+                        let length = results.rows.length;
+                            if(length >0){
+                                databaseHandler.db.transaction(
+                                    function(tx){
+                                    tx.executeSql(
+                                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (calle <> '' AND no_exterior <> '' AND no_interior <> '' AND colonia <> '' AND ciudad <> '' AND cp <> '' AND alcadia <> '' AND estado <> '' AND acceso_proveedor <> '')",
+                                        [id_cedula],
+                                        function(tx, results){
+                                        let length = results.rows.length;
+                                            if(length >0){
+                                                document.getElementById("img2").src="img/iconsMenu/sitio2.svg";
+                                            }
+                                        },
+                                        function(tx, error){
+                                        console.log("Error al guardar registro: " + error.message);
+                                        app.preloader.hide();
+                                        }
+                                    );
+                                    },
+                                    function(error){},
+                                    function(){}
+                                );
+                            }
+                        },
+                        function(tx, error){
+                        console.log("Error al guardar registro: " + error.message);
+                        app.preloader.hide();
+                        }
+                    );
+                    },
+                    function(error){},
+                    function(){}
+                );
+                databaseHandler.db.transaction(
+                    function(tx){
+                    tx.executeSql(
+                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (OC IS NOT NULL OR factura IS NOT NULL OR SUA IS NOT NULL OR TIA IS NOT NULL OR otro_doc IS NOT NULL)",
+                        [id_cedula],
+                        function(tx, results){
+                        let length = results.rows.length;
+                            if(length >0){
+                                databaseHandler.db.transaction(
+                                    function(tx){
+                                    tx.executeSql(
+                                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (OC <> '' OR factura <> '' OR SUA <> '' OR TIA <> '' OR otro_doc <> '')",
+                                        [id_cedula],
+                                        function(tx, results){
+                                        let length = results.rows.length;
+                                            if(length >0){
+                                                databaseHandler.db.transaction(
+                                                    function(tx){
+                                                    tx.executeSql(
+                                                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (OC <> 0 OR factura <> 0 OR SUA <> 0 OR TIA <> 0 OR otro_doc <> 0)",
+                                                        [id_cedula],
+                                                        function(tx, results){
+                                                        let length = results.rows.length;
+                                                            if(length >0){
+                                                                document.getElementById("img3").src="img/iconsMenu/checklist2.svg";
+                                                            }
+                                                        },
+                                                        function(tx, error){
+                                                        console.log("Error al guardar registro: " + error.message);
+                                                        app.preloader.hide();
+                                                        }
+                                                    );
+                                                    },
+                                                    function(error){},
+                                                    function(){}
+                                                );
+                                            }
+                                        },
+                                        function(tx, error){
+                                        console.log("Error al guardar registro: " + error.message);
+                                        app.preloader.hide();
+                                        }
+                                    );
+                                    },
+                                    function(error){},
+                                    function(){}
+                                );
+                            }
+                        },
+                        function(tx, error){
+                        console.log("Error al guardar registro: " + error.message);
+                        app.preloader.hide();
+                        }
+                    );
+                    },
+                    function(error){},
+                    function(){}
+                );
+                databaseHandler.db.transaction(
+                    function(tx){
+                    tx.executeSql(
+                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (permiso IS NOT NULL AND cita IS NOT NULL)",
+                        [id_cedula],
+                        function(tx, results){
+                        let length = results.rows.length;
+                            if(length >0){
+                                databaseHandler.db.transaction(
+                                    function(tx){
+                                    tx.executeSql(
+                                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (permiso <> '' AND cita <> '')",
+                                        [id_cedula],
+                                        function(tx, results){
+                                        let length = results.rows.length;
+                                            if(length >0){
+                                                document.getElementById("img4").src="img/iconsMenu/despues2.svg";
+                                            }
+                                        },
+                                        function(tx, error){
+                                        console.log("Error al guardar registro: " + error.message);
+                                        app.preloader.hide();
+                                        }
+                                    );
+                                    },
+                                    function(error){},
+                                    function(){}
+                                );
+                            }
+                        },
+                        function(tx, error){
+                        console.log("Error al guardar registro: " + error.message);
+                        app.preloader.hide();
+                        }
+                    );
+                    },
+                    function(error){},
+                    function(){}
+                );
+                databaseHandler.db.transaction(
+                    function(tx){
+                    tx.executeSql(
+                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (entrada_almacen IS NOT NULL OR folio_recepcion IS NOT NULL OR contra_recibo IS NOT NULL OR firma_sello IS NOT NULL OR recibido_factura IS NOT NULL OR sello_cliente IS NOT NULL OR oc3 IS NOT NULL OR id3 IS NOT NULL OR otro3 IS NOT NULL)",
+                        [id_cedula],
+                        function(tx, results){
+                        let length = results.rows.length;
+                            if(length >0){
+                                databaseHandler.db.transaction(
+                                    function(tx){
+                                    tx.executeSql(
+                                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (entrada_almacen <> '' OR folio_recepcion <> '' OR contra_recibo <> '' OR firma_sello <> '' OR recibido_factura <> '' OR sello_cliente <> '' OR oc3 <> '' OR id3 <> '' OR otro3 <> '')",
+                                        [id_cedula],
+                                        function(tx, results){
+                                        let length = results.rows.length;
+                                            if(length >0){
+                                                databaseHandler.db.transaction(
+                                                    function(tx){
+                                                    tx.executeSql(
+                                                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (entrada_almacen <> 0 OR folio_recepcion <> 0 OR contra_recibo <> 0 OR firma_sello <> 0 OR recibido_factura <> 0 OR sello_cliente <> 0 OR oc3 <> 0 OR id3 <> 0 OR otro3 <> 0)",
+                                                        [id_cedula],
+                                                        function(tx, results){
+                                                        let length = results.rows.length;
+                                                            if(length >0){
+                                                                document.getElementById("img5").src="img/iconsMenu/document2.svg";
+                                                            }
+                                                        },
+                                                        function(tx, error){
+                                                        console.log("Error al guardar registro: " + error.message);
+                                                        app.preloader.hide();
+                                                        }
+                                                    );
+                                                    },
+                                                    function(error){},
+                                                    function(){}
+                                                );
+                                            }
+                                        },
+                                        function(tx, error){
+                                        console.log("Error al guardar registro: " + error.message);
+                                        app.preloader.hide();
+                                        }
+                                    );
+                                    },
+                                    function(error){},
+                                    function(){}
+                                );
+                            }
+                        },
+                        function(tx, error){
+                        console.log("Error al guardar registro: " + error.message);
+                        app.preloader.hide();
+                        }
+                    );
+                    },
+                    function(error){},
+                    function(){}
+                );
+                databaseHandler.db.transaction(
+                    function(tx){
+                    tx.executeSql(
+                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (ninguno IS NOT NULL OR cofia IS NOT NULL OR zapato_seguridad IS NOT NULL OR chaleco IS NOT NULL OR otro4 IS NOT NULL OR otros_requisitos IS NOT NULL)",
+                        [id_cedula],
+                        function(tx, results){
+                        let length = results.rows.length;
+                            if(length >0){
+                                databaseHandler.db.transaction(
+                                    function(tx){
+                                    tx.executeSql(
+                                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (ninguno <> '' OR cofia <> '' OR zapato_seguridad <> '' OR chaleco <> '' OR otro4 <> '' OR otros_requisitos <> '')",
+                                        [id_cedula],
+                                        function(tx, results){
+                                        let length = results.rows.length;
+                                            if(length >0){
+                                                databaseHandler.db.transaction(
+                                                    function(tx){
+                                                    tx.executeSql(
+                                                        "Select * from logistica_bennettsL WHERE id_cedula = ? AND (ninguno <> 0 OR cofia <> 0 OR zapato_seguridad <> 0 OR chaleco <> 0 OR otro4 <> 0 OR otros_requisitos <> '')",
+                                                        [id_cedula],
+                                                        function(tx, results){
+                                                        let length = results.rows.length;
+                                                            if(length >0){
+                                                                document.getElementById("img6").src="img/iconsMenu/durantesani1.svg";
+                                                            }
+                                                        },
+                                                        function(tx, error){
+                                                        console.log("Error al guardar registro: " + error.message);
+                                                        app.preloader.hide();
+                                                        }
+                                                    );
+                                                    },
+                                                    function(error){},
+                                                    function(){}
+                                                );
+                                            }
+                                        },
+                                        function(tx, error){
+                                        console.log("Error al guardar registro: " + error.message);
+                                        app.preloader.hide();
+                                        }
+                                    );
+                                    },
+                                    function(error){},
+                                    function(){}
+                                );
+                            }
+                        },
+                        function(tx, error){
+                        console.log("Error al guardar registro: " + error.message);
+                        app.preloader.hide();
+                        }
+                    );
+                    },
+                    function(error){},
+                    function(){}
+                );
+                databaseHandler.db.transaction(
+                    function(tx){
+                    tx.executeSql(
+                        "Select * from evidencias_bennettsL WHERE id_cedula = ? AND (id_evidencia IS NOT NULL)",
+                        [id_cedula],
+                        function(tx, results){
+                        let length = results.rows.length;
+                            if(length >0){
+                                document.getElementById("img7").src="img/iconsMenu/logistica2.svg";
+                            }
+                        },
+                        function(tx, error){
+                        console.log("Error al guardar registro: " + error.message);
+                        app.preloader.hide();
+                        }
+                    );
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }
+    }
+</script>

@@ -1,0 +1,154 @@
+<style>
+  .FWM-textBox{
+      width: 100%; 
+      padding-left: 3px; 
+      font-size: 15px; 
+      height: 37px; 
+      font-family: 'ITC Avant Garde Gothic', sans-serif; 
+      background-color: white; 
+      border-radius: 8px; 
+      border: 1px solid gray;
+  }
+  input[type=text]{
+      background-color: white;
+      font-family: 'ITC Avant Garde Gothic', sans-serif;
+      padding-top: 5px;
+  }
+  .span{
+      text-overflow: ellipsis;
+      white-space: nowrap;
+  }
+
+  .sheet-modal.modal-in{
+      height: 80%;
+  }
+  </style>
+  <template>
+      <div class="view view-main view-init safe-areas">
+          <div class="page" id="FWM-1">
+              <!-- Navbar -->
+              <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                  <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                  <div class="navbar-inner sliding" style="height: 52px;">
+                      <div class="left">
+                          <a href="#" onclick="regresarRecorridoSURO4()">
+                              <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <!-- Contenido Formulario -->                                
+              <div class="page-content">
+
+                  <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                      <h2 class="FWN-titulo-2">Minuta</h2>
+  
+                  <div style="text-align: left;">     
+                      <div class="list FWM-fixing-form">
+                          <span class="span FWM-span-form">Acuerdo:</span>
+                          <textarea class ="FWM-input" id="acuerdo" name="come1"  cols="30" rows="10" ></textarea>
+
+                          <span class="span FWM-span-form">Urgencia:</span>
+                          <select id="select2" name="select2" onchange="encuestaSURO(2,this.value);" >
+                              <option value="0">Seleccionar</option>
+                              <option value="Alta">Alta</option>
+                              <option value="Media">Media</option>
+                              <option value="Baja">Baja</option>
+                          </select>
+
+                          <span class="span FWM-span-form">Fecha Compromiso:</span>
+                          <input type="date" name="" id="fechaComp" class="FWM-input" onchange="inputLleno(this.id,this.value)">
+
+                          <div class="block grid-resizable-demo" style="margin-bottom: 80px; margin-top: 50px;">
+                              <div class="row align-items-stretch" style="text-align: center;">
+                                  <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                      <span class="resize-handler"></span>
+                                      <a href="#" onclick="guardarMinutaSuro()" class="boton-equipo" style="background-color: #063E7F; color: white;">Agregar</a>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="block-title FWM-subtitulo">Listado de Minutas:</div>  
+                          <div class="card data-table">
+                              <div class="infinite-scroll-content">
+                                  <table id="tabla_SURO12">
+                                      <thead>
+                                          <tr>
+                                              <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Acciones</th>
+                                              <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Acuerdo</th>
+                                              <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Urgencia</th>
+                                              <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Fecha Compromiso</th>
+                                              <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Fecha Entrega</th>
+                                              <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Foto</th>
+                                              <th class="numeric-cell" style="text-align: center;background-color: #063E7F;color: white;">Evidencia</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody id="tabla_SURO12b"></tbody>
+                                  </table>
+                                  <!-- <div class="sentencia preloader color-grey infinite-scroll-preloader"></div> -->
+                                  <div id="message-nr" style="width: 100%;text-align: center;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 16px;" style="display: none;">
+                                      <p>Sin registros</p>
+                                  </div>
+                              </div>
+                          </div>
+                  </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+  </template>
+  <script>
+      return {
+          on: {
+              pageInit: function (e, page) {
+                  var id_usuario = localStorage.getItem("id_usuario");
+                  var id_cedula = localStorage.getItem("IdCedula");
+                  var id_cliente = localStorage.getItem("nombre_sitio");
+                  var fecha = new Date();
+                  var fecha = fecha.getFullYear()+"-"+(fecha.getMonth()+1)+"-"+fecha.getDate();
+                  var fechaF = new Date(fecha);
+                  databaseHandler.db.transaction(
+                      function(tx){
+                          tx.executeSql("Select * from minuta_SURO where status = ? and id_cliente = ? ORDER BY id_minuta DESC",
+                          [1,id_cliente ],
+                              function(tx, results){
+                                  var length = results.rows.length;
+                                  var item = results.rows.item(0);
+                                  if(length == 0){
+                                              $("#message-nr").css("display", "block");
+                                          } else {
+                                              for(var i = 0; i< length; i++){
+                                                  var item = results.rows.item(i);
+                                                  if(new Date(item.fecha_compromiso) < fechaF && item.status == 1 ){
+                                                      $("#tabla_SURO12b").append("<tr id='fila"+ item.id_minuta +"' ><td><a href='#' onclick='eliminarFilaSURO("+ item.id_minuta +",2);' style='border: none; outline:none;'><img src='img/borrar.png' width='30px'/></a></td><td style='text-align: center; background-color:red; color:white'>" + item.acuerdo + "</td><td style='text-align: center;'>" + item.urgencia + "</td><td style='text-align: center;'>" + item.fecha_compromiso + "</td><td style='text-align: center;'>" + item.fecha_entrega + "</td><td><img src='"+
+                                                      item.foto+"' width='60px' style='margin-top: 4px;'/></td><td><a href='#' onclick='TomaEvidenciaMinuta("+ item.id_minuta +");' style='border: none; outline:none;'><img src='img/editar.svg' width='30px' /></a></td></tr>");
+                                                  }else{
+                                                      $("#tabla_SURO12b").append("<tr id='fila"+ item.id_minuta +"' ><td><a href='#' onclick='eliminarFilaSURO("+ item.id_minuta +",2);' style='border: none; outline:none;'><img src='img/borrar.png' width='30px' /></a></td><td style='text-align: center;'>" + item.acuerdo + "</td><td style='text-align: center;'>" + item.urgencia + "</td><td style='text-align: center;'>" + item.fecha_compromiso + "</td><td style='text-align: center;'>" + item.fecha_entrega + "</td><td><img src='"+
+                                                      item.foto+"' width='60px' style='margin-top: 4px;'/></td><td><a href='#' onclick='TomaEvidenciaMinuta("+ item.id_minuta +");' style='border: none; outline:none;'><img src='img/editar.svg' width='30px' /></a></td></tr>");
+                                                  }
+                                                  $("#message-nr").css("display", "none");
+                                              }
+                                          }
+
+                                  $('.preloader').remove();
+                                  $('.infinite-scroll-preloader').remove();
+                                  app.preloader.hide();
+                              },
+                              function(tx, error){
+                                  console.log("Error al guardar cedula: ");
+                                  app.preloader.hide();
+                              }
+                          );
+                      },
+            function(tx, error){
+              
+            }
+            );
+              }
+                  
+              
+          }  
+      }
+  </script>

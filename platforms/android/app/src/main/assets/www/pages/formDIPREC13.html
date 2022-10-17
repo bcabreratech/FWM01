@@ -1,0 +1,217 @@
+<style>
+    .span{
+        margin-top: 10px;
+        height: auto;
+        line-height: 22px;
+        margin-bottom: 3px;
+    }
+    .boton-personalizado-4 {
+        text-decoration: none;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        color: #FFFFFF;
+        padding-top: 15px;
+        padding-bottom: 13px;
+        padding-left: 30px;
+        padding-right: 30px;
+        background-color: #063E7F;
+        border-radius: 15px;
+    }
+    input[type="checkbox"]{
+        transform: scale(1.3);
+        margin-right: 10px;
+    }
+    input[type="radio"]{
+        transform: scale(1.3);
+    }
+    .radios{
+        color: #717D7E;
+        font-weight: bold;
+        font-size: 16px;
+        font-family: 'ITC Avant Garde Gothic', sans-serif;
+    }
+    .button_green {
+        background-color: #04AA6D;
+    }
+    .button_red {
+        background-color: #FF0000;
+    }
+    .button {
+        border: none;
+        color: white;
+        min-height: 50px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 25px;
+    }
+
+</style>
+<template>
+    <div class="view view-main view-init safe-areas">
+        <div class="page" id="FWM-1">
+            <!-- Navbar -->
+            <div class="navbar" style="background-color: #063E7F;height: 52px;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="#" onclick="regresarRecorridoDIPREC2();">
+                            <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Contenido Formulario -->                                
+            <div class="page-content">
+                <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 30px;">
+                    <h2 class="FWN-titulo-2">7. Gas </h2>
+                        
+                    <div style="text-align: left;">     
+                        <div class="list FWM-fixing-form" style="margin-top: 0px"> 
+                            <span class="span FWM-span-form">7.1.- ¿Ya se cuenta con el servicio definitivo de gas?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio1-1" name="7-1" onclick="validaradios(this.id);muestra_diprec(2,0);guardaCheckDiprec(this.id,11)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio1-0" name="7-1" onclick="validaradios(this.id);muestra_diprec(2,1);guardaCheckDiprec(this.id,11)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-2">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-7-1" name="comentarios-7_1" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,11)"/>
+                                </div>
+                            <span class="span FWM-span-form">7.2.- ¿Se tiene terminado el proyecto de guías mecánicas gas?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio2-1" name="7-2" onclick="validaradios(this.id);muestra_diprec(3,0);guardaCheckDiprec(this.id,11)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio2-0" name="7-2" onclick="validaradios(this.id);muestra_diprec(3,1);guardaCheckDiprec(this.id,11)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-3">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-7-2" name="comentarios-7_2" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,11)"/>
+                                </div>
+                            <span class="span FWM-span-form">7.3.- ¿Se corroboró cada una de las salidas, alturas, presión y ubicación?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio3-1" name="7-3" onclick="validaradios(this.id);muestra_diprec(4,0);guardaCheckDiprec(this.id,11)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio3-0" name="7-3" onclick="validaradios(this.id);muestra_diprec(4,1);guardaCheckDiprec(this.id,11)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-4">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-7-3" name="comentarios-7_3" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,11)"/>
+                                </div>
+                            <span class="span FWM-span-form">7.4.- ¿Se corroboró las preparaciones y/o especificaciones de las salidas?:</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 20px;margin-top: 5px;">
+                                    <label class="radios"><input type="radio" id="radio4-1" name="7-4" onclick="validaradios(this.id);muestra_diprec(5,0);guardaCheckDiprec(this.id,11)"> Sí </label> 
+                                    <label class="radios"><input type="radio" id="radio4-0" name="7-4" onclick="validaradios(this.id);muestra_diprec(5,1);guardaCheckDiprec(this.id,11)"> No</label>
+                                </div>
+                                <div style="display: none;" id="division-5">
+                                    <span class="span FWM-span-form">Comentarios:</span>
+                                    <input type="text" class="FWM-input" id="comentarios-7-4" name="comentarios-7_4" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,11)"/>
+                                </div>
+                            <span class="span FWM-span-form">7.5.- ¿Qué tipo de gas?:</span>
+                                <div style="justify-content: space-around;padding-top: 10px;padding-bottom: 10px;display: flex;">
+                                    <label class="text-divided-check" style="margin: 10px; white-space: nowrap; line-height: 26px;"><input type="checkbox" id="checkbox-1" name="checkbox-1" onclick="guardaCheckDiprec(this.id,11)">LP</label>
+                                    <label class="text-divided-check" style="margin: 10px; white-space: nowrap; line-height: 26px;"><input type="checkbox" id="checkbox-2" name="checkbox-2" onclick="guardaCheckDiprec(this.id,11)">Natural</label>
+                                </div>
+                            <span class="span FWM-span-form">7.6.- ¿Se realizaron pruebas de presión?:</span>
+                            <div id="presiones">
+                                <div style="display: flex;justify-content: space-around;margin-bottom: 15px;">
+                                    <label class="text-divided-check">Salida<input type="number" id="input-7-6-1" name="input-7_7_6_1" class="multiple-input-divided-check" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,11)"></label>
+                                    <label class="text-divided-check">Presión<input type="number" id="input-7-6-2" name="input-7_7_6_2" class="multiple-input-divided-check" onchange="inputLleno(this.id,this.value);guardaCheckDiprec(this.id,11)"></label>
+                                    <label class="text-divided-check" style="display: flex;vertical-align: middle;justify-content: space-between;min-width: 33%;margin: auto;margin-top: 10px;">
+                                        <button class="button button_green" onclick="maspresiones();">+</button>
+                                        &emsp;
+                                        <button class="button button_red" onclick="menospresiones();">-</button>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="block grid-resizable-demo" style="top: 25px;margin-bottom: 80px;">
+                                <div class="row align-items-stretch" style="text-align: center;">
+                                    <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                        <span class="resize-handler"></span>
+                                        <a href="#" onclick="guardarDIPREC();" class="boton-personalizado-4">Guardar datos</a>   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- Fin contenido formulario -->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from checklist_diprec where id_cedula = ? AND fase = 11",
+                                [id_cedula],
+                                function(tx, results){
+                                    var length = results.rows.length;
+                                    if(length==0){}else{
+                                        for(i=0; i<length; i++){
+                                            var item = results.rows.item(i);
+                                            if(item.tipo == "radio"){
+                                                if(item.pregunta == "7-1"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(2,0);
+                                                    }else{
+                                                        muestra_diprec(2,1);
+                                                    }
+                                                }
+                                                if(item.pregunta == "7-2"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(3,0);
+                                                    }else{
+                                                        muestra_diprec(3,1);
+                                                    }
+                                                }
+                                                if(item.pregunta == "7-3"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(4,0);
+                                                    }else{
+                                                        muestra_diprec(4,1);
+                                                    }
+                                                }
+                                                if(item.pregunta == "7-4"){
+                                                    var ids = item.id.split("-");
+                                                    if(ids[1] == 1){
+                                                        muestra_diprec(5,0);
+                                                    }else{
+                                                        muestra_diprec(5,1);
+                                                    }
+                                                }
+                                                $("#"+item.id).prop("checked",true);
+                                            }else if (item.tipo == "checkbox"){
+                                                if(item.valor == "1"){
+                                                    $("#"+item.id).prop("checked",true);
+                                                }
+                                            }else {
+                                                $("#"+item.id).val(item.valor);
+                                            }
+                                        }
+                                    }
+                                },
+                            function(tx, error){console.log("Error: " + error.message);}
+                        );
+                    },
+                    function(error){console.log("Error: " + error.message);},
+                    function(){}
+                );
+            }
+        }  
+    }
+
+    
+</script>

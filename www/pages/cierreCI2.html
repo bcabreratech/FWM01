@@ -1,0 +1,223 @@
+<template>
+    <div class="view view-main view-init safe-areas">
+        <div class="page">
+            <div class="navbar" style="background-color: #063E7F;height: 52px;height: 52px;">
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <style>            
+                            .nav-text-regresar{
+                                color: #ffffff;
+                                border: 2px solid white;
+                                padding: 0 10px;
+                                border-radius: 7px;
+                                font-size: 14px;
+                            }
+                            .rating:not([disabled]) .star:hover::after, .rating .star.active::after {
+                                height: 1.3em;
+                            }
+                            #demo{
+                                text-align: center;
+                                font-weight: bold;
+                                font-size: 18px;
+                                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                            }
+                            #fa{
+                                font-size: 13px;
+                                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                            }
+                            .FWM-input{
+                                width: 100%;
+                                height: 36px;
+                            }
+                          </style>
+                        <a href="#" class="link back" style="margin-left: 5px;">
+                            <span class="nav-text-regresar">Regresar</span>
+                        </a>
+                    </div>
+                    <div class="title" style="color: white;text-align:center;padding-left: 40px;">Cierre</div>
+                </div>
+            </div>
+            <div class="toolbar toolbar-bottom tabbar">
+                <style>
+                    .tab-link-active{
+                        color: white;
+                        background-color: #00A7B5;
+                    }
+                </style>
+                <font size="1">
+                    <div class="toolbar-inner">
+                        <a href="#tab-1" class="tab-link tab-link-active" style="font-size: 16px;font-family: 'ITC Avant Garde Gothic', sans-serif;color: 505759;">Cierre</a>
+                    </div>
+                </font>
+            </div>
+            <div class="tabs-animated-wrap">
+                <div class="tabs">
+                    <!--------------------------------FIN TAB 1-->
+                    <div id="tab-1" class="page-content tab tab-active bg-color-white" style="margin-top: 20px;background-color: rgb(245, 245, 245);">
+                        <div class="block" style="padding-left: 0;padding-top: 0;">
+                            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                                <h2 style="color:#00A7B5;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;">Datos Generales</h2>
+                            </div>
+
+                            <div style="text-align: left; justify-content:left; margin-right:auto; margin-left:auto; width: 95%;background-color: white;padding: 10px;border-radius: 15px;margin-left: 2%;" id="datos_form">
+                                <span class="span FWM-span-form" name="">Crédito </span>
+                                <div style="display: flex;justify-content: space-around;">
+                                    <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="tipo1-2" onclick="checkStatus2(this.id)" value="1" >Si</label>
+                                    <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="tipo0-2" onclick="checkStatus2(this.id)" value="0" >No</label>
+                                </div>
+                                <span class="span FWM-span-form" name="">Documentos</span>
+                                    <input class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" type="text" id="documentos" name="Documentos" onchange="inputLleno(this.id,this.value)"/>
+
+                                <span class="span FWM-span-form">Foto de documentos:</span>
+                                    <div class="FWM-photo-container">
+                                        <div class="border-capture">
+                                            <a onclick="capturePhoto();">
+                                                <img class="FWM-photo" src="img/camera.svg" id="photoIcon" width="45px" style="margin-left: 50px;"/>
+                                            </a>
+                                        </div>
+                                        <img class="FWM-photo-hide" id="smallImage" src=""/>
+                                        <input type="hidden" id="imagenC" name="Foto Documentos" />
+                                    </div>
+
+                                    <!-- <div class="block grid-resizable-demo" style="margin-bottom: 45px; margin-top: 45px;">
+                                        <div class="row align-items-stretch" style="text-align: center;">
+                                            <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                                <span class="resize-handler"></span>
+                                                <a href="#" onclick="" style="background-color: #063E7F;" class="boton-equipo">Guardar Foto</a>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                <span class="span FWM-span-form" name="">&nbsp;</span>
+                                <div style="display: flex;justify-content: space-around;margin-bottom:25px;">
+                                    <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="tipo1-3" onclick="checkStatus2(this.id)" value="1" >Factura</label>
+                                    <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="tipo0-3" onclick="checkStatus2(this.id)" value="0" >Remisión</label>
+                                </div>
+
+                                <span class="span FWM-span-form" style="margin-bottom: 10px;">Requiere pedido</span>
+                                <div style="display: flex;justify-content: space-around;">
+                                    <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="tipo1-4" onclick="checkStatus2(this.id),cierreCI(8)" value="1" >Sí</label>
+                                    <label style="font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;font-weight: bold;color: gray;"><input type="checkbox" id="tipo0-4" onclick="checkStatus2(this.id),cierreCI(8)" value="0" >No</label>
+                                </div>
+                            </div>
+                                <div id="div_pedido" style="display: none; text-align: left; justify-content:left; margin-right:auto; margin-left:auto; width: 95%;background-color: white;padding: 10px;border-radius: 15px;margin-left: 2%;">
+                                    <h2 style="color:#00A7B5;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;text-align: center;">Pedido</h2>
+                                    <span class="span FWM-span-form" style="margin-top: 25px;">Producto</span>
+                                        <input class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" type="text" id="producto" name="Producto" onchange="inputLleno(this.id,this.value)"/>
+                                    <span class="span FWM-span-form" name="">KG</span>
+                                        <input class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" type="text" id="kg" name="KG" onchange="inputLleno(this.id,this.value)"/>
+                                    <span class="span FWM-span-form">Forma de pago</span>
+                                        <select class="FWM-input obligatorio" id="pagos" name="Forma de pagos" onchange="cierreCI(9);">
+                                            <option value="0" selected>Selecciona una opción</option>
+                                            <option value="1">Crédito</option>
+                                            <option value="3">Efectivo contra entrega</option>
+                                            <option value="4">Transferencia</option>
+                                            <option value="5">Cheque</option>
+                                            <option value="6">Otro</option>
+                                        </select>
+                                    <div id="div_pagos" style="display: none;">
+                                        <span class="span FWM-span-form" name="">Especifique otra forma de pago:</span>
+                                        <input class="FWM-input" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" type="text" id="otro_pago" name="" onchange="inputLleno(this.id,this.value)"/>
+                                    </div>
+                                    <h2 style="color:#00A7B5;font-family: 'ITC Avant Garde Gothic', sans-serif;font-size: 20px;text-align: center;">Detalle de entrega</h2>
+
+                                    <span class="span FWM-span-form" name="">Día</span>
+                                        <input class="FWM-input obligatorio" name="Día" style="font-family: 'ITC Avant Garde Gothic', sans-serif;padding-top: 10px;" type="date" id="dia_entrega" onchange="inputLleno(this.id,this.value)"/>
+                                    <span class="span FWM-span-form" name="">Hora</span>
+                                        <input class="FWM-input obligatorio" name="Hora" style="font-family: 'ITC Avant Garde Gothic', sans-serif;padding-top: 10px;" type="time" id="hora_entrega" onchange="inputLleno(this.id,this.value)"/>
+                                    
+                                    <span class="span FWM-span-form" name="">Dirección de entrega</span>
+                                        <input class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" type="text" id="direccion" name="Dirección de entrega" onchange="inputLleno(this.id,this.value)"/>
+                                    <span class="span FWM-span-form" name="">Observaciones</span>
+                                    <textarea class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;height: 100px;padding-top: 5px;" name="Observaciones" id="Observaciones" cols="30" rows="10" onchange="inputLleno(this.id,this.value)"></textarea>
+                                </div>
+
+                                <div class="block grid-resizable-demo" style="margin-bottom: 45px; margin-top: 45px;">
+                                    <div class="row align-items-stretch" style="text-align: center;">
+                                        <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                            <span class="resize-handler"></span>
+                                            <a href="#" onclick="GuardarCierre1CI()" style="background-color: #00A7B5;" class="boton-equipo">Terminar servicio</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx2){
+                        tx2.executeSql(
+                            "Select * from visita_seguimiento where id_cedula= ?",
+                            [id_cedula],
+                            function(tx2, results){
+                                var length = results.rows.length;
+                                if(length == 0){
+                                    $("#message-nr").css("display", "block");
+                                } else {
+                                    var item = results.rows.item(0);
+                                    if(item.credito_check == 1){
+                                        $("#tipo1-2").prop("checked",true)
+                                    }else if(item.credito_check == 0){
+                                        $("#tipo0-2").prop("checked",true)
+                                    }
+                                }
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+                databaseHandler.db.transaction(
+                    function (tx) {
+                        tx.executeSql("Select * from cierre_seguimiento_ci WHERE id_cedula = ?",
+                            [id_cedula],
+                            function (tx, results) {
+                                var item = results.rows.item(0);
+                                $("#documentos").val(item.documentos);
+                                $("#imagenC").val(item.imagenC);
+                                $("#pedido").val(item.pedido);
+                                $("#producto").val(item.producto);
+                                $("#kg").val(item.kg);
+                                $("#entrega").val(item.entrega);
+                                $("#direccion").val(item.direccion);
+                                if(item.pagos){
+                                    $("#pagos").val(item.pagos);
+                                }else{
+                                    $("#pagos").val(0);
+                                }
+                                if(item.foto_doc){
+                                    $("#smallImage").attr("src",item.foto_doc);
+                                    $("#smallImage").css("display","flex");
+                                    $("#imagenC").val(item.foto_doc);
+                                    $("#photoIcon").attr("src","img/reload.svg");
+                                }
+                                if(item.credito == 1){
+                                    $("#tipo1-2").prop("checked",true)
+                                }else if(item.credito == 0){
+                                    $("#tipo0-2").prop("checked",true)
+                                }
+                                if(item.factura == 1){
+                                    $("#tipo1-3").prop("checked",true)
+                                }else if(item.factura == 0){
+                                    $("#tipo0-3").prop("checked",true)
+                                }
+                            },
+                            function (tx, error) {console.log(error)}
+                        );
+                    },
+                    function (error) { },
+                    function () { }
+                )
+            }
+        }
+    }
+</script>

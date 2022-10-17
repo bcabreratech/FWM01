@@ -1,0 +1,151 @@
+<template>
+    <div class="page" style="background-color: rgb(245, 245, 245);">
+        <div class="navbar" style="background-color: #063E7F;height: 52px;">
+            <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+            <div class="navbar-inner sliding" style="height: 52px;">
+                <div class="left">
+                    <a href="#" onclick="regresarRecorridoDIPREC2();">
+                        <span class="nav-text-regresar" id="nav-text-regresar-function">Regresar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;">
+                <h2 style="color:#063E7F;font-size: 20px;font-family: 'ITC Avant Garde Gothic', sans-serif;margin-top: 35px;">Datos Generales</h2>
+
+                <form class="list" style="margin-top: 0;">                    
+                    <style type="text/css">
+                        input[type=text], input[type=date]{
+                            margin: 8px 0;
+                            border: 1px solid #ccc;
+                            border-radius: 6px;
+                        }
+                    </style>
+                    <div style="width: 90%;border-radius: 15px;margin-left: 5%;border: 0.5px solid #ECECEC;background-color: white;" id="datos_form">
+                        <span class="span" style="font-weight: bold;width: 90%;">Proyecto:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="Proyecto" id="proyecto" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Pedido:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='text' name="Pedido" id="pedido" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Fecha:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0;border-bottom: 0;">
+                            <input type='date' name="Fecha" id="fecha" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Referencia:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0px;border-bottom: 0;">
+                            <input type='text' name="Referencia" id="referencia" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Proyectos:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0px;border-bottom: 0;">
+                            <input type='text' name="Proyectos" id="proyectos" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Vendedor:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0px;border-bottom: 0;">
+                            <input type='text' name="Vendedor" id="vendedor" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <br>
+                            <h2 style="color:#063E7F;font-size: 18px;font-family: 'ITC Avant Garde Gothic', sans-serif;margin-top: 15px;margin-bottom: 0px;">1. Nombre y Razón social</h2>
+                        <br>
+                        <span class="span" style="font-weight: bold;width: 90%;">Nombre:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0px;border-bottom: 0;">
+                            <input type='text' name="Nombre" id="mombre" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Razón Social:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0px;border-bottom: 0;">
+                            <input type='text' name="Razón Social" id="razon_social" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Direccion:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0px;border-bottom: 0;">
+                            <input type='text' name="Direccion" id="direccion" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Teléfono:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0px;border-bottom: 0;">
+                            <input type='text' name="Teléfono" id="telefono" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">RFC:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0px;border-bottom: 0;">
+                            <input type='text' name="RFC" id="rfc" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Atención:</span>
+                        <span id="text2" style="width: 90%;margin-bottom: 0px;border-bottom: 0;">
+                            <input type='text' name="Atención" id="atencion" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                        <span class="span" style="font-weight: bold;width: 90%;">Puesto:</span>
+                        <span id="text2" style="width: 90%;border-bottom: 0;">
+                            <input type='text' name="Puesto" id="puesto" class="FWM-textBox obligatorio" onchange="inputLleno(this.id,this.value)"/>
+                        </span>
+                    </div>
+                    <!---CAMBIOS--->    
+                    <style type="text/css">
+                        .boton-personalizado-4 {
+                            text-decoration: none;
+                            font-family: 'ITC Avant Garde Gothic', sans-serif;
+                            font-weight: 600;
+                            font-size: 16px;
+                            color: #FFFFFF;
+                            padding-top: 15px;
+                            padding-bottom: 13px;
+                            padding-left: 30px;
+                            padding-right: 30px;
+                            background-color: #063E7F;
+                            border-radius: 15px;
+                        }
+                    </style>
+                    <div class="block grid-resizable-demo" style="top: 25px;margin-bottom: 80px;">
+                        <div class="row align-items-stretch" style="text-align: center;">
+                            <div class="col-100 medium-50" style="min-width: 50px; border-style: none;">
+                                <span class="resize-handler"></span>
+                                <a href="#" onclick="guardarDatosGeneralesDiprec();" class="boton-personalizado-4">Guardar datos</a>   
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                var id_cedula = localStorage.getItem("IdCedula");
+                databaseHandler.db.transaction(
+                    function(tx){
+                        tx.executeSql(
+                            "Select * from datos_generales_diprec WHERE id_cedula = ?",
+                            [id_cedula],
+                            function(tx, results){
+                                let length = results.rows.length;
+                                var item = results.rows.item(0);
+                                $('#proyecto').val(item.proyecto);
+                                $('#pedido').val(item.pedido);
+                                $('#fecha').val(item.fecha);
+                                $('#referencia').val(item.referencia);
+                                $('#proyectos').val(item.proyectos);
+                                $('#vendedor').val(item.vendedor);
+                                $('#mombre').val(item.mombre);
+                                $('#razon_social').val(item.razon_social);
+                                $('#direccion').val(item.direccion);
+                                $('#telefono').val(item.telefono);
+                                $('#rfc').val(item.rfc);
+                                $('#atencion').val(item.atencion);
+                                $('#puesto').val(item.puesto);
+                            },
+                            function(tx, error){
+                                console.log("Error al guardar cedula: " + error.message);
+                                app.preloader.hide();  
+                            }
+                        );
+                    },
+                    function(error){},
+                    function(){}
+                );
+            }
+        }
+    }
+</script>

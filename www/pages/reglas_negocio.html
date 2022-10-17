@@ -1,0 +1,231 @@
+<!--suppress JSAnnotator -->
+<template>
+    <div class="page">
+        <style>
+            .titulo-yallegue{
+              font-family: 'ITC Avant Garde Gothic', sans-serif;
+              font-size: 24px;
+              margin-top:24px;
+              margin-bottom:28.2px;
+            }
+            .subtitulo-yallegue{
+                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                color: #505759;
+                font-size: 14px;
+                margin-bottom: 2px;
+            }
+            .last-updated{
+                color: #00A7B5;
+                font-size: 13px;
+                font-weight: bold;
+            }
+            .text-yallegue{
+                font-family: 'ITC Avant Garde Gothic', sans-serif;
+                font-size: 16px;
+                font-weight: bold;
+                color: #505759;
+            }
+            .list{
+                margin-top: 28px;
+            }
+            .border-capture{
+                background-color: white;
+                border-radius: 20px;
+                width: 147.76px;
+                height: 147.76px;
+                border: solid 3px #00A7B5;
+            }
+            .nav-text-regresar{
+                color: #ffffff;
+                border: 2px solid white;
+                padding: 5px;
+                border-radius: 7px;
+                font-size: 14px;
+            }
+            .item-media{
+                margin-top: 9px;
+            }
+            .item-media .material-icons{
+                font-size: 18px !important;
+                margin: auto;
+            }
+            div.item-title{
+                font-size: 16px !important;
+            }
+            div.item-header{
+                font-size: 12px !important;
+            }
+        </style>
+        <div class="page-content yallegue-help">
+            <div class="navbar" style="background-color: #063E7F;height: 52px;position: absolute;top: 0;">
+                <div style="text-align: center;"><img src="img/logo-FWM.png" style="margin-top: 5px;" height="41.38px" alt="Logo Field"></div>
+                <div class="navbar-inner sliding" style="height: 52px;">
+                    <div class="left">
+                        <a href="javascript:location.reload()" style="margin-left: 10px;">
+                            <span class="nav-text-regresar">Regresar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; justify-content:center; margin-right:auto; margin-left:auto; width: 99%;margin-top: 70px;">
+                <form class="list" id="demo-form">
+                    <input type="hidden" id="imagenC" name="imagenC" onchange="obtenerTime();"/>
+                    <span class="text-yallegue">Reglas de negocio</span><br />
+                    <br>
+                    <br>
+                    <div id="text">
+                        <div class="list no-hairlines-md">
+                            <ul>
+                                <style>
+                                    .cliente-yallegue{
+                                        font-family: 'ITC Avant Garde Gothic', sans-serif;
+                                        font-size: 13px;
+                                        margin: 0;
+                                        padding: 0;
+                                        text-align: left;
+                                        background-color: white;
+                                        padding-left: 15px;
+                                    }
+                                    .cliente-ayuda{
+                                        background-color: white;
+                                    }
+                                    .input-yallegue{
+                                        border-bottom: 2px solid #00A7B5;
+                                    }
+                                    .md .item-input .item-media {
+                                        padding-right: 15px;
+                                    }
+                                </style>
+                                <li class="cliente-yallegue"><span>Buscar cliente</span></li>
+                                <li class="item-content item-input cliente-ayuda">
+                                    <div class="item-inner">
+                                        <div class="item-input-wrap input-yallegue">
+                                            <input type="text" placeholder="Escribe el cliente o su numero" name="ncliente" id="autocomplete-dropdown-ajax" class="autocomplete-dropdown item-title" >
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <br/><br />
+                </form>
+                <fwm></fwm>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {      
+            pageInit: function () {
+                var self = this;
+                var app = self.$app; 
+                var OPCV = localStorage.getItem("Opcion");       
+                var division = localStorage.getItem("division");
+
+                var rol = localStorage.getItem("rol");
+                var roles = rol.split("-");
+
+                if (roles[1] == 'EB'){
+                    if(division == 1){
+                        var NomDescCli = 'getReglas[L]_desc_bennetts';
+                    }else if(division == 2){
+                        var NomDescCli = 'getReglas[ST]_desc_bennetts';
+                    }
+                    var NomJson = "getReglas[L]_bennetts";
+                }else if(roles[1] == 'KEY'){
+                    var NomJson = 'getReglas[L-ST]_des_Key';
+                    var NomDescCli = "getReglas[L-ST]Key";
+                }else if(roles[1] == 'SURO'){
+                    var NomJson = 'getReglas[L-ST]_des_Suro';
+                    var NomDescCli = "getReglas[L-ST]Suro";
+                }
+
+                self.autocompleteDropdownAjax = app.autocomplete.create({
+                    inputEl: '#autocomplete-dropdown-ajax',
+                    openIn: 'dropdown',
+                    preloader: true, //enable preloader
+                    valueProperty: 'CardCode', //object's "value" property name
+                    textProperty:  'Buscador', //object's "text" property name
+                    limit: 10, //limit to 20 results
+                    dropdownPlaceholderText: 'Seleccionar Cliente...',
+                    source: function (query, render) {
+                        var autocomplete = this;
+                        var results = [];
+                        if (query.length === 0) {
+                            render(results);
+                            return;
+                        }
+                        // Show Preloader
+                        autocomplete.preloaderShow();
+                        // Do Ajax request to Autocomplete data
+                        app.request({
+                            url: cordova.file.dataDirectory + "jsons/"+NomJson+".json", // y por cual era? XD perate culo dale shift+f6 si le distre? xd
+                            method: 'GET',
+                            dataType: 'json',
+                            //send "query" to server. Useful in case you generate response dynamically, deja inento en el mio para acordarme xd
+                            data: {
+                                query: query,
+                            },success: function (data) {
+                                data;
+                                for (var i = 0; i < data.length; i++) {
+                                    if (data[i].Buscador.toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(data[i]);
+                                }
+                                render(results); 
+                            }
+                        }); 
+                    }
+                });
+
+                $('#autocomplete-dropdown-ajax').change(function () {
+                    var cliente = $("#autocomplete-dropdown-ajax").val();
+                    app.request.get(cordova.file.dataDirectory + "jsons/"+NomDescCli+".json", function (data) {
+                        console.log('data',data)
+                        var content2 = JSON.parse(data);
+                        console.log('jsoda',content2)
+                        for(var x = 0; x < content2.length; x++) {
+                            if(content2[x].CardCode == cliente){
+                                if(division == 1){
+                                    ShowReglas(content2[x].CardCode, content2[x].CardName, content2[x].FirstName, content2[x].MiddleName, content2[x].LastName, content2[x].Position, content2[x].E_MailL, 
+                                    content2[x].Tel1, content2[x].Tel2, content2[x].Street, content2[x].StreetNo, content2[x].Building, content2[x].Block, content2[x].City, content2[x].ZipCode, content2[x].County, 
+                                    content2[x].State, content2[x].U_Copias_OC, content2[x].U_Copias_FB, content2[x].U_Copias_SUA, content2[x].U_Copias_TIA, content2[x].U_Otros, content2[x].U_RecepL, 
+                                    content2[x].U_RecepM, content2[x].U_RecepMi, content2[x].U_RecepJ, content2[x].U_RecepV, content2[x].U_RecepS, content2[x].U_HorariosLV, content2[x].U_HorarioS, 
+                                    content2[x].U_PEntrega, content2[x].U_MedioP, content2[x].U_TEntrega, content2[x].U_CEntrega, content2[x].U_MCita, content2[x].U_EA, content2[x].U_Folio, content2[x].U_CR, 
+                                    content2[x].U_Firma, content2[x].U_Recibido, content2[x].U_SelloCte, content2[x].U_OC, content2[x].U_ID, content2[x].U_Otro, content2[x].U_Ninguno, content2[x].U_Cofia, 
+                                    content2[x].U_Calzado, content2[x].U_U_Otros, content2[x].U_U_DesOtros);
+                                }else if (division == 2){
+                                    ShowReglas1(content2[x].CardCode, content2[x].CardName, content2[x].FirstNameServTec, content2[x].MiddleNameServTec, content2[x].LastNameServTec, 
+                                        content2[x].PositionServTec, content2[x].Tel1ServTec, content2[x].Tel2ServTec, content2[x].E_MailLServTec, content2[x].StreetServTec, content2[x].StreetNoServTec, 
+                                        content2[x].StreetNoInterServTec, content2[x].BlockServTec, content2[x].CityServTec, content2[x].ZipCodeServTec, content2[x].CountyServTec, content2[x].StateServTec, 
+                                        content2[x].U_Copias_OCServTec, content2[x].U_Copias_FBServTec, content2[x].U_Copias_SUAServTec, content2[x].U_Copias_TIAServTec, content2[x].U_OtrosServTec, 
+                                        content2[x].U_Dias_1ServTec, content2[x].U_Dias_2ServTec, content2[x].U_Dias_3ServTec, content2[x].U_Dias_4ServTec, content2[x].U_Dias_5ServTec, content2[x].U_Dias_6ServTec, 
+                                        content2[x].U_PermisoServTec, content2[x].U_MedioP_1ServTec, content2[x].U_MedioP_2ServTec, content2[x].U_MedioP_3, content2[x].U_Permiso_TServTec, content2[x].U_CitaServTec, 
+                                        content2[x].U_EAServTec, content2[x].U_FolioServTec, content2[x].U_CRServTec, content2[x].U_Firma_BServTec, content2[x].U_SelloServTec, content2[x].U_OCServTec, 
+                                        content2[x].U_IDServTec, content2[x].U_OtroServTec, content2[x].U_NingunoServTec, content2[x].U_CofiaServTec, content2[x].U_CalzadoServTec
+                                    );
+                                }
+                            }         
+                        }
+                    });
+                });  
+                                // ShowReglas(content2[x].CardCode, content2[x].CardName, content2[x].FirstName, content2[x].MiddleName, content2[x].LastName, content2[x].Position, content2[x].E_MailL, 
+                                //     content2[x].Tel1, content2[x].Tel2, content2[x].Street, content2[x].StreetNo, content2[x].Building, content2[x].Block, content2[x].City, content2[x].ZipCode, content2[x].County, 
+                                //     content2[x].State, content2[x].U_Copias_OC, content2[x].U_Copias_FB, content2[x].U_Copias_SUA, content2[x].U_Copias_TIA, content2[x].U_Otros, content2[x].U_RecepL, 
+                                //     content2[x].U_RecepM, content2[x].U_RecepMi, content2[x].U_RecepJ, content2[x].U_RecepV, content2[x].U_RecepS, content2[x].U_HorariosLV, content2[x].U_HorarioS, 
+                                //     content2[x].U_PEntrega, content2[x].U_MedioP, content2[x].U_TEntrega, content2[x].U_CEntrega, content2[x].U_MCita, content2[x].U_EA, content2[x].U_Folio, content2[x].U_CR, 
+                                //     content2[x].U_Firma, content2[x].U_Recibido, content2[x].U_SelloCte, content2[x].U_OC, content2[x].U_ID, content2[x].U_Otro, content2[x].U_Ninguno, content2[x].U_Cofia, 
+                                //     content2[x].U_Calzado, content2[x].U_U_Otros, content2[x].U_U_DesOtros, content2[x].FirstNameServTec, content2[x].MiddleNameServTec, content2[x].LastNameServTec, 
+                                //     content2[x].PositionServTec, content2[x].Tel1ServTec, content2[x].Tel2ServTec, content2[x].E_MailLServTec, content2[x].StreetServTec, content2[x].StreetNoServTec, 
+                                //     content2[x].StreetNoInterServTec, content2[x].BlockServTec, content2[x].CityServTec, content2[x].ZipCodeServTec, content2[x].CountyServTec, content2[x].StateServTec, 
+                                //     content2[x].U_Copias_OCServTec, content2[x].U_Copias_FBServTec, content2[x].U_Copias_SUAServTec, content2[x].U_Copias_TIAServTec, content2[x].U_OtrosServTec, 
+                                //     content2[x].U_Dias_1ServTec, content2[x].U_Dias_2ServTec, content2[x].U_Dias_3ServTec, content2[x].U_Dias_4ServTec, content2[x].U_Dias_5ServTec, content2[x].U_Dias_6ServTec, 
+                                //     content2[x].U_PermisoServTec, content2[x].U_MedioP_1ServTec, content2[x].U_MedioP_2ServTec, content2[x].U_MedioP_3, content2[x].U_Permiso_TServTec, content2[x].U_CitaServTec, 
+                                //     content2[x].U_EAServTec, content2[x].U_FolioServTec, content2[x].U_CRServTec, content2[x].U_Firma_BServTec, content2[x].U_SelloServTec, content2[x].U_OCServTec, 
+                                //     content2[x].U_IDServTec, content2[x].U_OtroServTec, content2[x].U_NingunoServTec, content2[x].U_CofiaServTec, content2[x].U_CalzadoServTec
+                                // );
+            }
+        }
+    }
+</script>
