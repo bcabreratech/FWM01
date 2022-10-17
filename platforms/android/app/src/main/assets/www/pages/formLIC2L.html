@@ -27,8 +27,8 @@
 
                 <div style="text-align: left;">     
                     <div class="list FWM-fixing-form" id="datos_form">
-                    <span class="span FWM-span-form">No. de trampas limpias:</span>
-                        <input type='number' id="No_Trampas" name="Ubicación" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/>
+                    <!-- <span class="span FWM-span-form">No. de Levantamientos:</span>
+                        <input type='number' id="No_Lev" name="Ubicación" class="FWM-input obligatorio" style="font-family: 'ITC Avant Garde Gothic', sans-serif;" onchange="inputLleno(this.id,this.value)"/> -->
 
                     <span class="span FWM-span-form">Foto:</span>
                         <div class="FWM-photo-container">
@@ -81,40 +81,7 @@
 <script>
  return {
      on: {
-        //  pageInit: function (e, page) {
-        //     $('.preloader').remove();
-        //     $('.infinite-scroll-preloader').remove();
-        //     var id_cedula = localStorage.getItem("IdCedula");
-            
-        //     databaseHandler.db.transaction(
-        //         function(tx){
-        //             tx.executeSql("Select * from checkPointPacas where id_cedula = ? ORDER BY id_evidencia DESC",
-        //             [id_cedula],
-        //                 function(tx, results){
-        //                     var length = results.rows.length;
-        //                     if(length == 0){
-        //                         $("#message-nr").css("display", "block");
-        //                     } else {
-        //                         $("#message-nr").css("display", "none");
-        //                         for(var i = 0; i< length; i++){
-        //                             var item = results.rows.item(i);
-        //                             $("#tabla_checkpointPacas").append("<tr id='fila"+ item.id_evidencia +"'><td><a href='#' onclick='eliminarFilaProteus("+item.id_evidencia +",1,`checkPointPacas`);' style='border: none; outline:none;'><img src='img/borrar.png' width='30px' /></a></td><td><img src='"+item.foto+
-        //                                     "' width='60px' style='margin-top: 4px;'/></td><td style='text-align: center;'>" + item.observaciones
-        //                                     + "</td><td style='text-align: center;'>" + item.fecha + "</td></tr>");
-        //                         }
-        //                     }
-        //                     $('.preloader').remove();
-        //                     $('.infinite-scroll-preloader').remove();
-        //                 },
-        //                 function(tx, error){
-        //                     console.log("Error al mostrat datos: " + error.message);
-        //                 }
-        //             );
-        //         },
-        //         function(error){},
-        //         function(){}
-        //     );
-        // }
+        
      
     }  
  }

@@ -902,6 +902,73 @@ var routes = [
       componentUrl: './pages/yamevoyAliatonic.html',
     },
     //fin aliatonic
+    //inicio LIC
+    {  
+      name: 'recorridoLIC1', 
+      path: '/recorridoLIC1/',
+      componentUrl: './pages/recorridoLIC1.html',
+    },
+    {  
+      name: 'recorridoLIC2', 
+      path: '/recorridoLIC2/',
+      componentUrl: './pages/recorridoLIC2.html',
+    },
+    {  
+      name: 'yallegueLIC1', 
+      path: '/yallegueLIC1/',
+      componentUrl: './pages/yallegueLIC1.html',
+    },
+    {  
+      name: 'yallegueLIC2', 
+      path: '/yallegueLIC2/',
+      componentUrl: './pages/yallegueLIC2.html',
+    },
+    {  
+      name: 'formLIC1', 
+      path: '/formLIC1/',
+      componentUrl: './pages/formLIC1.html',
+    },
+    {  
+      name: 'formLIC2', 
+      path: '/formLIC2/',
+      componentUrl: './pages/formLIC2.html',
+    },
+    {  
+      name: 'formLIC3', 
+      path: '/formLIC3/',
+      componentUrl: './pages/formLIC3.html',
+    },
+    {  
+      name: 'cierreLIC', 
+      path: '/cierreLIC/',
+      componentUrl: './pages/cierreLIC.html',
+    },
+    {  
+      name: 'formLIC1L', 
+      path: '/formLIC1L/',
+      componentUrl: './pages/formLIC1L.html',
+    },
+    {  
+      name: 'formLIC2L', 
+      path: '/formLIC2L/',
+      componentUrl: './pages/formLIC2L.html',
+    },
+    {  
+      name: 'formLIC3L', 
+      path: '/formLIC3L/',
+      componentUrl: './pages/formL3L.html',
+    },
+    {  
+      name: 'cierreLICL', 
+      path: '/cierreLICL/',
+      componentUrl: './pages/cierreLICL.html',
+    },
+    {
+      name:'yamevoyLIC',
+      path: '/yamevoyLIC/',
+      componentUrl: './pages/yamevoyLIC.html',
+    },
+    //fin LIC
     //inicio Zona 04
     {  
       name: 'yamevoyZona04', 
