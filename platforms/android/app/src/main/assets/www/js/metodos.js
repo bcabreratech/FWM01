@@ -53945,6 +53945,8 @@ if ($("#proveedor").val() == "" || $("#sucursal").val() == "" || $("#rfc").val()
             app.views.main.router.navigate({ name: 'yallegueSMC'});
         } else if(empresa == "DIPREC"){
             app.views.main.router.navigate({ name: 'yallegueDIPREC'});
+        } else if(empresa == "LIC"){
+            app.views.main.router.navigate({ name: 'yallegueLIC'});
         } else if(empresa == "Bennetts"){
             app.views.main.router.navigate({ name: 'yallegueBennetts'});
         } else if(empresa == "SURO"){
